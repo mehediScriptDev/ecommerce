@@ -4,19 +4,19 @@ import leftImage from '../../assets/login.jpg';
 
 const Login = () => {
     return (
-        <div className="flex h-screen w-full">
+        <div className="flex h-screen w-full overflow-hidden">
             {/* Left - Image */}
-            <div className="hidden md:block w-1/2 h-full">
+            <div className="hidden md:block w-1/2 h-full overflow-hidden">
                 <img
                     src={leftImage}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full ken-burns-image object-cover"
                     alt="Login"
                 />
             </div>
 
             {/* Right - Form */}
-            <div className="w-full md:w-1/2 flex items-center justify-center bg-white px-10">
-                <div className="w-full max-w-sm">
+            <div className="w-full md:w-1/2 flex items-center justify-center bg-white px-10 overflow-y-auto">
+                <div className="w-full max-w-sm form-stagger">
                     <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-1">
                         Login to Continue
                     </h1>
