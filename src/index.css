@@ -3,5 +3,12 @@
 
 
 @theme{
-    --color-primary: #3DB4CC;
+    --color-custom: #3DB4CC;
+}
+
+
+@layer{
+    .btn-custom{
+        @apply bg-custom text-white;
+    }
 }

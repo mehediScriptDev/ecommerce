@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Auth = () => {
+const Otp = () => {
     return (
         <div>
-            
+            <h1>OTP Verification</h1>
         </div>
     );
 };
 
-export default Auth;
+export default Otp;
