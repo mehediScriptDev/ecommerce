@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import leftsideImage from '../../assets/resetpass.jpg';
+import leftsideImage from '../../assets/auth/resetpass.jpg';
 
 const ResetPass = () => {
     const [formData, setFormData] = useState({ password: '', confirmPassword: '' });

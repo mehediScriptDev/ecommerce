@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
-import leftsideImage from '../../assets/opt.jpg';
+import leftsideImage from '../../assets/auth/opt.jpg';
 
 const Otp = () => {
     const [otp, setOtp] = useState('');
@@ -95,7 +95,7 @@ const Otp = () => {
                                         onKeyDown={e => handleKeyDown(index, e)}
                                         className={`flex-1 min-w-0 aspect-square text-center text-lg font-semibold rounded-lg border-2 focus:outline-none focus:border-custom transition-colors
                                             ${otp[index] ? 'border-custom' : 'border-gray-200'}
-                                            ${error ? '!border-red-400' : ''}`}
+                                            ${error ? 'border-red-400!' : ''}`}
                                     />
                                 ))}
                             </div>

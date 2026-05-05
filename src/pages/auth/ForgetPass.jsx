@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router';
-import leftsideImage from '../../assets/forgetpass.jpg';
+import leftsideImage from '../../assets/auth/forgetpass.jpg';
 
 const ForgetPass = () => {
     const [email, setEmail] = useState('');

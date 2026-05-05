@@ -1,6 +1,6 @@
 // src/pages/Register.jsx
 import { useState } from 'react';
-import leftsideImage from '../../assets/register.webp';
+import leftsideImage from '../../assets/auth/register.webp';
 import { VscEye, VscEyeClosed } from 'react-icons/vsc';
 import KamuiImage from '../../components/shared/KamuiImage';
 import { Link } from 'react-router';

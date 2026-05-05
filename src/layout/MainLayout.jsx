@@ -1,10 +1,14 @@
-import React from 'react';
 
-const MainLayout = () => {
+import React from 'react';
+import Navbar from './Navbar';
+
+const MainLayout = ({ children }) => {
     return (
         <div>
-            <h1 className='text-custom'>Main Layout</h1>
-            <button className='btn-custom btn font-normal rounded-lg'>Click Me</button>
+            <Navbar/>
+            <main>
+                {children}
+            </main>
         </div>
     );
 };

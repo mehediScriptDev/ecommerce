@@ -1,6 +1,6 @@
 // src/pages/Login.jsx
 import { Link } from 'react-router';
-import leftImage from '../../assets/login.webp';
+import leftImage from '../../assets/auth/login.jpg';
 
 const Login = () => {
     return (
