@@ -7,6 +7,7 @@ import ForgetPass from "../pages/auth/ForgetPass";
 import Otp from "../pages/auth/Otp";
 import ResetPass from "../pages/auth/ResetPass";
 import Home from "../pages/public/home/Home";
+import Products from "../pages/public/products/Products";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home/>
+      },
+      {
+        path: "products",
+        element: <Products/>
       }
     ]
   },
