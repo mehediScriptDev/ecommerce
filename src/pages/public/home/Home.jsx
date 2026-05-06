@@ -1,11 +1,14 @@
 import React, { Suspense } from 'react';
 import Featured from './sections/featured/Featured';
+import Container from '../../../layout/Container';
 
 const Home = () => {
     return (
-        <div>
+        <Container>
+            <div>
             <Suspense fallback={<div>Loading...</div>}><Featured/></Suspense>
         </div>
+        </Container>
     );
 };
 

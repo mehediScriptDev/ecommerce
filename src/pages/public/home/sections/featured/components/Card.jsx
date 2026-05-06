@@ -1,15 +1,24 @@
 import { FiHeart } from "react-icons/fi";
 
 const Card = ({ id, title, tag, variant, price, currency, images }) => {
+  let textcl = " ";
+  switch(tag){
+    case "BEST SELLER":
+      case "NEW ARRIVAL":
+      textcl = "text-[#006878]";
+      break;
+    default:  textcl = "text-[#914D09]";
+     
+  }
   return (
-    <div className="card card-sm w-auto bg-white max-w-96 border border-[#F1F5F9]">
+    <div className="card card-sm w-full bg-white sm:max-w-96 border border-[#F1F5F9]">
       <figure className="hover-gallery">
         {images && images.map((img, index) => (
           <img key={index} src={img} className="aspect-4/3 object-cover" />
         ))}
       </figure>
       <div className="card-body">
-        <p className="text-[#914D09] text-xs">{tag}</p>
+        <p className={`text-xs ${textcl}`}>{tag}</p>
         <h2 className="card-title flex text-2xl justify-between">{title}</h2>
         <p className="text-sm md:text-base text-[#767E97] -mt-1 line-clamp-1">
           {variant}
