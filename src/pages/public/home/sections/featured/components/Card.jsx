@@ -23,7 +23,7 @@ const Card = ({ id, title, tag, variant, price, currency, images }) => {
         <p className="text-sm md:text-base text-[#767E97] -mt-1 line-clamp-1">
           {variant}
         </p>
-        <div className="flex items-center justify-between mt-1 md:mt-2">
+        <div className="flex items-center justify-between mt-1 lg:mt-2">
             <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#1C2337] ">
           £{price}
         </h3>
