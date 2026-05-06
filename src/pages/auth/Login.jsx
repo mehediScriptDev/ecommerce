@@ -56,7 +56,7 @@ const Login = () => {
                     </div>
 
                     {/* Sign In Button */}
-                    <button className="btn btn-custom w-full text-base font-semibold">
+                    <button className="btn-custom w-full text-base font-semibold">
                         Sign In
                     </button>
 

@@ -6,6 +6,7 @@ import Register from "../pages/auth/Register";
 import ForgetPass from "../pages/auth/ForgetPass";
 import Otp from "../pages/auth/Otp";
 import ResetPass from "../pages/auth/ResetPass";
+import Home from "../pages/public/home/Home";
 
 const router = createBrowserRouter([
   {
@@ -14,7 +15,7 @@ const router = createBrowserRouter([
     children:[
       {
         index: true,
-        element: <h1>Home Page</h1>
+        element: <Home/>
       }
     ]
   },

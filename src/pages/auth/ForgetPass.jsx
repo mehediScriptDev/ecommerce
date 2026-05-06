@@ -66,7 +66,7 @@ const ForgetPass = () => {
 
                         <button
                             type="submit"
-                            className="btn btn-custom w-full text-base font-semibold tracking-widest"
+                            className="btn-custom w-full text-base font-semibold"
                         >
                             Send Code →
                         </button>

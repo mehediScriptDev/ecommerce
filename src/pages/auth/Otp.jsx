@@ -102,7 +102,7 @@ const Otp = () => {
 
                             {error && <p className="text-red-500 text-xs mb-4">{error}</p>}
 
-                            <button type="submit" className="btn btn-custom w-full text-base font-semibold mt-4">
+                            <button type="submit" className="btn-custom w-full text-base font-semibold mt-4">
                                 Verify
                             </button>
                         </form>

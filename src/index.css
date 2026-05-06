@@ -1,15 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
 @import "tailwindcss";
 @plugin "daisyui/index.js";
 
 
+
 @theme{
     --color-custom: #3DB4CC;
+    --font-family-custom: 'Manrope', sans-serif;
+}
+body{
+    font-family: var(--font-family-custom);
+    background-color: #fbfdff;
 }
 
 
-@layer{
+@layer components{
     .btn-custom{
-        @apply bg-custom text-white;
+        @apply btn bg-custom text-white;
+    }
+    .title-custom{
+        @apply text-3xl font-semibold lg:text-[40px] text-[#171C1E];
+
+    }
+    .subtitle-custom{
+        @apply text-base text-[#6D797C] font-normal;
     }
 }
 

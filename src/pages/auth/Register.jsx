@@ -120,7 +120,7 @@ const Register = () => {
                     </div>
 
                     {/* Sign Up Button */}
-                    <button className="btn btn-custom w-full text-base font-semibold">
+                    <button className="btn-custom w-full text-base font-semibold">
                         Sign UP
                     </button>
 

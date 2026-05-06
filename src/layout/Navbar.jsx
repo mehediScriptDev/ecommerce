@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, NavLink } from 'react-router';
 import { FiShoppingCart, FiX, FiMenu } from 'react-icons/fi';
 import logo from '../assets/logo.webp';
+import Container from './Container';
 
 const Navbar = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -15,10 +16,11 @@ const Navbar = () => {
 
     return (
         <>
-            <div className="navbar container mx-auto px-4 lg:px-6">
+            <Container>
+                <div className="navbar px-0!">
 
                 {/* LEFT — hamburger + logo */}
-                <div className="navbar-start">
+                <div className="navbar-start px-0! -ml-2 lg:-ml-0.5">
                     {/* Mobile hamburger */}
                     <button
                         className="btn btn-ghost btn-circle lg:hidden"
@@ -54,7 +56,7 @@ const Navbar = () => {
                 </div>
 
                 {/* RIGHT — cart + buttons */}
-                <div className="navbar-end gap-2 lg:gap-3">
+                <div className="navbar-end gap-2 lg:gap-3 ml-5">
                     <button className="btn btn-ghost hover:bg-gray-100 border-none btn-circle">
                         <FiShoppingCart size={20} />
                     </button>
@@ -66,7 +68,7 @@ const Navbar = () => {
                     </Link>
                     <Link
                         to="/sell"
-                        className="btn btn-custom text-white border-none text-sm font-medium px-4 hidden sm:flex"
+                        className="btn-custom border-none text-sm font-medium px-4 hidden sm:flex"
                     >
                         Sell Your Phone
                     </Link>
@@ -139,6 +141,7 @@ const Navbar = () => {
                     </Link>
                 </div>
             </div>
+            </Container>
         </>
     );
 };
