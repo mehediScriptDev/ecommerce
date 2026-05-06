@@ -62,10 +62,15 @@ const Filter = ({
   setPriceRange,
   activeColor,
   setActiveColor,
+  onApply,
 }) => {
+  const apply = () => {
+    if (onApply) onApply();
+  };
+
   return (
     <div>
-      <aside className="w-52 shrink-0">
+      <aside className="w-full lg:w-52 lg:shrink-0">
         <div className="flex items-center justify-between mb-5">
           <h2 className="text-lg lg:text-xl font-semibold text-[#151A2A]">
             Filters
@@ -77,6 +82,7 @@ const Filter = ({
               setStorage(null);
               setActiveColor(null);
               setPriceRange(2000);
+              apply();
             }}
             className="text-xs text-custom hover:underline"
           >
@@ -90,7 +96,10 @@ const Filter = ({
             name="condition"
             options={CONDITIONS}
             value={condition}
-            onChange={setCondition}
+            onChange={(value) => {
+              setCondition(value);
+              apply();
+            }}
           />
         </FilterSection>
 
@@ -100,7 +109,10 @@ const Filter = ({
             name="series"
             options={SERIES_LIST}
             value={series}
-            onChange={setSeries}
+            onChange={(value) => {
+              setSeries(value);
+              apply();
+            }}
           />
         </FilterSection>
 
@@ -113,6 +125,8 @@ const Filter = ({
             step={50}
             value={priceRange}
             onChange={(e) => setPriceRange(Number(e.target.value))}
+            onMouseUp={apply}
+            onTouchEnd={apply}
             className="products-price-range w-full"
           />
           <div className="flex justify-between mt-2 gap-2">
@@ -136,7 +150,10 @@ const Filter = ({
             {STORAGES.map((s) => (
               <button
                 key={s}
-                onClick={() => setStorage(storage === s ? null : s)}
+                onClick={() => {
+                  setStorage(storage === s ? null : s);
+                  apply();
+                }}
                 className={`py-1.5 rounded-lg text-[14px] leading-5 font-medium border transition-all
                       ${
                         storage === s
@@ -157,9 +174,10 @@ const Filter = ({
               <button
                 key={c.hex}
                 title={c.label}
-                onClick={() =>
-                  setActiveColor(activeColor === c.hex ? null : c.hex)
-                }
+                onClick={() => {
+                  setActiveColor(activeColor === c.hex ? null : c.hex);
+                  apply();
+                }}
                 className={`w-6 h-6 rounded-full border-2 transition-all
                       ${activeColor === c.hex ? "border-custom scale-110" : "border-transparent hover:scale-105"}`}
                 style={{

@@ -64,7 +64,7 @@ export default function ProductCard({ product }) {
         <h3 className="text-sm md:text-base font-semibold text-gray-900 leading-tight">
           {product.name}
         </h3>
-        <p className="text-xs md:text-sm text-gray-400 mt-0.5">
+        <p className="text-xs lg:text-sm text-gray-400 mt-0.5">
           {product.storage} · {product.color}
         </p>
         <div className="flex items-baseline gap-2 mt-2">
