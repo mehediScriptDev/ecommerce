@@ -11,7 +11,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="">
+    <div>
       <Container>
         <div className=" max-w-7xl mx-auto py-10 md:pb-24">
           

@@ -11,20 +11,21 @@ const Card = ({ id, title, tag, variant, price, currency, images }) => {
      
   }
   return (
-    <div className="card card-sm w-full bg-white sm:max-w-96 border border-[#F1F5F9]">
-      <figure className="hover-gallery">
+    <div className="relative card card-sm w-full bg-white sm:max-w-96 border border-[#F1F5F9]">
+      <figure className="hover-gallery h-53">
         {images && images.map((img, index) => (
-          <img key={index} src={img} className="aspect-4/3 object-cover" />
+          <img key={index} src={img} className="h-auto object-contain transition-transform duration-500" />
         ))}
       </figure>
+      <span className="absolute top-0 left-3 text-white text-[10px] font-bold tracking-wider px-2 py-0.5 rounded-bl-lg rounded-br-lg bg-custom">Top-Rated</span>
       <div className="card-body">
         <p className={`text-xs ${textcl}`}>{tag}</p>
-        <h2 className="card-title flex text-2xl justify-between">{title}</h2>
-        <p className="text-sm text-[#767E97] -mt-1 line-clamp-1">
+        <h2 className="text-sm md:text-base font-semibold text-gray-900 leading-tight">{title}</h2>
+        <p className="text-xs lg:text-sm text-[#767E97] -mt-1 line-clamp-1">
           {variant}
         </p>
         <div className="flex items-center justify-between mt-1 lg:mt-2">
-            <h3 className="text-xl md:text-2xl font-bold text-[#1C2337] ">
+            <h3 className="text-lg md:text-xl font-bold text-[#1C2337] ">
           £{price}
         </h3>
         <button className="text-xl cursor-pointer">

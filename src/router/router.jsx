@@ -9,25 +9,30 @@ import ResetPass from "../pages/auth/ResetPass";
 import Home from "../pages/public/home/Home";
 import Products from "../pages/public/products/Products";
 import Contact from "../pages/public/contact/Contact";
+import ProductDetails from "../pages/public/productDetails/ProductDetails";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    children:[
+    children: [
       {
         index: true,
-        element: <Home/>
+        element: <Home />,
       },
       {
         path: "products",
-        element: <Products/>
+        element: <Products />,
+      },
+      {
+        path: "product-details",
+        element: <ProductDetails />,
       },
       {
         path: "contact",
-        element: <Contact/>
-      }
-    ]
+        element: <Contact />,
+      },
+    ],
   },
 
   // auth routes

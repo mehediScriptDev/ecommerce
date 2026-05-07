@@ -14,7 +14,7 @@ export const PRODUCTS = [
     condition: "New",
     storageOpt: "256GB",
     colors: ["#1a1a1a"],
-    img: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-max-naturaltitanium-select?wid=470&hei=556&fmt=png&qlt=95&.v=1692923777972",
+    images: ["https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-max-naturaltitanium-select?wid=470&hei=556&fmt=png&qlt=95&.v=1692923777972","https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-blue-select-202209?wid=470&hei=556&fmt=png&qlt=95&.v=1660803972464","https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pink-select-202309?wid=470&hei=556&fmt=png&qlt=95&.v=1692923776972"],
   },
   {
     id: 2,
@@ -31,7 +31,7 @@ export const PRODUCTS = [
     condition: "Excellent (Like New)",
     storageOpt: "128GB",
     colors: ["#4a6fa5"],
-    img: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-bluetitanium-select?wid=470&hei=556&fmt=png&qlt=95&.v=1692923777972",
+    images: ["https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-bluetitanium-select?wid=470&hei=556&fmt=png&qlt=95&.v=1692923777972","https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-se-starlight-select-202203?wid=470&hei=556&fmt=png&qlt=95&.v=1646073684301","https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-midnight-select-2021?wid=470&hei=556&fmt=png&qlt=95&.v=1629842709000"],
   },
   {
     id: 3,
@@ -48,7 +48,7 @@ export const PRODUCTS = [
     condition: "New",
     storageOpt: "128GB",
     colors: ["#e8b4b8"],
-    img: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pink-select-202309?wid=470&hei=556&fmt=png&qlt=95&.v=1692923776972",
+    images: ["https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pink-select-202309?wid=470&hei=556&fmt=png&qlt=95&.v=1692923776972","https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-bluetitanium-select?wid=470&hei=556&fmt=png&qlt=95&.v=1692923777972","https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-max-naturaltitanium-select?wid=470&hei=556&fmt=png&qlt=95&.v=1692923777972"],
   },
   {
     id: 4,
@@ -65,7 +65,7 @@ export const PRODUCTS = [
     condition: "Very Good",
     storageOpt: "128GB",
     colors: ["#4a90d9"],
-    img: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-blue-select-202209?wid=470&hei=556&fmt=png&qlt=95&.v=1660803972464",
+    images: ["https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-blue-select-202209?wid=470&hei=556&fmt=png&qlt=95&.v=1660803972464","https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pink-select-202309?wid=470&hei=556&fmt=png&qlt=95&.v=1692923776972","https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-max-select?wid=470&hei=556&fmt=png&qlt=95"],
   },
   {
     id: 5,
@@ -82,7 +82,7 @@ export const PRODUCTS = [
     condition: "Excellent (Like New)",
     storageOpt: "128GB",
     colors: ["#1a1a2e"],
-    img: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-midnight-select-2021?wid=470&hei=556&fmt=png&qlt=95&.v=1629842709000",
+    images: ["https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-midnight-select-2021?wid=470&hei=556&fmt=png&qlt=95&.v=1629842709000","https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-max-select?wid=470&hei=556&fmt=png&qlt=95","https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-midnight-select-2021?wid=470&hei=556&fmt=png&qlt=95&.v=1629842709000"],
   },
   {
     id: 6,
@@ -99,7 +99,7 @@ export const PRODUCTS = [
     condition: "Very Good",
     storageOpt: "64GB",
     colors: ["#f0ede8"],
-    img: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-se-starlight-select-202203?wid=470&hei=556&fmt=png&qlt=95&.v=1646073684301",
+    images: ["https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-se-starlight-select-202203?wid=470&hei=556&fmt=png&qlt=95&.v=1646073684301","https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-max-select?wid=470&hei=556&fmt=png&qlt=95","https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-max-select?wid=470&hei=556&fmt=png&qlt=95"],
   },
 ];
 

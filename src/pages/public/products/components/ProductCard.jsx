@@ -1,9 +1,11 @@
 import { useState } from "react";
 import Stars from "./Stars";
+import { useNavigate } from "react-router";
 
 export default function ProductCard({ product }) {
   const [wished, setWished] = useState(false);
   const [added, setAdded] = useState(false);
+  const navigate = useNavigate();
 
   const handleAdd = (e) => {
     e.stopPropagation();
@@ -11,8 +13,13 @@ export default function ProductCard({ product }) {
     setTimeout(() => setAdded(false), 2000);
   };
 
+  const handleCardClick = () => {
+    navigate("/product-details");
+  };
+
   return (
     <div
+      onClick={handleCardClick}
       className="bg-white border border-gray-100 rounded-2xl overflow-hidden
       transition-all duration-300 group cursor-pointer"
     >
@@ -44,31 +51,44 @@ export default function ProductCard({ product }) {
             />
           </svg>
         </button>
-        <img
-          src={product.img}
+
+        {/* <img
+          src={product.images[0]}
           alt={product.name}
-          className="h-36 object-contain transition-transform duration-500 group-hover:scale-105"
+          className="h-auto object-contain transition-transform duration-500"
           onError={(e) => {
             e.target.src =
               "https://placehold.co/200x200/f3f4f6/94a3b8?text=Phone";
           }}
-        />
+        /> */}
+        <figure className="hover-gallery">
+          {product.images &&
+            product.images.map((img, index) => (
+              <img
+                key={index}
+                src={img}
+                className="h-auto object-contain transition-transform duration-500"
+              />
+            ))}
+        </figure>
       </div>
 
       {/* Info */}
       <div className="px-4 pt-3 pb-4">
         <div className="flex items-center gap-1.5 mb-1">
           <Stars rating={product.rating} />
-          <span className="text-xs md:text-sm text-gray-400">({product.reviews})</span>
+          <span className="text-xs md:text-sm text-gray-400">
+            ({product.reviews})
+          </span>
         </div>
         <h3 className="text-sm md:text-base font-semibold text-gray-900 leading-tight">
           {product.name}
         </h3>
-        <p className="text-xs lg:text-sm text-gray-400 mt-0.5">
+        <p className="text-xs lg:text-sm text-[#767E97] mt-0.5">
           {product.storage} · {product.color}
         </p>
         <div className="flex items-baseline gap-2 mt-2">
-          <span className="text-lg md:text-xl font-bold text-gray-900">
+          <span className="text-lg md:text-xl font-bold text-[#1C2337]">
             ${product.price}
           </span>
           {product.oldPrice && (
@@ -79,12 +99,7 @@ export default function ProductCard({ product }) {
         </div>
         <button
           onClick={handleAdd}
-          className={`mt-3 w-full py-2 rounded-lg text-sm cursor-pointer font-medium transition-all duration-300
-            ${
-              added
-                ? "bg-green-500 text-white"
-                : "bg-custom active:scale-95 text-white"
-            }`}
+          className={`mt-3 w-full bg-custom active:scale-95 text-white py-2 rounded-lg text-sm cursor-pointer font-medium transition-all duration-300`}
         >
           {added ? "✓ Added!" : "Add to Cart"}
         </button>
