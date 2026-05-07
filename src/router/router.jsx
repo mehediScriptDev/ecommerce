@@ -8,6 +8,7 @@ import Otp from "../pages/auth/Otp";
 import ResetPass from "../pages/auth/ResetPass";
 import Home from "../pages/public/home/Home";
 import Products from "../pages/public/products/Products";
+import Contact from "../pages/public/contact/Contact";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "products",
         element: <Products/>
+      },
+      {
+        path: "contact",
+        element: <Contact/>
       }
     ]
   },
