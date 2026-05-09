@@ -55,19 +55,19 @@ export default function ProductCard({ product }) {
         {/* <img
           src={product.images[0]}
           alt={product.name}
-          className="h-auto object-contain transition-transform duration-500"
+          className="h-52 object-contain transition-transform duration-500"
           onError={(e) => {
             e.target.src =
               "https://placehold.co/200x200/f3f4f6/94a3b8?text=Phone";
           }}
         /> */}
-        <figure className="hover-gallery">
+        <figure className="hover-gallery ">
           {product.images &&
             product.images.map((img, index) => (
               <img
                 key={index}
                 src={img}
-                className="h-auto object-contain transition-transform duration-500"
+                className="h-52 object-contain transition-transform duration-500"
               />
             ))}
         </figure>
@@ -84,7 +84,7 @@ export default function ProductCard({ product }) {
         <h3 className="text-sm md:text-base font-semibold text-gray-900 leading-tight">
           {product.name}
         </h3>
-        <p className="text-xs lg:text-sm text-[#767E97] mt-0.5">
+        <p className="text-xs lg:text-sm text-[#767E97] mt-0.5 line-clamp-1">
           {product.storage} · {product.color}
         </p>
         <div className="flex items-baseline gap-2 mt-2">
