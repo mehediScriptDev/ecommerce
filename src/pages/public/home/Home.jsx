@@ -5,6 +5,7 @@ import Highlights from "./sections/highlights/Highlights";
 import Hero from "./sections/Hero/Hero";
 import Promotion from "../promotion/Promotion";
 import Cta from "./sections/Cta/Cta";
+import Review from "./sections/review/Review";
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
         </section>
         <Promotion/>
         <Highlights />
+        <Review/>
         <Cta/>
         
       
