@@ -29,7 +29,7 @@ const Featured = () => {
         </div>
 
         {/* cards */}
-        <div className="mt-10 w-full grid grid-cols-1 min-[450px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+        <div className="mt-10 w-full grid grid-cols-1 min-[400px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
           {data.map((item) => (
             <Card key={item.id} {...item} />
           ))}
