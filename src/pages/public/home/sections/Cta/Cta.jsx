@@ -22,9 +22,9 @@ const Cta = () => {
                     <input
                         type="email"
                         placeholder="YOUR EMAIL ADDRESS"
-                        className="input w-full bg-white border border-[#D1D5DB] focus:outline-none placeholder:text-xs placeholder:tracking-widest placeholder:text-gray-400 text-gray-700"
+                        className="input w-full bg-white border rounded-lg border-[#D1D5DB] focus:outline-none placeholder:text-xs placeholder:tracking-widest placeholder:text-gray-400 text-gray-700"
                     />
-                    <button className="btn bg-[#151A2A] text-white w-full sm:w-auto px-8 text-xs tracking-widest font-semibold whitespace-nowrap">
+                    <button className="btn bg-[#151A2A] rounded-lg text-white w-full sm:w-auto px-8 text-xs tracking-widest font-semibold whitespace-nowrap">
                         Subscribe
                     </button>
                 </div>

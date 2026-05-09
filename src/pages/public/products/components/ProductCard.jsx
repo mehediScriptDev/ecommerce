@@ -35,7 +35,7 @@ export default function ProductCard({ product }) {
             e.stopPropagation();
             setWished((v) => !v);
           }}
-          className="absolute top-3 right-3 text-gray-300 hover:text-red-400 transition-colors"
+          className="absolute top-3 right-3 z-10 text-gray-300 hover:text-red-400 transition-colors"
         >
           <svg
             className="w-5 h-5"
