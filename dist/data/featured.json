@@ -1,0 +1,54 @@
+[
+  {
+    "id": 1,
+    "title": "iPhone 15 Pro",
+    "tag": "NEW ARRIVAL",
+    "variant": "Natural Titanium • 256GB",
+    "price": 999,
+    "currency": "GBP",
+    "images": [
+      "https://picsum.photos/600/600?random=11",
+      "https://picsum.photos/600/600?random=12",
+      "https://picsum.photos/600/600?random=13"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "iPhone 13",
+    "tag": "PRE-OWNED",
+    "variant": "Midnight • 128GB • Excellent",
+    "price": 449,
+    "currency": "GBP",
+    "images": [
+      "https://picsum.photos/600/600?random=21",
+      "https://picsum.photos/600/600?random=22",
+      "https://picsum.photos/600/600?random=23"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "iPhone 14 Pro",
+    "tag": "REFURBISHED",
+    "variant": "Space Black • 512GB • Mint",
+    "price": 799,
+    "currency": "GBP",
+    "images": [
+      "https://picsum.photos/600/600?random=31",
+      "https://picsum.photos/600/600?random=32",
+      "https://picsum.photos/600/600?random=33"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "iPhone 15",
+    "tag": "BEST SELLER",
+    "variant": "Pink • 128GB",
+    "price": 799,
+    "currency": "GBP",
+    "images": [
+      "https://picsum.photos/600/600?random=41",
+      "https://picsum.photos/600/600?random=42",
+      "https://picsum.photos/600/600?random=43"
+    ]
+  }
+]
