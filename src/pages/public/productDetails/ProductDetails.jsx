@@ -4,6 +4,7 @@ import { FiMinus, FiPlus, FiChevronDown, FiChevronUp, FiCheckCircle, FiTruck } f
 import { MdOutlineSmartphone, MdOutlineCameraAlt, MdOutlineCreate } from 'react-icons/md';
 import { FaMicrochip } from 'react-icons/fa';
 import { HiChip } from 'react-icons/hi';
+import RelatedProducts from './sections/relatedProduct/RelatedProducts';
 
 const ProductDetails = () => {
     const [selectedImage, setSelectedImage] = useState(0);
@@ -156,7 +157,7 @@ const ProductDetails = () => {
                                     <FiPlus size={14} />
                                 </button>
                             </div>
-                            <button className="flex-1 bg-[#47B5C9] hover:bg-[#349eab] text-white rounded-sm font-medium text-sm transition-colors h-11.5">
+                            <button className="sm:flex-1 bg-[#47B5C9] hover:bg-[#349eab] text-white rounded-sm font-medium text-sm transition-colors h-11.5">
                                 Add to Cart
                             </button>
                         </div>
@@ -168,31 +169,31 @@ const ProductDetails = () => {
 
                 {/* ── MIDDLE SECTION: Introducing ── */}
                 <div className="text-center mb-16 max-w-3xl mx-auto">
-                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#151A2A] mb-4">Introducing the New Galaxy S26 Ultra</h2>
-                    <p className="text-sm text-[#64748B] leading-relaxed">
+                    <h2 className="title-custom text-[#151A2A] mb-4">Introducing the New Galaxy S26 Ultra</h2>
+                    <p className="subtitle-custom">
                         The ultimate Ultra experience, enhanced with artificial intelligence and precision engineering for the modern creator.
                     </p>
                 </div>
 
                 {/* Features Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-24">
-                    <div className="bg-[#f8f9fa] rounded-2xl p-8">
+                    <div className="bg-[#F0F4F6] rounded-2xl p-8">
                         <HiChip className="text-custom w-6 h-6 mb-4" />
-                        <h3 className="text-sm font-bold text-[#151A2A] mb-2">Snapdragon 8 Elite</h3>
+                        <h3 className="text-base font-bold text-[#595E71] mb-2">Snapdragon 8 Elite</h3>
                         <p className="text-sm text-[#64748B] leading-relaxed">
                             The fastest chip ever in a Galaxy, optimized for AAA gaming and heavy multitasking.
                         </p>
                     </div>
-                    <div className="bg-[#f8f9fa] rounded-2xl p-8">
+                    <div className="bg-[#F0F4F6] rounded-2xl p-8">
                         <MdOutlineCameraAlt className="text-custom w-6 h-6 mb-4" />
-                        <h3 className="text-sm font-bold text-[#151A2A] mb-2">200MP Pro Camera</h3>
+                        <h3 className="text-base font-bold text-[#595E71] mb-2">200MP Pro Camera</h3>
                         <p className="text-sm text-[#64748B] leading-relaxed">
                             Capture details that were previously invisible to the human eye, even in low light.
                         </p>
                     </div>
-                    <div className="bg-[#f8f9fa] rounded-2xl p-8">
+                    <div className="bg-[#F0F4F6] rounded-2xl p-8">
                         <MdOutlineCreate className="text-custom w-6 h-6 mb-4" />
-                        <h3 className="text-sm font-bold text-[#151A2A] mb-2">S Pen Integrated</h3>
+                        <h3 className="text-base font-bold text-[#595E71] mb-2">S Pen Integrated</h3>
                         <p className="text-sm text-[#64748B] leading-relaxed">
                             The legacy lives on. Write, sketch, and navigate with unmatched precision.
                         </p>
@@ -203,37 +204,37 @@ const ProductDetails = () => {
                 <div className="mb-24">
                     <h2 className="text-xl font-bold text-[#151A2A] mb-8">Technical Specifications</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
-                        <div className="bg-[#f8f9fa] px-5 py-3.5 rounded flex justify-between items-center">
-                            <span className="text-sm text-[#64748B]">Brand</span>
-                            <span className="text-sm font-medium text-[#151A2A]">Samsung</span>
+                        <div className="bg-[#F0F4F6] px-5 py-3.5 rounded flex justify-between items-center">
+                            <span className="text-base text-[#64748B]">Brand</span>
+                            <span className="text-base font-medium text-[#171C1E]">Samsung</span>
                         </div>
-                        <div className="bg-[#f8f9fa] px-5 py-3.5 rounded flex justify-between items-center">
-                            <span className="text-sm text-[#64748B]">Network</span>
-                            <span className="text-sm font-medium text-[#151A2A]">GSM / HSPA / LTE / 5G</span>
+                        <div className="bg-[#F0F4F6] px-5 py-3.5 rounded flex justify-between items-center">
+                            <span className="text-base text-[#64748B]">Network</span>
+                            <span className="text-base font-medium text-[#171C1E]">GSM / HSPA / LTE / 5G</span>
                         </div>
-                        <div className="bg-[#f8f9fa] px-5 py-3.5 rounded flex justify-between items-center">
-                            <span className="text-sm text-[#64748B]">Dimensions</span>
-                            <span className="text-sm font-medium text-[#151A2A]">162.3 x 79.0 x 8.6 mm</span>
+                        <div className="bg-[#F0F4F6] px-5 py-3.5 rounded flex justify-between items-center">
+                            <span className="text-base text-[#64748B]">Dimensions</span>
+                            <span className="text-base font-medium text-[#171C1E]">162.3 x 79.0 x 8.6 mm</span>
                         </div>
-                        <div className="bg-[#f8f9fa] px-5 py-3.5 rounded flex justify-between items-center">
-                            <span className="text-sm text-[#64748B]">Display</span>
-                            <span className="text-sm font-medium text-[#151A2A]">6.8" Dynamic LTPO AMOLED 2X</span>
+                        <div className="bg-[#F0F4F6] px-5 py-3.5 rounded flex justify-between items-center">
+                            <span className="text-base text-[#64748B]">Display</span>
+                            <span className="text-base font-medium text-[#171C1E]">6.8" Dynamic LTPO AMOLED 2X</span>
                         </div>
-                        <div className="bg-[#f8f9fa] px-5 py-3.5 rounded flex justify-between items-center">
-                            <span className="text-sm text-[#64748B]">Resolution</span>
-                            <span className="text-sm font-medium text-[#151A2A]">1440 x 3120 pixels</span>
+                        <div className="bg-[#F0F4F6] px-5 py-3.5 rounded flex justify-between items-center">
+                            <span className="text-base text-[#64748B]">Resolution</span>
+                            <span className="text-base font-medium text-[#171C1E]">1440 x 3120 pixels</span>
                         </div>
-                        <div className="bg-[#f8f9fa] px-5 py-3.5 rounded flex justify-between items-center">
-                            <span className="text-sm text-[#64748B]">OS</span>
-                            <span className="text-sm font-medium text-[#151A2A]">Android 15, One UI 7.1</span>
+                        <div className="bg-[#F0F4F6] px-5 py-3.5 rounded flex justify-between items-center">
+                            <span className="text-base text-[#64748B]">OS</span>
+                            <span className="text-base font-medium text-[#171C1E]">Android 15, One UI 7.1</span>
                         </div>
-                        <div className="bg-[#f8f9fa] px-5 py-3.5 rounded flex justify-between items-center">
-                            <span className="text-sm text-[#64748B]">Main Camera</span>
-                            <span className="text-sm font-medium text-[#151A2A]">200MP + 50MP + 10MP + 12MP</span>
+                        <div className="bg-[#F0F4F6] px-5 py-3.5 rounded flex justify-between items-center">
+                            <span className="text-base text-[#64748B]">Main Camera</span>
+                            <span className="text-base font-medium text-[#171C1E]">200MP + 50MP + 10MP + 12MP</span>
                         </div>
-                        <div className="bg-[#f8f9fa] px-5 py-3.5 rounded flex justify-between items-center">
-                            <span className="text-sm text-[#64748B]">Battery</span>
-                            <span className="text-sm font-medium text-[#151A2A]">5000 mAh Li-Ion</span>
+                        <div className="bg-[#F0F4F6] px-5 py-3.5 rounded flex justify-between items-center">
+                            <span className="text-base text-[#64748B]">Battery</span>
+                            <span className="text-base font-medium text-[#171C1E]">5000 mAh Li-Ion</span>
                         </div>
                     </div>
                 </div>
@@ -243,15 +244,15 @@ const ProductDetails = () => {
                     
                     {/* Left: Why Choose */}
                     <div className="flex-1">
-                        <h2 className="text-base font-bold text-[#151A2A] mb-6">Why Choose ZEPHYR?</h2>
+                        <h2 className="text-xl font-semibold text-[#151A2A] mb-6">Why Choose ZEPHYR?</h2>
                         <div className="space-y-6">
                             <div className="flex items-start gap-4">
                                 <div className="w-10 h-10 rounded-full bg-[#e8f6f8] flex items-center justify-center shrink-0 text-custom">
                                     <FiCheckCircle size={20} />
                                 </div>
                                 <div>
-                                    <h3 className="text-sm font-bold text-[#151A2A] mb-1.5">Authentic Products</h3>
-                                    <p className="text-sm text-[#64748B] leading-relaxed">
+                                    <h3 className="text-base font-bold text-[#151A2A] mb-1.5">Authentic Products</h3>
+                                    <p className="text-base text-[#64748B]">
                                         We guarantee 100% genuine Samsung products sourced directly from authorized channels.
                                     </p>
                                 </div>
@@ -261,8 +262,8 @@ const ProductDetails = () => {
                                     <FiTruck size={20} />
                                 </div>
                                 <div>
-                                    <h3 className="text-sm font-bold text-[#151A2A] mb-1.5">Express Delivery</h3>
-                                    <p className="text-sm text-[#64748B] leading-relaxed">
+                                    <h3 className="text-base font-bold text-[#151A2A] mb-1.5">Express Delivery</h3>
+                                    <p className="text-base text-[#64748B]">
                                         Get your device within 24-48 hours with our premium logistics partners.
                                     </p>
                                 </div>
@@ -272,7 +273,7 @@ const ProductDetails = () => {
 
                     {/* Right: FAQ */}
                     <div className="flex-1">
-                        <h2 className="text-base font-bold text-[#151A2A] mb-6">Frequently Asked Questions</h2>
+                        <h2 className="text-xl font-semibold text-[#151A2A] mb-6">Frequently Asked Questions</h2>
                         <div className="space-y-3">
                             {faqs.map((faq, idx) => (
                                 <div key={idx} className="border border-gray-200 rounded-lg overflow-hidden bg-white">
@@ -280,7 +281,7 @@ const ProductDetails = () => {
                                         onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
                                         className="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors"
                                     >
-                                        <span className="text-sm font-medium text-[#151A2A] pr-4">{faq.q}</span>
+                                        <span className="text-base font-medium text-[#151A2A] pr-4">{faq.q}</span>
                                         {activeFaq === idx ? (
                                             <FiChevronUp className="text-gray-400 shrink-0" />
                                         ) : (
@@ -288,7 +289,7 @@ const ProductDetails = () => {
                                         )}
                                     </button>
                                     {activeFaq === idx && (
-                                        <div className="p-4 pt-0 text-sm text-[#64748B] leading-relaxed border-t border-gray-100">
+                                        <div className="p-4 pt-0 text-base text-[#64748B] leading-relaxed border-t border-gray-100">
                                             {faq.a}
                                         </div>
                                     )}
@@ -298,6 +299,9 @@ const ProductDetails = () => {
                     </div>
                 </div>
 
+                   <div className='mt-4'>
+                     <RelatedProducts/>
+                   </div>
             </Container>
         </div>
     );
