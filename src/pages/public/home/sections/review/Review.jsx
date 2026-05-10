@@ -54,76 +54,83 @@ const Review = () => {
 
     return (
         <Container>
-            <section className="w-full py-16 px-4">
+            {/*
+              ✅ overflow-x-hidden on the section — clips horizontal bleed from scaled cards
+                 but does NOT clip the card itself on mobile like a wrapper overflow-hidden does
+              ✅ py-10 on section gives vertical breathing room for scale-110
+            */}
+            <section className="w-full py-16 px-6 sm:px-8 overflow-x-hidden">
                 <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-14">
                     What Our Users Say
                 </h2>
 
-                <div className="max-w-6xl mx-auto">
-                    <div className="overflow-hidden py-8">
-                        <Swiper
-                            onSwiper={(swiper) => (swiperRef.current = swiper)}
-                            slidesPerView={3}
-                            spaceBetween={24}
-                            centeredSlides={true}
-                            initialSlide={1}
-                            loop={true}          // ✅ always 3 cards, never a weird 2-card end
-                            style={{ overflow: 'visible' }}
-                            breakpoints={{
-                                0:    { slidesPerView: 1, centeredSlides: false, loop: true },
-                                640:  { slidesPerView: 1, centeredSlides: false, loop: true },
-                                768:  { slidesPerView: 2, centeredSlides: false, loop: true },
-                                1024: { slidesPerView: 3, centeredSlides: true,  loop: true },
-                            }}
-                        >
-                            {reviews.map((review) => (
-                                <SwiperSlide key={review.id}>
-                                    {({ isActive }) => (
-                                        <div
-                                            className={`
-                                                p-6 rounded-xl border transition-all duration-500 h-full
-                                                ${isActive
-                                                    ? 'bg-white shadow-lg border-gray-200 scale-110 z-10'
-                                                    : 'bg-white border-gray-100 shadow-sm scale-95 opacity-80'
-                                                }
-                                            `}
-                                        >
-                                            <StarRating count={review.stars} />
-                                            <p className="text-gray-600 text-sm leading-relaxed mb-6">
-                                                {review.text}
-                                            </p>
-                                            <p className="font-bold text-gray-800 text-sm">
-                                                -{review.author}
-                                            </p>
-                                        </div>
-                                    )}
-                                </SwiperSlide>
-                            ))}
-                        </Swiper>
-                    </div>
+                <div className="max-w-6xl mx-auto py-10">
+                    {/* ✅ No overflow-hidden here — was clipping mobile cards */}
+                    <Swiper
+                        onSwiper={(swiper) => (swiperRef.current = swiper)}
+                        slidesPerView={3}
+                        spaceBetween={24}
+                        centeredSlides={true}
+                        initialSlide={1}
+                        loop={true}
+                        style={{ overflow: 'visible' }}
+                        breakpoints={{
+                            0:    { slidesPerView: 1, centeredSlides: false, loop: true },
+                            640:  { slidesPerView: 1, centeredSlides: false, loop: true },
+                            768:  { slidesPerView: 2, centeredSlides: false, loop: true },
+                            1024: { slidesPerView: 3, centeredSlides: true,  loop: true },
+                        }}
+                    >
+                        {reviews.map((review) => (
+                            <SwiperSlide key={review.id}>
+                                {({ isActive }) => (
+                                    <div
+                                        className={`
+                                            p-6 rounded-xl border transition-all duration-500
+                                            ${isActive
+                                                ? 'bg-white shadow-lg border-gray-200 scale-110 z-10'
+                                                : 'bg-white border-gray-100 shadow-sm scale-95 opacity-80 h-[220px]'
+                                            }
+                                        `}
+                                    >
+                                        <StarRating count={review.stars} />
+                                        <p className={`
+                                            text-gray-600 text-sm leading-relaxed mb-4
+                                            ${isActive ? '' : 'line-clamp-4'}
+                                        `}>
+                                            {review.text}
+                                        </p>
+                                        <p className="font-bold text-gray-800 text-sm">
+                                            -{review.author}
+                                        </p>
+                                    </div>
+                                )}
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </div>
 
-                    {/* Navigation */}
-                    <div className="flex items-center justify-center gap-4 mt-6">
-                        <button
-                            onClick={() => swiperRef.current?.slidePrev()}
-                            className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-gray-700 transition-colors"
-                            aria-label="Previous"
-                        >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                            </svg>
-                        </button>
+                {/* Navigation */}
+                <div className="flex items-center justify-center gap-4 mt-2">
+                    <button
+                        onClick={() => swiperRef.current?.slidePrev()}
+                        className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-gray-700 transition-colors"
+                        aria-label="Previous"
+                    >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
 
-                        <button
-                            onClick={() => swiperRef.current?.slideNext()}
-                            className="w-10 h-10 flex items-center justify-center bg-[#29b8c9] hover:bg-[#1fa3b3] text-white rounded transition-colors"
-                            aria-label="Next"
-                        >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                            </svg>
-                        </button>
-                    </div>
+                    <button
+                        onClick={() => swiperRef.current?.slideNext()}
+                        className="w-10 h-10 flex items-center justify-center bg-[#29b8c9] hover:bg-[#1fa3b3] text-white rounded transition-colors"
+                        aria-label="Next"
+                    >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
                 </div>
             </section>
         </Container>

@@ -9,7 +9,7 @@ const Promotion = () => {
                <Container>
                  <div className='relative'>
                     <img className='rounded-xl text-custom' src={promotion} alt="Promotion" />
-                    <button className='text-white font-normal rounded-lg btn-custom  bottom-12  left-164 border-none shadow-none'>Sell your phone</button>
+                    {/* <button className='text-white font-normal rounded-lg btn-custom  bottom-12  left-164 border-none shadow-none'>Sell your phone</button> */}
                  </div>
                </Container>
             
