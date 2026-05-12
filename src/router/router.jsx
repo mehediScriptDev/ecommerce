@@ -1,5 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import MainLayout from "../layout/MainLayout";
+import AdminLayout from "../layout/AdminLayout";
+import UserDashboardLayout from "../layout/UserDashboardLayout";
 import NotFound from "../pages/404/NotFound";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
@@ -10,6 +12,8 @@ import Home from "../pages/public/home/Home";
 import Products from "../pages/public/products/Products";
 import Contact from "../pages/public/contact/Contact";
 import ProductDetails from "../pages/public/productDetails/ProductDetails";
+import AdminOverview from "../pages/admin/overview/AdminOverview";
+import UserOrders from "../pages/user/UserOrders";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +36,24 @@ const router = createBrowserRouter([
         path: "contact",
         element: <Contact />,
       },
+    ],
+  },
+
+  // admin dashboard routes
+  {
+    path: "/dashboard/admin",
+    element: <AdminLayout />,
+    children: [
+      { index: true, element: <AdminOverview /> },
+    ],
+  },
+
+  // user dashboard routes
+  {
+    path: "/dashboard/user",
+    element: <UserDashboardLayout />,
+    children: [
+      { index: true, element: <UserOrders /> },
     ],
   },
 

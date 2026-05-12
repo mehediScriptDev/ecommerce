@@ -1,8 +1,23 @@
 // src/pages/Login.jsx
-import { Link } from 'react-router';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router';
 import leftImage from '../../assets/auth/login.jpg';
+import { getRoles } from '../../utils/roles';
 
 const Login = () => {
+    const [email, setEmail] = useState('');
+    const navigate = useNavigate();
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+        const lower = email.toLowerCase();
+        if (lower.includes('admin')) {
+            navigate(getRoles('admin'));
+        } else if (lower.includes('user')) {
+            navigate(getRoles('user'));
+        }
+    };
+
     return (
         <div className="flex h-screen w-full overflow-hidden">
             {/* Left - Image */}
@@ -24,41 +39,45 @@ const Login = () => {
                         Sign in to your account to view contact details.
                     </p>
 
-                    {/* Email */}
-                    <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                            Email
-                        </label>
-                        <input
-                            type="email"
-                            placeholder="Enter your email here..."
-                            className="input w-full bg-[#ebecf0] border-none focus:outline-none"
-                        />
-                    </div>
+                    <form onSubmit={handleLogin}>
+                        {/* Email */}
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                Email
+                            </label>
+                            <input
+                                type="text"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="Enter your email here..."
+                                className="input w-full bg-[#ebecf0] border-none focus:outline-none"
+                            />
+                        </div>
 
-                    {/* Password */}
-                    <div className="mb-2">
-                        <label className="block text-sm md:text-base font-medium text-gray-700 mb-1">
-                            Password
-                        </label>
-                        <input
-                            type="password"
-                            placeholder="Enter your password here..."
-                            className="input w-full bg-[#ebecf0] border-none focus:outline-none"
-                        />
-                    </div>
+                        {/* Password */}
+                        <div className="mb-2">
+                            <label className="block text-sm md:text-base font-medium text-gray-700 mb-1">
+                                Password
+                            </label>
+                            <input
+                                type="password"
+                                placeholder="Enter your password here..."
+                                className="input w-full bg-[#ebecf0] border-none focus:outline-none"
+                            />
+                        </div>
 
-                    {/* Forgot Password */}
-                    <div className="text-right mb-5">
-                        <Link to="/forget-password" className="text-sm font-semibold text-custom hover:underline">
-                            Forget Password?
-                        </Link>
-                    </div>
+                        {/* Forgot Password */}
+                        <div className="text-right mb-5">
+                            <Link to="/forget-password" className="text-sm font-semibold text-custom hover:underline">
+                                Forget Password?
+                            </Link>
+                        </div>
 
-                    {/* Sign In Button */}
-                    <button className="btn-custom w-full text-base font-semibold">
-                        Sign In
-                    </button>
+                        {/* Sign In Button */}
+                        <button type="submit" className="btn-custom w-full text-base font-semibold">
+                            Sign In
+                        </button>
+                    </form>
 
                     {/* Sign Up */}
                     <p className="text-center text-sm text-gray-600 mt-4">
