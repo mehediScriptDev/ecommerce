@@ -1,12 +1,12 @@
 import React from 'react';
 
-const tabs = ['All', 'New', 'Excellent (Like New)', 'Very Good', 'Broken'];
+const orderTabs = ['All', 'Pending', 'Processing', 'Shipped', 'Delivered', 'Cancelled'];
 
-const Tabs = ({ activeTab, setActiveTab }) => {
+const OrderTabs = ({ activeTab, setActiveTab }) => {
     return (
         <div className="mb-6 overflow-x-auto scrollbar-hide">
             <div className="p-1 md:p-0.5 border border-gray-200 rounded-lg inline-flex md:w-1/2 md:flex bg-[#f3f4f6] space-x-1.5 md:space-x-1.5">
-                {tabs.map((tab) => (
+                {orderTabs.map((tab) => (
                     <button
                         key={tab}
                         role="tab"
@@ -17,7 +17,7 @@ const Tabs = ({ activeTab, setActiveTab }) => {
                             text-base md:text-sm 
                             rounded-lg transition-all duration-200 ease-in-out font-medium whitespace-nowrap
                             ${activeTab === tab 
-                                ? 'bg-white text-gray-900 shadow-sm' 
+                                ? 'bg-cyan-500 text-white' 
                                 : 'text-gray-500 hover:text-gray-700'
                             }
                         `}
@@ -30,4 +30,4 @@ const Tabs = ({ activeTab, setActiveTab }) => {
     );
 };
 
-export default Tabs;
+export default OrderTabs;

@@ -4,7 +4,7 @@ import { FiMenu, FiX } from 'react-icons/fi';
 
 const DashboardHeader = ({ userName = 'Atik Adnan', role = 'Admin', onMenuToggle, isSidebarOpen }) => {
     return (
-        <header className="h-14 bg-white border-b border-gray-200 flex items-center justify-between px-6 shrink-0">
+        <header className="sticky top-0 z-20 h-14 bg-white border-b border-gray-200 flex items-center justify-between px-6 shrink-0">
             <div className="flex items-center gap-4">
                 {/* Mobile menu button */}
                 <button

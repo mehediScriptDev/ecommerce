@@ -33,13 +33,13 @@ const Card = ({
     const unitsClass = unitsColors[badge] || 'text-gray-500';
 
     return (
-        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
             {/* Image container */}
-            <div className="relative">
+            <div className="relative bg-[#F7F9FB] flex items-center justify-center py-8 px-4 h-56">
                 <img
                     src={image}
                     alt={title}
-                    className="w-full h-48 object-cover"
+                    className="h-56 object-contain transition-transform duration-300"
                 />
                 {/* Badge top-left */}
                 <span className={`absolute top-3 left-3 text-xs font-medium px-2 py-1 rounded ${badgeClass}`}>
@@ -75,10 +75,10 @@ const Card = ({
                 <div className="flex items-end justify-between mb-3">
                     <div>
                         <p className="text-sm text-gray-400 line-through">
-                            ৳{originalPrice.toLocaleString()}
+                            ${originalPrice.toLocaleString()}
                         </p>
                         <p className="text-lg font-semibold text-gray-900">
-                            ৳{discountedPrice.toLocaleString()}
+                            ${discountedPrice.toLocaleString()}
                         </p>
                     </div>
                     <div className="text-right text-sm">
@@ -91,7 +91,7 @@ const Card = ({
                 <div className="flex gap-3">
                     <button
                         onClick={onEdit}
-                        className="flex-1 bg-orange-400 hover:bg-orange-500 text-white text-sm font-medium py-2 rounded transition-colors"
+                        className="flex-1 btn-custom text-white text-sm font-medium py-2 rounded transition-colors"
                     >
                         Edit
                     </button>

@@ -1,4 +1,4 @@
-import { NavLink, Link } from 'react-router';
+import { NavLink, Link, useLocation } from 'react-router';
 import {
     LayoutDashboard,
     List,
@@ -14,9 +14,9 @@ import logo from '../assets/logo.webp';
 
 const adminNavItems = [
     { label: 'Overview', icon: LayoutDashboard, path: '/dashboard/admin', end: true },
-    { label: 'Listing', icon: List, path: '/dashboard/admin/listing' },
+    { label: 'Listing', icon: List, path: '/dashboard/admin/listing', activePatterns: ['/dashboard/admin/listing', '/dashboard/admin/add-listing'] },
     { label: 'Order', icon: ShoppingCart, path: '/dashboard/admin/order' },
-    { label: 'Sell Phone Details', icon: Smartphone, path: '/dashboard/admin/sell-phone-details' },
+    { label: 'Sell Phone', icon: Smartphone, path: '/dashboard/admin/cell-phone' },
     { label: 'Promo Code', icon: Tag, path: '/dashboard/admin/promo-code' },
     { label: 'User Management', icon: Users, path: '/dashboard/admin/user-management' },
     { label: 'Settings', icon: Settings, path: '/dashboard/admin/settings' },
@@ -31,6 +31,7 @@ const userNavItems = [
 
 const DashboardSidebar = ({ role, isOpen, onClose }) => {
     const navItems = role === 'admin' ? adminNavItems : userNavItems;
+    const location = useLocation();
 
     return (
         <>
@@ -57,24 +58,31 @@ const DashboardSidebar = ({ role, isOpen, onClose }) => {
 
                 {/* Nav */}
                 <nav className="flex-1 flex flex-col gap-0.5 px-3 py-6 overflow-y-auto">
-                    {navItems.map(({ label, icon: Icon, path, end }) => (
-                        <NavLink
-                            key={path}
-                            to={path}
-                            end={end}
-                            onClick={onClose}
-                            className={({ isActive }) =>
-                                `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                                    isActive
-                                        ? 'bg-cyan-50 text-cyan-600'
-                                        : 'text-gray-500 hover:bg-gray-100 hover:text-gray-800'
-                                }`
-                            }
-                        >
-                            <Icon size={17} />
-                            {label}
-                        </NavLink>
-                    ))}
+                    {navItems.map(({ label, icon: Icon, path, end, activePatterns }) => {
+                        const isActive = activePatterns 
+                            ? activePatterns.some(pattern => location.pathname.startsWith(pattern))
+                            : false;
+
+                        return (
+                            <NavLink
+                                key={path}
+                                to={path}
+                                end={end}
+                                onClick={onClose}
+                                className={({ isActive: navIsActive }) => {
+                                    const shouldBeActive = activePatterns ? isActive : navIsActive;
+                                    return `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                                        shouldBeActive
+                                            ? 'bg-cyan-50 text-cyan-600'
+                                            : 'text-gray-500 hover:bg-gray-100 hover:text-gray-800'
+                                    }`;
+                                }}
+                            >
+                                <Icon size={17} />
+                                {label}
+                            </NavLink>
+                        );
+                    })}
                 </nav>
             </aside>
         </>

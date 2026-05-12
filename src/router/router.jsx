@@ -15,6 +15,9 @@ import ProductDetails from "../pages/public/productDetails/ProductDetails";
 import AdminOverview from "../pages/admin/overview/AdminOverview";
 import UserOrders from "../pages/user/UserOrders";
 import Listings from "../pages/admin/listings/Listings";
+import Addlisting from "../pages/admin/addlisting/Addlisting";
+import Order from "../pages/admin/order/Order";
+import CellPhoneMange from "../pages/admin/cellphoneMange/CellPhoneMange";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +50,11 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <AdminOverview /> },
       { path: "listing", element: <Listings /> },
+      {
+        path:"add-listing", element:<Addlisting/>
+      },
+      { path: "order", element: <Order /> },
+      { path: "cell-phone", element: <CellPhoneMange /> }
     ],
   },
 
