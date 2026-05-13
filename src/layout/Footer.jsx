@@ -3,9 +3,11 @@ import Container from "./Container";
 import { Link } from "react-router";
 import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 import { MdOutlineEmail, MdOutlinePhone } from "react-icons/md";
+import { usePageTransition } from "../components/transitions";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { transitionTo } = usePageTransition();
   return (
     <div className="bg-[#EBECF0]">
       <Container>
@@ -34,10 +36,10 @@ const Footer = () => {
           <div>
             <h6 className="text-lg font-bold text-[#454545] mb-3">Quick Links</h6>
             <div className="flex flex-col gap-2">
-              <Link to="/" className="text-[#6A6A6A] text-base hover:underline">Home</Link>
-              <Link to="/products" className="text-[#6A6A6A] text-base hover:underline">Products</Link>
-              <Link to="/sell" className="text-[#6A6A6A] text-base hover:underline">Sell Your Phone</Link>
-              <Link to="/contact" className="text-[#6A6A6A] text-base hover:underline">Contact</Link>
+              <button onClick={() => transitionTo("/")} className="text-[#6A6A6A] text-base hover:underline text-left">Home</button>
+              <button onClick={() => transitionTo("/products")} className="text-[#6A6A6A] text-base hover:underline text-left">Products</button>
+              <button onClick={() => transitionTo("/sell")} className="text-[#6A6A6A] text-base hover:underline text-left">Sell Your Phone</button>
+              <button onClick={() => transitionTo("/contact")} className="text-[#6A6A6A] text-base hover:underline text-left">Contact</button>
             </div>
           </div>
 
@@ -45,9 +47,9 @@ const Footer = () => {
           <div>
             <h6 className="text-lg font-bold text-[#454545] mb-3">Company</h6>
             <div className="flex flex-col gap-2">
-              <Link to="/about" className="text-[#6A6A6A] text-base hover:underline">About</Link>
-              <Link to="/business" className="text-[#6A6A6A] text-base hover:underline">For Businesses</Link>
-              <Link to="/contact" className="text-[#6A6A6A] text-base hover:underline">Contact</Link>
+              <button onClick={() => transitionTo("/about")} className="text-[#6A6A6A] text-base hover:underline text-left">About</button>
+              <button onClick={() => transitionTo("/business")} className="text-[#6A6A6A] text-base hover:underline text-left">For Businesses</button>
+              <button onClick={() => transitionTo("/contact")} className="text-[#6A6A6A] text-base hover:underline text-left">Contact</button>
             </div>
           </div>
 

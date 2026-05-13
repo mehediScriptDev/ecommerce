@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, NavLink } from 'react-router';
+import { Link } from 'react-router';
 import { FiShoppingCart, FiX, FiMenu } from 'react-icons/fi';
 import logo from '../assets/logo.webp';
 import Container from './Container';
@@ -32,9 +32,12 @@ const Navbar = () => {
                     </button>
 
                     {/* Logo */}
-                    <Link to="/">
+                    {/* <Link to="/">
                         <img src={logo} alt="Logo" className="h-8 w-auto object-contain" />
-                    </Link>
+                    </Link> */}
+                    <button className='cursor-pointer' onClick={() => transitionTo("/")}>
+                        <img src={logo} alt="Logo" className="h-8 w-auto object-contain" />
+                    </button>
                 </div>
 
                 {/* CENTER — desktop nav */}
@@ -42,16 +45,12 @@ const Navbar = () => {
                     <ul className="menu menu-horizontal gap-1 px-1">
                         {navLinks.map(({ to, label }) => (
                             <li key={to}>
-                                <NavLink
-                                    to={to}
-                                    className={({ isActive }) =>
-                                        isActive
-                                            ? 'text-custom font-semibold border-b-2 border-custom rounded-none bg-transparent'
-                                            : 'hover:bg-transparent hover:text-custom'
-                                    }
+                                <button
+                                    onClick={() => transitionTo(to)}
+                                    className="text-gray-700 hover:text-custom hover:bg-transparent rounded-none"
                                 >
                                     {label}
-                                </NavLink>
+                                </button>
                             </li>
                         ))}
                     </ul>
@@ -96,9 +95,15 @@ const Navbar = () => {
             >
                 {/* Sidebar header */}
                 <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-                    <Link to="/" onClick={() => setSidebarOpen(false)}>
+                    <button
+                        onClick={() => {
+                            setSidebarOpen(false);
+                            transitionTo("/");
+                        }}
+                        className="btn btn-ghost btn-circle"
+                    >
                         <img src={logo} alt="Logo" className="h-8 w-auto object-contain" />
-                    </Link>
+                    </button>
                     <button
                         className="btn btn-ghost btn-circle btn-sm"
                         onClick={() => setSidebarOpen(false)}
@@ -111,19 +116,15 @@ const Navbar = () => {
                 <ul className="flex flex-col px-4 py-6 gap-1 flex-1">
                     {navLinks.map(({ to, label }) => (
                         <li key={to}>
-                            <NavLink
-                                to={to}
-                                onClick={() => setSidebarOpen(false)}
-                                className={({ isActive }) =>
-                                    `block px-4 py-3 rounded-lg text-base font-medium transition-colors
-                                    ${isActive
-                                        ? 'text-custom bg-teal-50 border-l-4 border-custom'
-                                        : 'text-gray-700 hover:bg-gray-50 hover:text-custom'
-                                    }`
-                                }
+                            <button
+                                onClick={() => {
+                                    setSidebarOpen(false);
+                                    transitionTo(to);
+                                }}
+                                className="block w-full text-left px-4 py-3 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-custom transition-colors"
                             >
                                 {label}
-                            </NavLink>
+                            </button>
                         </li>
                     ))}
                 </ul>
