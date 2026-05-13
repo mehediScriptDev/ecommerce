@@ -23,6 +23,7 @@ import CreatePromo from "../pages/admin/createPromo/CreatePromo";
 import UserManagement from "../pages/admin/userManagement/UserManagement";
 import AdminProfile from "../pages/admin/adminProfile/AdminProfile";
 import Settings from "../pages/admin/settings/Settings";
+import Cart from "../pages/public/cart/Cart";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "product-details",
         element: <ProductDetails />,
+      },
+      {
+        path: "cart",
+        element: <Cart />,
       },
       {
         path: "contact",

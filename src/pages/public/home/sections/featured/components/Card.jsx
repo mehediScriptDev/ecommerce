@@ -1,14 +1,14 @@
 import { useState } from "react";
 import Stars from "../../../../products/components/Stars";
-import { useNavigate } from "react-router";
+import { usePageTransition } from "../../../../../../components/transitions";
 
 const Card = ({ id, title, tag, badgeColor, variant, price, oldPrice, currency, rating, reviews, images }) => {
   const [wished, setWished] = useState(false);
-  const navigate = useNavigate();
+  const { transitionTo } = usePageTransition();
 
   return (
     <div
-      onClick={() => navigate("/product-details")}
+      onClick={() => transitionTo("/product-details")}
       className="bg-white border border-gray-100 rounded-2xl overflow-hidden
       transition-all duration-300 group cursor-pointer"
     >

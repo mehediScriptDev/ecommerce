@@ -1,11 +1,11 @@
 import { useState } from "react";
 import Stars from "./Stars";
-import { useNavigate } from "react-router";
+import { usePageTransition } from "../../../../components/transitions";
 
 export default function ProductCard({ product }) {
   const [wished, setWished] = useState(false);
   const [added, setAdded] = useState(false);
-  const navigate = useNavigate();
+  const { transitionTo } = usePageTransition();
 
   const handleAdd = (e) => {
     e.stopPropagation();
@@ -14,7 +14,7 @@ export default function ProductCard({ product }) {
   };
 
   const handleCardClick = () => {
-    navigate("/product-details");
+    transitionTo("/product-details");
   };
 
   return (

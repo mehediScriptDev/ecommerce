@@ -57,9 +57,9 @@ const Navbar = () => {
 
                 {/* RIGHT — cart + buttons */}
                 <div className="navbar-end gap-2 lg:gap-3 ml-5">
-                    <button className="btn btn-ghost hover:bg-gray-100 border-none btn-circle">
+                    <Link className="btn btn-ghost hover:bg-gray-100 border-none btn-circle" to="/cart">
                         <FiShoppingCart size={20} />
-                    </button>
+                    </Link>
                     <Link
                         to="/login"
                         className="btn bg-[#2E395B] hover:bg-[#1C253B] text-white border-none text-sm font-medium px-4"
