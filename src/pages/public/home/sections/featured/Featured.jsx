@@ -2,10 +2,12 @@ import React, { use } from "react";
 import Container from "../../../../../layout/Container";
 import { Link } from "react-router";
 import Card from "./components/Card";
+import { usePageTransition } from "../../../../../components/transitions";
 
 const allfeatured = fetch("/data/featured.json").then((res) => res.json());
 const Featured = () => {
   const data = use(allfeatured);
+  const { transitionTo } = usePageTransition();
   console.log(data);
 
   return (
@@ -19,17 +21,18 @@ const Featured = () => {
             </p>
           </div>
           <div>
-            <Link
-              to={"/products"}
-              className="text-sm hover:scale-95 text-custom flex items-center justify-center"
+            
+            <button
+              onClick={() => transitionTo("/products")}
+              className="text-sm hover:scale-95 cursor-pointer text-custom flex items-center justify-center"
             >
               View All Products →
-            </Link>
+            </button>
           </div>
         </div>
 
         {/* cards */}
-        <div className="mt-10 w-full grid grid-cols-1 min-[450px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+        <div className="mt-10 w-full grid grid-cols-1 min-[400px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
           {data.map((item) => (
             <Card key={item.id} {...item} />
           ))}

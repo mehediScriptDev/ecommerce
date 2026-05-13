@@ -1,11 +1,11 @@
 import { useState } from "react";
 import Stars from "./Stars";
-import { useNavigate } from "react-router";
+import { usePageTransition } from "../../../../components/transitions";
 
 export default function ProductCard({ product }) {
   const [wished, setWished] = useState(false);
   const [added, setAdded] = useState(false);
-  const navigate = useNavigate();
+  const { transitionTo } = usePageTransition();
 
   const handleAdd = (e) => {
     e.stopPropagation();
@@ -14,7 +14,7 @@ export default function ProductCard({ product }) {
   };
 
   const handleCardClick = () => {
-    navigate("/product-details");
+    transitionTo("/product-details");
   };
 
   return (
@@ -35,7 +35,7 @@ export default function ProductCard({ product }) {
             e.stopPropagation();
             setWished((v) => !v);
           }}
-          className="absolute top-3 right-3 text-gray-300 hover:text-red-400 transition-colors"
+          className="absolute top-3 right-3 z-10 text-gray-300 hover:text-red-400 transition-colors"
         >
           <svg
             className="w-5 h-5"
