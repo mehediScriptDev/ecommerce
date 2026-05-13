@@ -1,7 +1,7 @@
 // src/components/Review.jsx
 // npm install swiper
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import Container from '../../../../../layout/Container';
@@ -51,6 +51,7 @@ const StarRating = ({ count }) => (
 
 const Review = () => {
     const swiperRef = useRef(null);
+    const [activeBtn, setActiveBtn] = useState('next');
 
     return (
         <Container>
@@ -113,8 +114,15 @@ const Review = () => {
                 {/* Navigation */}
                 <div className="flex items-center justify-center gap-4 mt-2">
                     <button
-                        onClick={() => swiperRef.current?.slidePrev()}
-                        className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-gray-700 transition-colors"
+                        onClick={() => {
+                            swiperRef.current?.slidePrev();
+                            setActiveBtn('prev');
+                        }}
+                        className={`w-10 h-10 flex items-center justify-center rounded-md transition-all ${
+                            activeBtn === 'prev'
+                                ? 'bg-[#29b8c9] text-white hover:bg-[#1fa3b3]'
+                                : 'text-gray-400 hover:text-gray-700'
+                        }`}
                         aria-label="Previous"
                     >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -123,8 +131,15 @@ const Review = () => {
                     </button>
 
                     <button
-                        onClick={() => swiperRef.current?.slideNext()}
-                        className="w-10 h-10 flex items-center justify-center bg-[#29b8c9] hover:bg-[#1fa3b3] text-white rounded transition-colors"
+                        onClick={() => {
+                            swiperRef.current?.slideNext();
+                            setActiveBtn('next');
+                        }}
+                        className={`w-10 h-10 flex items-center justify-center rounded-md transition-all ${
+                            activeBtn === 'next'
+                                ? 'bg-[#29b8c9] text-white hover:bg-[#1fa3b3]'
+                                : 'text-gray-400 hover:text-gray-700'
+                        }`}
                         aria-label="Next"
                     >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">

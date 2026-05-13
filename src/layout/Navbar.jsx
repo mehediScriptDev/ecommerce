@@ -3,9 +3,11 @@ import { Link, NavLink } from 'react-router';
 import { FiShoppingCart, FiX, FiMenu } from 'react-icons/fi';
 import logo from '../assets/logo.webp';
 import Container from './Container';
+import { usePageTransition } from '../components/transitions';
 
 const Navbar = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const { transitionTo } = usePageTransition();
 
     const navLinks = [
         { to: '/', label: 'Home' },
@@ -57,9 +59,12 @@ const Navbar = () => {
 
                 {/* RIGHT — cart + buttons */}
                 <div className="navbar-end gap-2 lg:gap-3 ml-5">
-                    <Link className="btn btn-ghost hover:bg-gray-100 border-none btn-circle" to="/cart">
+                    <button 
+                        onClick={() => transitionTo("/cart")}
+                        className="btn btn-ghost hover:bg-gray-100 border-none btn-circle"
+                    >
                         <FiShoppingCart size={20} />
-                    </Link>
+                    </button>
                     <Link
                         to="/login"
                         className="btn bg-[#2E395B] hover:bg-[#1C253B] text-white border-none text-sm font-medium px-4"
