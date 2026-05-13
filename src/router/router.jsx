@@ -18,6 +18,11 @@ import Listings from "../pages/admin/listings/Listings";
 import Addlisting from "../pages/admin/addlisting/Addlisting";
 import Order from "../pages/admin/order/Order";
 import CellPhoneMange from "../pages/admin/cellphoneMange/CellPhoneMange";
+import PromoCode from "../pages/admin/promoCode/PromoCode";
+import CreatePromo from "../pages/admin/createPromo/CreatePromo";
+import UserManagement from "../pages/admin/userManagement/UserManagement";
+import AdminProfile from "../pages/admin/adminProfile/AdminProfile";
+import Settings from "../pages/admin/settings/Settings";
 
 const router = createBrowserRouter([
   {
@@ -54,7 +59,12 @@ const router = createBrowserRouter([
         path:"add-listing", element:<Addlisting/>
       },
       { path: "order", element: <Order /> },
-      { path: "cell-phone", element: <CellPhoneMange /> }
+      { path: "cell-phone", element: <CellPhoneMange /> },
+      { path: "promo-code", element: <PromoCode /> },
+      { path: "create-promo", element: <CreatePromo /> },
+      { path: "user-management", element: <UserManagement /> },
+      { path: "settings", element: <Settings /> },
+      { path: "profile", element: <AdminProfile /> },
     ],
   },
 
