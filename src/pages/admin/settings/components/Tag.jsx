@@ -7,7 +7,7 @@ const Tag = ({ label, onDelete }) => (
             <button
                 type="button"
                 onClick={onDelete}
-                className="text-teal-500 hover:text-teal-700"
+                className="text-custom hover:text-teal-700"
                 aria-label={`Delete ${label}`}
             >
                 <Trash2 size={14} />

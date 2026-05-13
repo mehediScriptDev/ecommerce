@@ -2,7 +2,6 @@ import { useState } from 'react';
 import SettingsCard from './components/SettingsCard';
 import Tag from './components/Tag';
 import AddModal from './components/AddModal';
-import { TextInput } from '../../../components/shared/form';
 import { INITIAL_SETTINGS, SECTIONS } from './constants';
 import AdminDashboardTitle from '../../../components/dashboards/AdminDashboardTitle';
 
@@ -102,15 +101,20 @@ const Settings = () => {
 
                 <div className="rounded-lg border border-gray-200 bg-white p-5">
                     <h3 className="mb-4 text-base font-semibold text-gray-900">Set Condition Price</h3>
-                    <div className="flex flex-wrap items-center gap-4">
-                        {settings.conditions.map((condition) => (
+                    <div className="flex flex-wrap items-center gap-3">
+                        {settings.conditions.map((condition, index) => (
                             <div key={condition} className="flex items-center gap-2">
-                                <span className="text-sm text-gray-700">{condition}</span>
-                                <TextInput
-                                    value={settings.conditionPrices[condition] || ''}
-                                    onChange={(e) => handlePriceChange(condition, e.target.value)}
-                                    className="w-28 bg-gray-50"
-                                />
+                                <span className="min-w-fit text-sm font-medium text-gray-700">{condition}</span>
+                                <div className="flex items-center gap-2 bg-gray-100 rounded-md px-3 py-2">
+                                    <span className="text-gray-600">$</span>
+                                    <input
+                                        type="number"
+                                        value={settings.conditionPrices[condition] || ''}
+                                        onChange={(e) => handlePriceChange(condition, e.target.value)}
+                                        className="w-24 bg-transparent text-sm text-gray-900 outline-none"
+                                    />
+                                </div>
+                                {index < settings.conditions.length - 1 && <span className="text-gray-300">|</span>}
                             </div>
                         ))}
                     </div>
