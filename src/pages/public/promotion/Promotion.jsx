@@ -1,11 +1,11 @@
-import promotion from '../../../assets/banner/promotions.jpg';
+import promotion from '../../../assets/banner/promotions.webp';
 import Container from '../../../layout/Container';
 
 const Promotion = () => {
     return (
         <div className='py-10 md:pb-16'>
           <Container>
-            <div className='relative h-[300px] sm:h-[380px] lg:h-[380px] overflow-hidden rounded-xl'>
+            <div className='relative h-75 sm:h-95 lg:h-95 overflow-hidden rounded-xl'>
               <img
                 src={promotion}
                 alt="Promotion"
@@ -23,7 +23,7 @@ const Promotion = () => {
                 </p>
                 <button
                   type="button"
-                  className="mt-6 inline-flex items-center rounded-lg bg-[#4bb9cf] px-5 py-2.5 text-sm font-semibold text-white hover:brightness-110 transition-all"
+                  className="mt-6 inline-flex items-center rounded-lg bg-[#4bb9cf] px-5 py-2.5 text-sm font-semibold text-white hover:brightness-110 cursor-pointer transition-all"
                 >
                   Sell Your Phone
                 </button>

@@ -222,3 +222,28 @@ body{
 .nav-link-active::after {
     transform: scaleX(1);
 }
+
+/* Neon glow color transition animation */
+@keyframes neonGlow {
+    0% {
+        text-shadow: 0 0 10px rgba(61, 180, 204, 0.6), 0 0 20px rgba(61, 180, 204, 0.3);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(61, 180, 204, 1), 0 0 40px rgba(61, 180, 204, 0.6);
+    }
+    100% {
+        text-shadow: 0 0 10px rgba(61, 180, 204, 0.6), 0 0 20px rgba(61, 180, 204, 0.3);
+    }
+}
+
+.neon-flicker {
+    animation: neonGlow 8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .neon-flicker {
+        animation: none;
+        opacity: 1;
+        text-shadow: 0 0 15px rgba(61, 180, 204, 0.8);
+    }
+}
