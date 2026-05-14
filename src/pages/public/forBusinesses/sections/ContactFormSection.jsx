@@ -8,7 +8,7 @@ const ContactFormSection = () => {
                     <h2 className='text-3xl font-bold text-[#0A0A0A] sm:text-4xl'>
                         Looking for a trusted technology supplier?
                     </h2>
-                    <p className='mt-4 text-xl text-[#4A5565]'>Let&apos;s talk.</p>
+                    <p className='mt-4 text-base text-[#4A5565]'>Let&apos;s talk.</p>
                 </div>
 
                 <form
@@ -16,7 +16,7 @@ const ContactFormSection = () => {
                     onSubmit={(e) => e.preventDefault()}
                 >
                     <div>
-                        <label className='mb-2 block text-sm text-[#0A0A0A]'>
+                        <label className='mb-2 block text-sm lg:text-base font-semibold text-[#0A0A0A]'>
                             Company Name
                         </label>
                         <input
@@ -26,7 +26,7 @@ const ContactFormSection = () => {
                     </div>
 
                     <div>
-                        <label className='mb-2 block text-sm text-[#0A0A0A]'>
+                        <label className='mb-2 block text-sm lg:text-base font-semibold text-[#0A0A0A]'>
                             Name
                         </label>
                         <input
@@ -36,7 +36,7 @@ const ContactFormSection = () => {
                     </div>
 
                     <div>
-                        <label className='mb-2 block text-sm text-[#0A0A0A]'>
+                        <label className='mb-2 block text-sm lg:text-base font-semibold text-[#0A0A0A]'>
                             Email
                         </label>
                         <input
@@ -46,7 +46,7 @@ const ContactFormSection = () => {
                     </div>
 
                     <div>
-                        <label className='mb-2 block text-sm text-[#0A0A0A]'>
+                        <label className='mb-2 block text-sm lg:text-base font-semibold text-[#0A0A0A]'>
                             Phone Number
                         </label>
                         <input
@@ -56,7 +56,7 @@ const ContactFormSection = () => {
                     </div>
 
                     <div>
-                        <label className='mb-2 block text-sm text-[#0A0A0A]'>
+                        <label className='mb-2 block text-sm lg:text-base font-semibold text-[#0A0A0A]'>
                             Requirements
                         </label>
                         <textarea
@@ -67,7 +67,7 @@ const ContactFormSection = () => {
 
                     <button
                         type='submit'
-                        className='inline-flex w-full items-center justify-center rounded-[14px] bg-linear-to-b from-[#00B8DB] to-[#155DFC] py-4 text-base font-medium text-white transition-all duration-300 hover:brightness-110 cursor-pointer'
+                        className='inline-flex w-full items-center justify-center rounded-[14px] bg-linear-to-b from-[#00B8DB] to-custom py-4 text-base font-medium text-white transition-all duration-300 hover:brightness-110 cursor-pointer'
                     >
                         Submit
                     </button>

@@ -34,7 +34,7 @@ const WhyChooseSection = () => {
                             <span className='mx-auto inline-flex rounded-full bg-linear-to-b from-[#CEFAFE] to-[#DBEAFE] p-4 text-[#1293c4]'>
                                 <Icon size={24} />
                             </span>
-                            <p className='mt-4 text-sm text-[#0A0A0A]'>{title}</p>
+                            <p className='mt-4 text-sm lg:text-base text-[#0A0A0A]'>{title}</p>
                         </div>
                     ))}
                 </div>

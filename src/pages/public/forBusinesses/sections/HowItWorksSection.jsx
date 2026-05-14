@@ -24,28 +24,28 @@ const HowItWorksSection = () => {
         <section className='bg-linear-to-b from-[#F9FAFB] to-[#FFFFFF] py-14 lg:py-20'>
             <Container>
                 <div className='text-center'>
-                    <h2 className='text-3xl font-bold text-[#0A0A0A] sm:text-4xl'>
+                    <h2 className='text-[38px] font-bold leading-tight text-[#2E395B]'>
                         How It Works
                     </h2>
-                    <p className='mt-3 text-base text-[#4A5565]'>
+                    <p className='mt-2 text-sm lg:text-base text-[#94A3B8]'>
                         Simple process, powerful results
                     </p>
                 </div>
 
-                <div className='mx-auto mt-10 max-w-5xl space-y-4'>
+                <div className='mx-auto mt-8 max-w-4xl space-y-3'>
                     {steps.map(({ title, description }, idx) => (
                         <div
                             key={title}
-                            className='flex items-start gap-6 rounded-2xl border border-gray-100 bg-white p-6 shadow-[0_1px_2px_rgba(0,0,0,0.1)]'
+                            className='flex items-center gap-3 rounded-lg border border-[#E5E7EB] bg-white px-4 py-3'
                         >
-                            <span className='inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-[14px] bg-linear-to-b from-[#00B8DB] to-[#155DFC] text-2xl font-bold text-white'>
+                            <span className='inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-linear-to-b from-[#00B8DB] to-custom text-base font-bold text-white'>
                                 {idx + 1}
                             </span>
                             <div>
-                                <h3 className='text-xl font-bold text-[#0A0A0A]'>
+                                <h3 className='text-base xl:text-lg font-semibold text-[#111827]'>
                                     {title}
                                 </h3>
-                                <p className='mt-1 text-base text-[#4A5565]'>
+                                <p className='mt-0.5 text-sm xl:text-base text-[#6B7280]'>
                                     {description}
                                 </p>
                             </div>

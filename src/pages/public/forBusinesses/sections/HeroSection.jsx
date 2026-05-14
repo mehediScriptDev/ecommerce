@@ -30,7 +30,7 @@ const HeroSection = () => {
                         <button
                             type='button'
                             onClick={() => transitionTo('/contact')}
-                            className='mt-6 inline-flex items-center rounded-full bg-linear-to-b from-[#00B8DB] to-[#155DFC] px-7 py-3.5 text-base font-semibold text-white transition-all duration-300 hover:brightness-110 cursor-pointer'
+                            className='mt-6 inline-flex items-center rounded-lg bg-linear-to-b from-[#00B8DB] to-custom hover:scale-105 px-7 py-3.5 text-base font-semibold text-white transition-all duration-300 hover:brightness-110 cursor-pointer'
                         >
                             Get Started Today
                         </button>

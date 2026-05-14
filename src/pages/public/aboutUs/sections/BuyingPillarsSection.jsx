@@ -24,7 +24,7 @@ const BuyingPillarsSection = () => {
                             <br />
                             Quality.
                         </h2>
-                        <p className='mt-4 max-w-xl text-sm leading-6 text-slate-600'>
+                        <p className='mt-4 max-w-xl text-sm lg:text-base leading-6 text-slate-600'>
                             Purchasing your next device should be as exciting as the
                             first time you turn it on. We have refined our process to
                             be as frictionless as possible.
@@ -37,8 +37,8 @@ const BuyingPillarsSection = () => {
                                 key={title}
                                 className='flex items-center gap-2 rounded-md bg-[#F6FAFC] px-3 py-3'
                             >
-                                <Icon className='text-xs text-custom' />
-                                <span className='text-xs text-[#334155]'>{title}</span>
+                                <Icon className='text-sm lg:text-base text-custom' />
+                                <span className='text-sm lg:text-base text-[#334155]'>{title}</span>
                             </div>
                         ))}
                     </div>

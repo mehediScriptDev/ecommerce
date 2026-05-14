@@ -9,7 +9,7 @@ const HeroSection = () => {
     return (
         <section className='relative overflow-hidden bg-linear-to-r from-[#ECFEFF] via-[#F3FBFC] to-[#FFFFFF]'>
             <Container>
-                <div className='grid items-center gap-8 py-16 lg:grid-cols-2'>
+                <div className='grid items-center gap-8 pt-16 lg:grid-cols-2'>
                     <div className='pr-6 max-w-2xl'>
                         <p className='text-xs font-semibold uppercase tracking-widest text-custom mb-4'>
                             UK Mobile &amp; Electronics Retailer
@@ -41,18 +41,34 @@ const HeroSection = () => {
                     </div>
 
                     <div className='relative flex items-center justify-end'>
-                       
-                        <div className='absolute right-6 top-20 h-64 w-44 rotate-3 rounded-md bg-[#1EB5D0]/60 blur-xl' />
+                        <img
+                            src={bgCircle}
+                            alt='decorative circle'
+                            className='absolute right-0 top-1/2 z-0 w-80 -translate-y-1/2 object-contain sm:w-96'
+                        />
+                        <div className='absolute right-8 top-1/2 z-1 h-96 w-72 -translate-y-1/2 rounded-full bg-[#1EB5D0]/45 blur-3xl sm:h-112 sm:w-84' />
                         <img
                             src={heroImage}
                             alt='phones'
-                            className='relative z-10 w-105 max-w-[45vw] object-contain'
+                            className='relative z-10 w-120 max-w-[55vw] scale-110 object-contain'
                         />
                     </div>
                 </div>
             </Container>
 
-            <div className='pointer-events-none absolute left-0 right-0 bottom-0 h-36 bg-linear-to-t from-white/90 to-transparent' />
+            <div className='pointer-events-none absolute inset-x-0 bottom-0 z-20 h-28 overflow-hidden'>
+                <svg
+                    viewBox='0 0 1440 180'
+                    preserveAspectRatio='none'
+                    className='absolute inset-0 h-full w-full'
+                    aria-hidden='true'
+                >
+                    <path
+                        d='M0,112L80,92C160,72,320,32,480,48C640,64,800,144,960,144C1120,144,1280,64,1360,32L1440,0L1440,180L1360,180C1280,180,1120,180,960,180C800,180,640,180,480,180C320,180,160,180,80,180L0,180Z'
+                        fill='#FFFFFF'
+                    />
+                </svg>
+            </div>
         </section>
     );
 };

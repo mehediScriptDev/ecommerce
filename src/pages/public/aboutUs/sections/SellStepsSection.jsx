@@ -27,7 +27,7 @@ const SellStepsSection = () => {
                     <h2 className='text-[38px] font-bold leading-tight text-[#2E395B]'>
                         Sell Your Device With Confidence
                     </h2>
-                    <p className='mt-2 text-xs text-[#94A3B8]'>
+                    <p className='mt-2 text-sm lg:text-base text-[#94A3B8]'>
                         Simple process, powerful results
                     </p>
                 </div>
@@ -36,16 +36,16 @@ const SellStepsSection = () => {
                     {sellSteps.map(({ title, description }, index) => (
                         <div
                             key={title}
-                            className='flex items-start gap-3 rounded-lg border border-[#E5E7EB] bg-white px-4 py-3'
+                            className='flex items-center gap-3 rounded-lg border border-[#E5E7EB] bg-white px-4 py-3'
                         >
-                            <span className='inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-linear-to-b from-[#00B8DB] to-[#155DFC] text-xs font-bold text-white'>
+                            <span className='inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-linear-to-b from-[#00B8DB] to-custom text-base font-bold text-white'>
                                 {index + 1}
                             </span>
                             <div>
-                                <h3 className='text-sm font-semibold text-[#111827]'>
+                                <h3 className='text-base xl:text-lg font-semibold text-[#111827]'>
                                     {title}
                                 </h3>
-                                <p className='mt-0.5 text-[11px] text-[#6B7280]'>
+                                <p className='mt-0.5 text-sm xl:text-base text-[#6B7280]'>
                                     {description}
                                 </p>
                             </div>
