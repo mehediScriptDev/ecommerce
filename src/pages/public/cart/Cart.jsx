@@ -73,12 +73,12 @@ const Cart = () => {
                                 <div key={item.id} className="flex items-start gap-4 py-8 border-b border-gray-200">
                                     <input 
                                         type="checkbox" 
-                                        className="w-[18px] h-[18px] mt-[42px] rounded border-gray-300 text-[#47B5C9] focus:ring-[#47B5C9] accent-[#47B5C9] cursor-pointer" 
+                                        className="w-4.5 h-4.5 mt-10.5 rounded border-gray-300 text-[#47B5C9] focus:ring-[#47B5C9] accent-[#47B5C9] cursor-pointer" 
                                         checked={item.checked}
                                         onChange={() => toggleCheck(item.id)}
                                     />
                                     
-                                    <div className="w-24 h-28 flex-shrink-0 flex items-center justify-center p-2">
+                                    <div className="w-24 h-28 shrink-0 flex items-center justify-center p-2">
                                         <img src={item.image} alt={item.name} className="max-w-full max-h-full object-contain rounded" />
                                     </div>
                                     
@@ -87,7 +87,7 @@ const Cart = () => {
                                         <div className="flex flex-col justify-center">
                                             <h3 className="text-lg font-semibold text-gray-900 tracking-tight">{item.name}</h3>
                                             <p className="text-[13px] text-gray-500 mt-1">{item.color} {item.storage ? `/ ${item.storage}` : ''}</p>
-                                            <div className="mt-5 flex items-center border border-gray-300 rounded-[4px] px-2 py-1 w-fit">
+                                            <div className="mt-5 flex items-center border border-gray-300 rounded-sm px-2 py-1 w-fit">
                                                 <button onClick={() => updateQuantity(item.id, -1)} className="text-gray-500 hover:text-gray-700 w-6 flex justify-center"><FiMinus size={14}/></button>
                                                 <span className="w-8 text-center text-sm font-medium text-gray-700">{item.quantity}</span>
                                                 <button onClick={() => updateQuantity(item.id, 1)} className="text-gray-500 hover:text-gray-700 w-6 flex justify-center"><FiPlus size={14}/></button>
@@ -102,7 +102,7 @@ const Cart = () => {
                                             <div className="flex items-center gap-4">
                                                 <button className="text-[13px] text-[#47B5C9] hover:underline font-medium">Save for later</button>
                                                 <button onClick={() => removeItem(item.id)} className="text-[#f05252] hover:text-red-700 transition-colors">
-                                                    <FiTrash2 className="w-[18px] h-[18px]"/>
+                                                    <FiTrash2 className="w-4.5 h-4.5"/>
                                                 </button>
                                             </div>
                                         </div>
@@ -120,7 +120,7 @@ const Cart = () => {
                     </div>
 
                     {/* Sidebar Summary */}
-                    <div className="w-full lg:w-[400px] shrink-0">
+                    <div className="w-full lg:w-100 shrink-0">
                         <div className="bg-[#F6F7F9] rounded-xl p-8">
                             <h3 className="text-xl font-medium text-gray-900 mb-6">Order Summary</h3>
                             
@@ -143,11 +143,11 @@ const Cart = () => {
                                 <input 
                                     type="text" 
                                     placeholder="Promo code" 
-                                    className="flex-1 border border-gray-300 bg-white rounded-md px-4 py-[10px] text-[14px] focus:outline-none focus:border-[#47B5C9] focus:ring-1 focus:ring-[#47B5C9]"
+                                    className="flex-1 border border-gray-300 bg-white rounded-md px-4 py-2.5 text-[14px] focus:outline-none focus:border-[#47B5C9] focus:ring-1 focus:ring-[#47B5C9]"
                                     value={promoCode}
                                     onChange={(e) => setPromoCode(e.target.value)}
                                 />
-                                <button className="bg-[#1C2337] text-white px-6 py-[10px] rounded-md text-[14px] font-medium hover:bg-gray-800 transition-colors">
+                                <button className="bg-[#1C2337] text-white px-6 py-2.5 rounded-md text-[14px] font-medium hover:bg-gray-800 transition-colors">
                                     Apply
                                 </button>
                             </div>
@@ -162,7 +162,7 @@ const Cart = () => {
                             </div>
                             
                             <button className="w-full bg-[#47B5C9] hover:bg-[#349eab] text-white py-3.5 rounded-md text-[15px] font-medium flex justify-center items-center gap-2 transition-colors">
-                                <FiLock className="w-[18px] h-[18px]"/>
+                                <FiLock className="w-4.5 h-4.5"/>
                                 Checkout Securely
                             </button>
                         </div>
@@ -197,7 +197,7 @@ const Cart = () => {
                         </div>
                     </div>
                 </div>
-
+                            
             </div>
         </div>
     );

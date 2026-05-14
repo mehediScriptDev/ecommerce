@@ -164,3 +164,86 @@ body{
     border: 2px solid var(--products-filter-thumb-border);
     cursor: pointer;
 }
+
+/* Card info hover — common lift */
+.info-hover {
+    position: relative;
+    background-color: #ffffff;
+    transition: transform 0.25s ease, background-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.info-hover h3 {
+    transition: color 0.25s ease;
+}
+
+.group:hover .info-hover,
+.group:focus-within .info-hover {
+    transform: translateY(-4px);
+    background-color: #f8fafc;
+    box-shadow: 0 10px 24px rgba(23, 28, 30, 0.08);
+}
+
+.group:hover .info-hover h3,
+.group:focus-within .info-hover h3 {
+    color: #1f8ea1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .info-hover,
+    .info-hover h3 {
+        transition: none;
+    }
+}
+
+/* Navbar active link */
+.nav-link {
+    position: relative;
+    padding-bottom: 6px;
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: var(--color-custom);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.2s ease;
+}
+
+.nav-link-active {
+    color: var(--color-custom) !important;
+}
+
+.nav-link-active::after {
+    transform: scaleX(1);
+}
+
+/* Neon glow color transition animation */
+@keyframes neonGlow {
+    0% {
+        text-shadow: 0 0 10px rgba(61, 180, 204, 0.6), 0 0 20px rgba(61, 180, 204, 0.3);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(61, 180, 204, 1), 0 0 40px rgba(61, 180, 204, 0.6);
+    }
+    100% {
+        text-shadow: 0 0 10px rgba(61, 180, 204, 0.6), 0 0 20px rgba(61, 180, 204, 0.3);
+    }
+}
+
+.neon-flicker {
+    animation: neonGlow 8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .neon-flicker {
+        animation: none;
+        opacity: 1;
+        text-shadow: 0 0 15px rgba(61, 180, 204, 0.8);
+    }
+}
