@@ -69,7 +69,7 @@ const RelatedProducts = () => {
             </div>
             
             {/* Carousel Container */}
-            <div className='relative group'>
+            <div className='relative'>
                 {/* Carousel */}
                 <div
                     ref={scrollContainerRef}

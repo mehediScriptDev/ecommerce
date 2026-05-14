@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useLocation } from 'react-router';
 import { FiShoppingCart, FiX, FiMenu } from 'react-icons/fi';
 import logo from '../assets/logo.webp';
 import Container from './Container';
@@ -8,6 +8,12 @@ import { usePageTransition } from '../components/transitions';
 const Navbar = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const { transitionTo } = usePageTransition();
+    const location = useLocation();
+
+    const isActive = (to) => {
+        if (to === '/') return location.pathname === '/';
+        return location.pathname.startsWith(to);
+    };
 
     const navLinks = [
         { to: '/', label: 'Home' },
@@ -47,7 +53,9 @@ const Navbar = () => {
                             <li key={to}>
                                 <button
                                     onClick={() => transitionTo(to)}
-                                    className="text-gray-700 hover:text-custom hover:bg-transparent rounded-none"
+                                    className={`nav-link text-gray-700 hover:text-custom hover:bg-transparent rounded-none ${
+                                        isActive(to) ? 'nav-link-active' : ''
+                                    }`}
                                 >
                                     {label}
                                 </button>
@@ -121,7 +129,9 @@ const Navbar = () => {
                                     setSidebarOpen(false);
                                     transitionTo(to);
                                 }}
-                                className="block w-full text-left px-4 py-3 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-custom transition-colors"
+                                className={`block w-full text-left px-4 py-3 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-custom transition-colors ${
+                                    isActive(to) ? 'nav-link-active' : ''
+                                }`}
                             >
                                 {label}
                             </button>

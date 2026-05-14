@@ -16,7 +16,7 @@ const Featured = () => {
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-2">
           <div>
             <h1 className="title-custom">Featured Deals</h1>
-            <p className="subtitle-custom xl:text-lg mt-1">
+            <p className="subtitle-custom mt-1">
               Our handpicked selection for this week.
             </p>
           </div>

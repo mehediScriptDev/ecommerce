@@ -6,6 +6,7 @@ import Hero from "./sections/Hero/Hero";
 import Promotion from "../promotion/Promotion";
 import Cta from "./sections/Cta/Cta";
 import Review from "./sections/review/Review";
+import Category from "../category/Category";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
      
         <section>
           <Hero/>
+          <Category/>
           <Suspense fallback={<div>Loading...</div>}>
             <Featured />
           </Suspense>
