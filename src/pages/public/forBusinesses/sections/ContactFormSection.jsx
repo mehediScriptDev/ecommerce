@@ -67,7 +67,7 @@ const ContactFormSection = () => {
 
                     <button
                         type='submit'
-                        className='inline-flex w-full items-center justify-center rounded-[14px] bg-linear-to-b from-[#00B8DB] to-custom py-4 text-base font-medium text-white transition-all duration-300 hover:brightness-110 cursor-pointer'
+                        className='inline-flex w-full items-center justify-center rounded-[14px] bg-linear-to-b from-[#00B8DB] to-custom py-4 text-base font-medium text-white transition-all duration-300 hover:brightness-110 cursor-pointer hover:scale-105'
                     >
                         Submit
                     </button>

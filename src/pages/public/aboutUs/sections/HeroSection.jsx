@@ -1,3 +1,5 @@
+import { motion, useReducedMotion } from 'framer-motion';
+
 import Container from '../../../../layout/Container';
 import heroImage from '../../../../assets/aboutUs.webp';
 import bgCircle from "../../../../assets/circle.png"
@@ -5,6 +7,7 @@ import { usePageTransition } from '../../../../components/transitions';
 
 const HeroSection = () => {
     const { transitionTo } = usePageTransition();
+    const shouldReduceMotion = useReducedMotion();
 
     return (
         <section className='relative overflow-hidden bg-linear-to-r from-[#ECFEFF] via-[#F3FBFC] to-[#FFFFFF]'>
@@ -34,13 +37,35 @@ const HeroSection = () => {
                         <button
                             type='button'
                             onClick={() => transitionTo('/products')}
-                            className='mt-6 inline-flex items-center rounded-md bg-custom px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:brightness-110 cursor-pointer'
+                            className='mt-6 inline-flex items-center rounded-md bg-custom px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:scale-105 hover:brightness-110 cursor-pointer'
                         >
                             Shop Now
                         </button>
                     </div>
 
-                    <div className='relative flex items-center justify-end'>
+                    <motion.div
+                        className='relative flex items-center justify-end'
+                        animate={
+                            shouldReduceMotion
+                                ? undefined
+                                : {
+                                      y: [0, -12, 0, 10, 0],
+                                      x: [0, 10, 0, -8, 0],
+                                      rotate: [0, -1.5, 0, 1.5, 0],
+                                  }
+                        }
+                        transition={
+                            shouldReduceMotion
+                                ? undefined
+                                : {
+                                      duration: 7,
+                                      ease: 'easeInOut',
+                                      repeat: Infinity,
+                                      repeatType: 'mirror',
+                                  }
+                        }
+                        whileHover={shouldReduceMotion ? undefined : { scale: 1.02 }}
+                    >
                         <img
                             src={bgCircle}
                             alt='decorative circle'
@@ -52,7 +77,7 @@ const HeroSection = () => {
                             alt='phones'
                             className='relative z-10 w-120 max-w-[55vw] scale-110 object-contain'
                         />
-                    </div>
+                    </motion.div>
                 </div>
             </Container>
 

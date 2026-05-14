@@ -23,7 +23,7 @@ const Promotion = () => {
                 </p>
                 <button
                   type="button"
-                  className="mt-6 inline-flex items-center rounded-lg bg-[#4bb9cf] px-5 py-2.5 text-sm font-semibold text-white hover:brightness-110 cursor-pointer transition-all"
+                  className="mt-6 hover:scale-105 inline-flex items-center rounded-lg bg-[#4bb9cf] px-5 py-2.5 text-sm lg:text-base font-semibold text-white hover:brightness-110 cursor-pointer transition-all"
                 >
                   Sell Your Phone
                 </button>
