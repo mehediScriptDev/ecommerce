@@ -24,6 +24,8 @@ import UserManagement from "../pages/admin/userManagement/UserManagement";
 import AdminProfile from "../pages/admin/adminProfile/AdminProfile";
 import Settings from "../pages/admin/settings/Settings";
 import Cart from "../pages/public/cart/Cart";
+import AboutUs from "../pages/public/aboutUs/AboutUs";
+import ForBusinesses from "../pages/public/forBusinesses/ForBusinesses";
 
 const router = createBrowserRouter([
   {
@@ -43,12 +45,20 @@ const router = createBrowserRouter([
         element: <ProductDetails />,
       },
       {
+        path:"about-us",
+        element:<AboutUs/>
+      },
+      {
         path: "cart",
         element: <Cart />,
       },
       {
         path: "contact",
         element: <Contact />,
+      },
+      {
+        path: "for-businesses",
+        element: <ForBusinesses />,
       },
     ],
   },
