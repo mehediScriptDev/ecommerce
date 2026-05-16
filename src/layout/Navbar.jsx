@@ -102,9 +102,9 @@ const Navbar = () => {
                     <Link
                         to="/"
                         onClick={() => setSidebarOpen(false)}
-                        className="btn btn-ghost btn-circle"
+                        className="p-0"
                     >
-                        <img src={logo} alt="Logo" className="h-8 w-auto object-contain" />
+                        <img src={logo} alt="Logo" className="h-6 w-auto object-contain" />
                     </Link>
                     <button
                         className="btn btn-ghost btn-circle btn-sm"
@@ -136,14 +136,14 @@ const Navbar = () => {
                     <Link
                         to="/login"
                         onClick={() => setSidebarOpen(false)}
-                        className="btn bg-gray-800 hover:bg-gray-700 text-white border-none w-full"
+                        className="btn bg-[#2E395B] hover:bg-[#1C253B] text-white border-none w-full"
                     >
                         Log In / Sign Up
                     </Link>
                     <Link
                         to="/sell"
                         onClick={() => setSidebarOpen(false)}
-                        className="btn btn-custom text-white border-none w-full"
+                        className="btn-custom text-white border-none w-full"
                     >
                         Sell Your Phone
                     </Link>

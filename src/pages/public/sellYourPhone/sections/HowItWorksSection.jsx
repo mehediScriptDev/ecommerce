@@ -70,7 +70,7 @@ const HowItWorksSection = () => {
 
               {/* Step Box */}
               <div
-                className={`relative z-10 flex shrink-0 items-center justify-center ${step.color} w-[80px] h-[80px] rounded-[20px] ${step.shadow}`}
+                className={`relative z-10 flex shrink-0 items-center justify-center ${step.color} w-20 h-20 rounded-[20px] ${step.shadow}`}
               >
                 <img
                   src={step.icon}
@@ -83,7 +83,7 @@ const HowItWorksSection = () => {
               <h3 className="text-lg lg:text-[22px] font-bold text-black mt-8 mb-3">
                 {step.title}
               </h3>
-              <p className="text-sm lg:text-base text-[#333333] max-w-[260px]">
+              <p className="text-sm lg:text-base text-[#333333] max-w-65">
                 {step.description}
               </p>
             </div>
