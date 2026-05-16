@@ -27,6 +27,9 @@ import Cart from "../pages/public/cart/Cart";
 import AboutUs from "../pages/public/aboutUs/AboutUs";
 import ForBusinesses from "../pages/public/forBusinesses/ForBusinesses";
 import Sell from "../pages/public/sellYourPhone/Sell";
+import SellWorth from "../pages/public/sellWorth/SellWorth";
+import AboutDevice from "../pages/public/aboutdevice/AboutDevice";
+import FinalizeSale from "../pages/public/finalizeSale/FinalizeSale";
 
 const router = createBrowserRouter([
   {
@@ -46,8 +49,8 @@ const router = createBrowserRouter([
         element: <ProductDetails />,
       },
       {
-        path:"about-us",
-        element:<AboutUs/>
+        path: "about-us",
+        element: <AboutUs />,
       },
       {
         path: "cart",
@@ -65,6 +68,15 @@ const router = createBrowserRouter([
         path: "sell",
         element: <Sell />,
       },
+      {
+        path: "sell-your-phone",
+        element: <SellWorth />,
+      },
+      {
+        path: "confirm-sale",
+        element: <AboutDevice />,
+      },
+      {path:"finalize-sale", element: <FinalizeSale />},
     ],
   },
 
@@ -76,7 +88,8 @@ const router = createBrowserRouter([
       { index: true, element: <AdminOverview /> },
       { path: "listing", element: <Listings /> },
       {
-        path:"add-listing", element:<Addlisting/>
+        path: "add-listing",
+        element: <Addlisting />,
       },
       { path: "order", element: <Order /> },
       { path: "cell-phone", element: <CellPhoneMange /> },
@@ -92,9 +105,7 @@ const router = createBrowserRouter([
   {
     path: "/dashboard/user",
     element: <UserDashboardLayout />,
-    children: [
-      { index: true, element: <UserOrders /> },
-    ],
+    children: [{ index: true, element: <UserOrders /> }],
   },
 
   // auth routes

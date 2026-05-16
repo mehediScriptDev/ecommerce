@@ -1,13 +1,8 @@
 import React from "react";
 import Container from "../../../../layout/Container";
-import {
-  CreditCard,
-  TrendingUp,
-  RefreshCw,
-  ShieldCheck,
-  Phone,
-} from "lucide-react";
+import { CheckCircle, Smartphone } from "lucide-react";
 import HeroBg from "../../../../assets/sellBg.webp";
+import { Link } from "react-router";
 
 const HeroSection = () => {
   return (
@@ -31,13 +26,13 @@ const HeroSection = () => {
         {/* Trust Badges */}
         <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:flex lg:items-center lg:justify-center lg:gap-8">
           {[
-            { Icon: CreditCard, label: "Fast UK Payments" },
-            { Icon: TrendingUp, label: "Competitive Market Pricing" },
-            { Icon: RefreshCw, label: "Free Returns On Revised Offers" },
-            { Icon: ShieldCheck, label: "Trusted UK Mobile Retailer" },
-          ].map(({ Icon, label }, idx) => (
+            "Fast UK Payments",
+            "Competitive Market Pricing",
+            "Free Returns On Revised Offers",
+            "Trusted UK Mobile Retailer",
+          ].map((label, idx) => (
             <div key={idx} className="flex items-center gap-2">
-              <Icon className="w-5 h-5 text-[#2E395B] shrink-0" />
+              <CheckCircle className="w-5 h-5 text-custom shrink-0" />
               <span className="text-[#2E395B] text-xs sm:text-sm lg:text-base">
                 {label}
               </span>
@@ -47,15 +42,15 @@ const HeroSection = () => {
 
         {/* CTA Button */}
         <div className="mt-10 flex justify-center">
-          <button
+          <Link
+            to={"/sell-worth"}
             className="flex items-center bg-custom py-3 px-6 sm:py-3.5 sm:px-8 gap-2.5 rounded-lg border-0 cursor-pointer hover:brightness-110 transition-all duration-300 hover:scale-105"
-           
           >
-            <Phone className="w-5 h-5 text-white" />
+            <Smartphone className="w-5 h-5 text-white" />
             <span className="text-white text-sm sm:text-base font-bold">
               Sell Your Phone Now
             </span>
-          </button>
+          </Link>
         </div>
       </Container>
     </section>
