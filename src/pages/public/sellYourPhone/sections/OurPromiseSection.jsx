@@ -1,28 +1,25 @@
 import React from "react";
+import Container from '../../../../layout/Container';
 
 const OurPromiseSection = () => {
 	return (
-		<div className="self-stretch bg-white py-14 lg:py-20 px-[168px]">
-			<div className="flex justify-between items-start self-stretch gap-10">
-				<div className="flex flex-col shrink-0 items-center">
-					<span className="text-[#3DB4CC] text-sm font-bold uppercase tracking-wide" >
-						{"Our Promise"}
+		<section className="bg-white py-12 lg:py-20">
+			<Container>
+				<div className="grid items-start gap-6 lg:grid-cols-[auto_1fr] lg:gap-16">
+					<span className="text-sm font-bold uppercase tracking-wide text-[#3DB4CC]">
+						Our Promise
 					</span>
-				</div>
-				<div className="flex flex-col shrink-0 items-center gap-5">
-					<div className="flex flex-col items-center">
-						<span className="text-[#2E395B] text-base lg:text-lg max-w-[900px] leading-8" >
-							{"At Zephyr Technology, we believe in making the mobile trade-in process simple, transparent, and trustworthy. We've built our service around fairness, speed, and reliability, ensuring you receive competitive market value for your device without hidden fees or unexpected surprises."}
-						</span>
-					</div>
-					<div className="flex flex-col items-center">
-						<span className="text-[#2E395B] text-base lg:text-lg max-w-[900px] leading-8" >
-							{"Whether you're upgrading to the latest model or simply looking to trade in an old device, we're committed to providing a seamless experience from quote to payment. Your satisfaction is our priority, and we stand behind every valuation we make."}
-						</span>
+					<div className="space-y-5">
+						<p className="text-sm sm:text-base lg:text-lg leading-7 lg:leading-8 text-[#2E395B]">
+							At Zephyr Technology, we believe in making the mobile trade-in process simple, transparent, and trustworthy. We've built our service around fairness, speed, and reliability, ensuring you receive competitive market value for your device without hidden fees or unexpected surprises.
+						</p>
+						<p className="text-sm sm:text-base lg:text-lg leading-7 lg:leading-8 text-[#2E395B]">
+							Whether you're upgrading to the latest model or simply looking to trade in an old device, we're committed to providing a seamless experience from quote to payment. Your satisfaction is our priority, and we stand behind every valuation we make.
+						</p>
 					</div>
 				</div>
-			</div>
-		</div>
+			</Container>
+		</section>
 	);
 };
 

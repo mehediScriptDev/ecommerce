@@ -1,97 +1,122 @@
 import React from "react";
+import Container from "../../../../layout/Container";
+
+const steps = [
+  {
+    icon: "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/MkyIKCPWw5/0dojnwzf_expires_30_days.png",
+    color: "bg-[#7DCDDD]",
+    shadow: "shadow-[0px_1.85px_3px_#72EAFF03]",
+    title: "Get A Quote",
+    description:
+      "Select your device model and condition to receive an instant quote online.",
+    line: "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/MkyIKCPWw5/cv8b505j_expires_30_days.png",
+  },
+  {
+    icon: "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/MkyIKCPWw5/69z615nr_expires_30_days.png",
+    color: "bg-[#4DDFFD]",
+    shadow: "shadow-[0px_1.85px_3px_#4DDFFD03]",
+    title: "Send Your Device",
+    description:
+      "Use our free postage service to send your phone safely to our facility.",
+    line: "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/MkyIKCPWw5/ukps2g9e_expires_30_days.png",
+  },
+  {
+    icon: "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/MkyIKCPWw5/coyv8tf9_expires_30_days.png",
+    color: "bg-[#2E395B]",
+    shadow: "shadow-[0px_1.85px_3px_#4F467403]",
+    title: "Device Inspection",
+    description:
+      "Our experts carefully inspect your device and verify its condition.",
+    line: "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/MkyIKCPWw5/go5sbm4o_expires_30_days.png",
+  },
+  {
+    icon: "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/MkyIKCPWw5/u27oipt3_expires_30_days.png",
+    color: "bg-[#0CA161]",
+    shadow: "shadow-[0px_1.85px_3px_#0CA26103]",
+    title: "Get Paid",
+    description:
+      "Receive payment within 24–48 hours after your device is inspected.",
+    line: null,
+  },
+];
 
 const HowItWorksSection = () => {
-	return (
-		<div className="flex flex-col items-center self-stretch max-w-[1528px] mx-auto gap-10">
-			<span className="text-black text-3xl sm:text-4xl font-bold" >
-				{"How it works?"}
-			</span>
-			<div className="self-stretch">
-				<div className="flex items-start self-stretch mb-[40px] mx-[85px]">
-					<button className="flex flex-col shrink-0 items-start bg-[#7DCDDD] text-left p-7 mr-[47px] rounded-[20px] border-0 cursor-pointer" 
-						style={{
-							boxShadow: "0px 1.8518518209457397px 3px #72EAFF03"
-						}}
-						onClick={()=>alert("Pressed!")}>
-						<img
-							src={"https://storage.googleapis.com/tagjs-prod.appspot.com/v1/MkyIKCPWw5/0dojnwzf_expires_30_days.png"} 
-							className="w-5 h-5 object-fill"
-						/>
-					</button>
-					<img
-						src={"https://storage.googleapis.com/tagjs-prod.appspot.com/v1/MkyIKCPWw5/cv8b505j_expires_30_days.png"} 
-						className="flex-1 h-[11px] mt-[36px] mr-[72px] object-fill"
-					/>
-					<button className="flex flex-col shrink-0 items-start bg-[#4DDFFD] text-left p-7 mr-[55px] rounded-[20px] border-0 cursor-pointer" 
-						style={{
-							boxShadow: "0px 1.8518518209457397px 3px #4DDFFD03"
-						}}
-						onClick={()=>alert("Pressed!")}>
-						<img
-							src={"https://storage.googleapis.com/tagjs-prod.appspot.com/v1/MkyIKCPWw5/69z615nr_expires_30_days.png"} 
-							className="w-5 h-5 object-fill"
-						/>
-					</button>
-					<img
-						src={"https://storage.googleapis.com/tagjs-prod.appspot.com/v1/MkyIKCPWw5/ukps2g9e_expires_30_days.png"} 
-						className="flex-1 h-[11px] mt-[36px] mr-16 object-fill"
-					/>
-					<button className="flex flex-col shrink-0 items-start bg-[#2E395B] text-left p-7 mr-[55px] rounded-[20px] border-0 cursor-pointer" 
-						style={{
-							boxShadow: "0px 1.8518518209457397px 3px #4F467403"
-						}}
-						onClick={()=>alert("Pressed!")}>
-						<img
-							src={"https://storage.googleapis.com/tagjs-prod.appspot.com/v1/MkyIKCPWw5/coyv8tf9_expires_30_days.png"} 
-							className="w-5 h-5 object-fill"
-						/>
-					</button>
-					<img
-						src={"https://storage.googleapis.com/tagjs-prod.appspot.com/v1/MkyIKCPWw5/go5sbm4o_expires_30_days.png"} 
-						className="flex-1 h-[11px] mt-[40px] mr-[74px] object-fill"
-					/>
-					<button className="flex flex-col shrink-0 items-start bg-[#0CA161] text-left p-7 rounded-[20px] border-0 cursor-pointer" 
-						style={{
-							boxShadow: "0px 1.8518518209457397px 3px #0CA26103"
-						}}
-						onClick={()=>alert("Pressed!")}>
-						<img
-							src={"https://storage.googleapis.com/tagjs-prod.appspot.com/v1/MkyIKCPWw5/u27oipt3_expires_30_days.png"} 
-							className="w-5 h-5 object-fill"
-						/>
-					</button>
-				</div>
-				<div className="flex justify-between items-center self-stretch mb-3 ml-[66px] mr-[89px]">
-					<span className="text-black text-base lg:text-lg font-bold" >
-						{"Get A Quote"}
-					</span>
-					<span className="text-black text-base lg:text-lg font-bold" >
-						{"Send Your Device"}
-					</span>
-					<span className="text-black text-base lg:text-lg font-bold" >
-						{"Device Inspection"}
-					</span>
-					<span className="text-black text-base lg:text-lg font-bold" >
-						{"Get Paid"}
-					</span>
-				</div>
-				<div className="flex justify-between items-start self-stretch">
-					<span className="text-[#333333] text-sm lg:text-base text-center w-[230px]" >
-						{"Select your device model and condition to receive an instant quote online."}
-					</span>
-					<span className="text-[#333333] text-sm lg:text-base text-center w-[230px]" >
-						{"Use our free postage service to send your phone safely to our facility."}
-					</span>
-					<span className="text-[#333333] text-sm lg:text-base text-center w-[210px]" >
-						{"Our experts carefully inspect your device and verify its condition."}
-					</span>
-					<span className="text-[#333333] text-sm lg:text-base text-center w-[230px]" >
-						{"Receive payment within 24–48 hours after your device is inspected."}
-					</span>
-				</div>
-			</div>
-		</div>
-	);
+  return (
+    <section className="bg-[#FBFDFF] py-14 lg:py-20">
+      <Container>
+        <div className="text-center mb-10 lg:mb-16">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0A0A0A]">
+            How it works?
+          </h2>
+        </div>
+
+        {/* Desktop Layout - Perfectly Aligned */}
+        <div className="hidden lg:grid grid-cols-4 w-full">
+          {steps.map((step, idx) => (
+            <div
+              key={idx}
+              className="relative flex flex-col items-center text-center px-2"
+            >
+              {/* Connecting Line to the right (except for last item) */}
+              {step.line && (
+                <div className="absolute top-10 left-[50%] w-full z-0 px-10 -translate-y-1/2">
+                  <img
+                    src={step.line}
+                    className="w-full h-2.75 object-fill"
+                    alt=""
+                  />
+                </div>
+              )}
+
+              {/* Step Box */}
+              <div
+                className={`relative z-10 flex shrink-0 items-center justify-center ${step.color} w-[80px] h-[80px] rounded-[20px] ${step.shadow}`}
+              >
+                <img
+                  src={step.icon}
+                  className="w-6 h-6 object-contain"
+                  alt=""
+                />
+              </div>
+
+              {/* Text */}
+              <h3 className="text-lg lg:text-[22px] font-bold text-black mt-8 mb-3">
+                {step.title}
+              </h3>
+              <p className="text-sm lg:text-base text-[#333333] max-w-[260px]">
+                {step.description}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Mobile / Tablet Layout */}
+        <div className="lg:hidden flex flex-col gap-8 max-w-md mx-auto">
+          {steps.map((step, idx) => (
+            <div key={idx} className="flex items-start gap-5">
+              <div
+                className={`flex shrink-0 items-center justify-center ${step.color} p-5 rounded-2xl ${step.shadow}`}
+              >
+                <img
+                  src={step.icon}
+                  className="w-5 h-5 object-contain"
+                  alt=""
+                />
+              </div>
+              <div className="flex flex-col pt-1">
+                <h3 className="text-lg sm:text-xl font-bold text-black mb-1">
+                  {step.title}
+                </h3>
+                <p className="text-sm sm:text-base text-[#333333]">
+                  {step.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Container>
+    </section>
+  );
 };
 
 export default HowItWorksSection;
