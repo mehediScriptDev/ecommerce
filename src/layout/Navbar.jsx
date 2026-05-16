@@ -3,11 +3,9 @@ import { Link, useLocation } from 'react-router';
 import { FiShoppingCart, FiX, FiMenu } from 'react-icons/fi';
 import logo from '../assets/logo.webp';
 import Container from './Container';
-import { usePageTransition } from '../components/transitions';
 
 const Navbar = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    const { transitionTo } = usePageTransition();
     const location = useLocation();
 
     const isActive = (to) => {
@@ -39,12 +37,9 @@ const Navbar = () => {
                     </button>
 
                     {/* Logo */}
-                    {/* <Link to="/">
+                    <Link to='/' className='cursor-pointer'>
                         <img src={logo} alt="Logo" className="h-8 w-auto object-contain" />
-                    </Link> */}
-                    <button className='cursor-pointer' onClick={() => transitionTo("/")}>
-                        <img src={logo} alt="Logo" className="h-8 w-auto object-contain" />
-                    </button>
+                    </Link>
                 </div>
 
                 {/* CENTER — desktop nav */}
@@ -52,14 +47,14 @@ const Navbar = () => {
                     <ul className="menu menu-horizontal gap-1 px-1">
                         {navLinks.map(({ to, label }) => (
                             <li key={to}>
-                                <button
-                                    onClick={() => transitionTo(to)}
+                                <Link
+                                    to={to}
                                     className={`nav-link text-gray-700 hover:text-custom hover:bg-transparent rounded-none ${
                                         isActive(to) ? 'nav-link-active' : ''
                                     }`}
                                 >
                                     {label}
-                                </button>
+                                </Link>
                             </li>
                         ))}
                     </ul>
@@ -67,12 +62,12 @@ const Navbar = () => {
 
                 {/* RIGHT — cart + buttons */}
                 <div className="navbar-end gap-2 lg:gap-3 ml-5">
-                    <button 
-                        onClick={() => transitionTo("/cart")}
+                    <Link 
+                        to="/cart"
                         className="btn btn-ghost hover:bg-gray-100 border-none btn-circle"
                     >
                         <FiShoppingCart size={20} />
-                    </button>
+                    </Link>
                     <Link
                         to="/login"
                         className="btn bg-[#2E395B] hover:bg-[#1C253B] text-white border-none text-sm font-medium px-4"
@@ -104,15 +99,13 @@ const Navbar = () => {
             >
                 {/* Sidebar header */}
                 <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-                    <button
-                        onClick={() => {
-                            setSidebarOpen(false);
-                            transitionTo("/");
-                        }}
+                    <Link
+                        to="/"
+                        onClick={() => setSidebarOpen(false)}
                         className="btn btn-ghost btn-circle"
                     >
                         <img src={logo} alt="Logo" className="h-8 w-auto object-contain" />
-                    </button>
+                    </Link>
                     <button
                         className="btn btn-ghost btn-circle btn-sm"
                         onClick={() => setSidebarOpen(false)}
@@ -125,17 +118,15 @@ const Navbar = () => {
                 <ul className="flex flex-col px-4 py-6 gap-1 flex-1">
                     {navLinks.map(({ to, label }) => (
                         <li key={to}>
-                            <button
-                                onClick={() => {
-                                    setSidebarOpen(false);
-                                    transitionTo(to);
-                                }}
+                            <Link
+                                to={to}
+                                onClick={() => setSidebarOpen(false)}
                                 className={`block w-full text-left px-4 py-3 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-custom transition-colors ${
                                     isActive(to) ? 'nav-link-active' : ''
                                 }`}
                             >
                                 {label}
-                            </button>
+                            </Link>
                         </li>
                     ))}
                 </ul>

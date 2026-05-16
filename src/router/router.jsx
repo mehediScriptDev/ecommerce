@@ -26,6 +26,7 @@ import Settings from "../pages/admin/settings/Settings";
 import Cart from "../pages/public/cart/Cart";
 import AboutUs from "../pages/public/aboutUs/AboutUs";
 import ForBusinesses from "../pages/public/forBusinesses/ForBusinesses";
+import Sell from "../pages/public/sellYourPhone/Sell";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
       {
         path: "for-businesses",
         element: <ForBusinesses />,
+      },
+      {
+        path: "sell",
+        element: <Sell />,
       },
     ],
   },

@@ -1,12 +1,10 @@
+import { Link } from "react-router";
 import Stars from "../../../../products/components/Stars";
-import { usePageTransition } from "../../../../../../components/transitions";
 
 const Card = ({ id, title, tag, badgeColor, variant, price, oldPrice, currency, rating, reviews, images }) => {
-  const { transitionTo } = usePageTransition();
-
   return (
-    <div
-      onClick={() => transitionTo("/product-details")}
+    <Link
+      to="/product-details"
       className="bg-white border border-gray-100 rounded-2xl overflow-hidden
       transition-all duration-300 group cursor-pointer"
     >
@@ -53,7 +51,7 @@ const Card = ({ id, title, tag, badgeColor, variant, price, oldPrice, currency, 
           )}
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

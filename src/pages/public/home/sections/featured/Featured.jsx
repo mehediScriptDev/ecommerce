@@ -2,12 +2,10 @@ import React, { use } from "react";
 import Container from "../../../../../layout/Container";
 import { Link } from "react-router";
 import Card from "./components/Card";
-import { usePageTransition } from "../../../../../components/transitions";
 
 const allfeatured = fetch("/data/featured.json").then((res) => res.json());
 const Featured = () => {
   const data = use(allfeatured);
-  const { transitionTo } = usePageTransition();
   console.log(data);
 
   return (
@@ -21,13 +19,12 @@ const Featured = () => {
             </p>
           </div>
           <div>
-            
-            <button
-              onClick={() => transitionTo("/products")}
+            <Link
+              to="/products"
               className="text-sm hover:scale-95 cursor-pointer text-custom flex items-center justify-center"
             >
               View All Products →
-            </button>
+            </Link>
           </div>
         </div>
 

@@ -1,4 +1,5 @@
 import promotion from '../../../assets/banner/promotions.webp';
+import { Link } from 'react-router';
 import Container from '../../../layout/Container';
 
 const Promotion = () => {
@@ -21,12 +22,12 @@ const Promotion = () => {
                   Tired of your old device? Trading it in has never been easier.
                   We offer the best market rates and a seamless process.
                 </p>
-                <button
-                  type="button"
+                <Link
+                  to="/sell"
                   className="mt-6 hover:scale-105 inline-flex items-center rounded-lg bg-[#4bb9cf] px-5 py-2.5 text-sm lg:text-base font-semibold text-white hover:brightness-110 cursor-pointer transition-all"
                 >
                   Sell Your Phone
-                </button>
+                </Link>
               </div>
             </div>
           </Container>

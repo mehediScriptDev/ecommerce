@@ -1,10 +1,8 @@
 import banner from '../../../../../../src/assets/banner/hero.webp'
+import { Link } from 'react-router';
 import Container from '../../../../../layout/Container';
-import { usePageTransition } from '../../../../../components/transitions';
 
 const Hero = () => {
-    const { transitionTo } = usePageTransition();
-
     return (
         <section className='pt-4 pb-6'>
             <Container>
@@ -22,20 +20,18 @@ const Hero = () => {
                                     </span>
                                 </h1>
                                 <div className='mt-6 xl:mt-10 flex flex-wrap gap-3'>
-                                    <button
-                                        type='button'
-                                        onClick={() => transitionTo('/products')}
+                                    <Link
+                                        to='/products'
                                         className='inline-flex items-center rounded-lg bg-custom px-5 py-2.5 text-sm font-semibold text-white hover:brightness-110 cursor-pointer hover:scale-105 transform transition-all duration-300'
                                     >
                                         Shop Now
-                                    </button>
-                                    <button
-                                        type='button'
-                                        onClick={() => transitionTo('/sell')}
+                                    </Link>
+                                    <Link
+                                        to='/sell'
                                         className='inline-flex items-center rounded-lg border border-white/60 bg-black/15 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10 cursor-pointer hover:scale-105 transform transition-all duration-300'
                                     >
                                         Sell Your Phone
-                                    </button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

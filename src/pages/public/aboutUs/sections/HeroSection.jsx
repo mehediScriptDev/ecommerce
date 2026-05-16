@@ -1,12 +1,11 @@
 import { motion, useReducedMotion } from 'framer-motion';
+import { Link } from 'react-router';
 
 import Container from '../../../../layout/Container';
 import heroImage from '../../../../assets/aboutUs.webp';
 import bgCircle from "../../../../assets/circle.png"
-import { usePageTransition } from '../../../../components/transitions';
 
 const HeroSection = () => {
-    const { transitionTo } = usePageTransition();
     const shouldReduceMotion = useReducedMotion();
 
     return (
@@ -34,13 +33,12 @@ const HeroSection = () => {
                             Pioneering a cleaner, more transparent way to buy and sell premium consumer electronics across the United Kingdom.
                         </p>
 
-                        <button
-                            type='button'
-                            onClick={() => transitionTo('/products')}
+                        <Link
+                            to='/products'
                             className='mt-6 inline-flex items-center rounded-md bg-custom px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:scale-105 hover:brightness-110 cursor-pointer'
                         >
                             Shop Now
-                        </button>
+                        </Link>
                     </div>
 
                     <motion.div
