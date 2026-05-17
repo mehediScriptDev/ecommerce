@@ -30,6 +30,8 @@ import Sell from "../pages/public/sellYourPhone/Sell";
 import SellWorth from "../pages/public/sellWorth/SellWorth";
 import AboutDevice from "../pages/public/aboutdevice/AboutDevice";
 import FinalizeSale from "../pages/public/finalizeSale/FinalizeSale";
+import Checkout from "../pages/public/checkout/Checkout";
+
 
 const router = createBrowserRouter([
   {
@@ -55,6 +57,10 @@ const router = createBrowserRouter([
       {
         path: "cart",
         element: <Cart />,
+      },
+      {
+        path:"checkout",
+        element: <Checkout />,
       },
       {
         path: "contact",

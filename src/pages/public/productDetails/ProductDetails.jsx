@@ -16,6 +16,7 @@ import {
 import { FaMicrochip } from "react-icons/fa";
 import { HiChip } from "react-icons/hi";
 import RelatedProducts from "./sections/relatedProduct/RelatedProducts";
+import { Link } from "react-router";
 
 const ProductDetails = () => {
   const [selectedImage, setSelectedImage] = useState(0);
@@ -193,13 +194,13 @@ const ProductDetails = () => {
                   <FiPlus size={14} />
                 </button>
               </div>
-              <button className="sm:flex-1 bg-[#47B5C9] hover:bg-[#349eab] text-white rounded-sm font-medium text-sm transition-colors h-11.5">
+              <Link to={"/cart"} className="sm:flex-1 bg-[#47B5C9] hover:bg-[#349eab] text-white rounded-sm font-medium text-sm transition-colors h-11.5 flex items-center justify-center">
                 Add to Cart
-              </button>
+              </Link>
             </div>
-            <button className="w-full border border-gray-800 text-[#151A2A] hover:bg-gray-50 rounded-sm font-medium text-sm transition-colors h-11.5">
+            <Link to={"/checkout"} className="w-full border border-gray-800 text-[#151A2A] hover:bg-gray-50 rounded-sm font-medium text-sm transition-colors h-11.5 flex items-center justify-center">
               Shop Now
-            </button>
+            </Link>
           </div>
         </div>
 
