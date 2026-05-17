@@ -1,12 +1,20 @@
-import React, { use } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../../../../../layout/Container";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import Card from "./components/Card";
 
-const allfeatured = fetch("/data/featured.json").then((res) => res.json());
 const Featured = () => {
-  const data = use(allfeatured);
-  console.log(data);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    let mounted = true;
+    fetch('/data/featured.json')
+      .then((res) => res.json())
+      .then((json) => {
+        if (mounted) setData(json);
+      })
+      .catch((err) => console.error('Failed to load featured.json', err));
+    return () => { mounted = false };
+  }, []);
 
   return (
     <Container>
@@ -30,7 +38,7 @@ const Featured = () => {
 
         {/* cards */}
         <div className="mt-10 w-full grid grid-cols-1 min-[400px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-          {data.map((item) => (
+          {data?.map((item) => (
             <Card key={item.id} {...item} />
           ))}
         </div>
