@@ -1,34 +1,36 @@
-import { BiLeaf } from "react-icons/bi";
 import Container from "../../../../../layout/Container";
 
 const features = [
   {
     id: 1,
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M5 12.5l4 4L19 6.5" />
       </svg>
     ),
-    title: "Genuine Devices",
-    description: "No hidden repairs or third-party parts. Guaranteed.",
+    title: "Genuine Products",
+    description: "Professionally checked devices with no hidden surprises.",
   },
   {
     id: 2,
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21a48.25 48.25 0 01-8.135-.687c-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M13 2.75l-6 8.25h4L10 21.25l7-10.25h-4L13 2.75z" />
       </svg>
     ),
-    title: "Thorough Testing",
-    description: "Hardware and software tested to factory standards.",
+    title: "Competitive Pricing",
+    description: "Premium smartphones without unnecessary retail markups.",
   },
   {
     id: 3,
     icon: (
-      <BiLeaf />
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 2l7 3v5c0 5-3.58 9.74-7 11-3.42-1.26-7-6-7-11V5l7-3z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9.5 12.5l1.75 1.75L15 10" />
+      </svg>
     ),
-    title: "Eco-Friendly",
-    description: "Sustainable sourcing and recycled packaging.",
+    title: "Buy With Confidence",
+    description: "Fast UK delivery, secure checkout, and customer-focused support.",
   },
 ];
 
