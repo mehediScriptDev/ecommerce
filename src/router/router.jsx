@@ -13,7 +13,8 @@ import Products from "../pages/public/products/Products";
 import Contact from "../pages/public/contact/Contact";
 import ProductDetails from "../pages/public/productDetails/ProductDetails";
 import AdminOverview from "../pages/admin/overview/AdminOverview";
-import UserOrders from "../pages/user/UserOrders";
+import UserOrders from "../pages/user/orders/UserOrders";
+import Account from "../pages/user/account/Account";
 import Listings from "../pages/admin/listings/Listings";
 import Addlisting from "../pages/admin/addlisting/Addlisting";
 import Order from "../pages/admin/order/Order";
@@ -111,7 +112,10 @@ const router = createBrowserRouter([
   {
     path: "/dashboard/user",
     element: <UserDashboardLayout />,
-    children: [{ index: true, element: <UserOrders /> }],
+    children: [
+      { index: true, element: <UserOrders /> },
+      { path: "account", element: <Account /> },
+    ],
   },
 
   // auth routes

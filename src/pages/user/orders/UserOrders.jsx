@@ -1,3 +1,5 @@
+import React, { useState } from 'react';
+import Modal from './component/Modal';
 const orders = [
     {
         id: '#ord-001',
@@ -25,7 +27,28 @@ const orders = [
     },
 ];
 
+
+
 const UserOrders = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedOrder, setSelectedOrder] = useState(null);
+
+    const openCancelModal = (order) => {
+        setSelectedOrder(order);
+        setIsModalOpen(true);
+    };
+
+    const handleClose = () => {
+        setIsModalOpen(false);
+        setSelectedOrder(null);
+    };
+
+    const handleSend = (reason) => {
+        // TODO: send cancel request to API
+        console.log('Cancel order', selectedOrder?.id, 'reason:', reason);
+        handleClose();
+    };
+
     return (
         <div className="max-w-4xl">
             {orders.map((order, i) => (
@@ -43,12 +66,17 @@ const UserOrders = () => {
                         <h2 className="text-lg font-bold text-gray-900 mb-1">{order.title}</h2>
                         <p className="text-sm text-gray-500 mb-3 line-clamp-2">{order.description}</p>
                         <p className="text-xl font-bold text-gray-900 mb-3">{order.price}</p>
-                        <button className="bg-red-600 hover:bg-red-700 text-white text-sm font-semibold px-4 py-2 rounded-md w-fit transition-colors">
+                        <button
+                            onClick={() => openCancelModal(order)}
+                            className="bg-red-600 hover:bg-red-700 text-white text-sm font-semibold px-4 py-2 rounded-md w-fit transition-colors"
+                        >
                             Cancel Order
                         </button>
                     </div>
                 </div>
             ))}
+
+            <Modal isOpen={isModalOpen} onClose={handleClose} onSend={handleSend} />
         </div>
     );
 };

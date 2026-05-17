@@ -35,7 +35,6 @@ const ADMIN_NAV_ITEMS = [
 
 const USER_NAV_ITEMS = [
     { label: 'Order', icon: ShoppingCart, path: '/dashboard/user', end: true },
-    { label: 'Products to review', icon: Star, path: '/dashboard/user/reviews' },
     { label: 'Account', icon: User, path: '/dashboard/user/account' },
 ];
 

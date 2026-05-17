@@ -28,7 +28,7 @@ const Checkout = () => {
                 <input
                   type="email"
                   placeholder="email@example.com"
-                    className="h-12 px-4 border border-[#E5E7EB] rounded-sm text-base text-[#151A2A] placeholder-[#6B7280] focus:outline-none focus:border-[#3DB4CC] focus:ring-1 focus:ring-[#3DB4CC] bg-white"
+                    className="h-12 px-4 border border-[#E5E7EB] rounded-sm text-base text-[#151A2A] placeholder-[#6B7280] focus:outline-none focus:border-custom focus:ring-1 focus:ring-custom bg-white"
                 />
               </div>
             </section>
@@ -46,7 +46,7 @@ const Checkout = () => {
                   <input
                     type="text"
                     placeholder="John Doe"
-                    className="h-12 px-4 border border-[#E5E7EB] rounded-sm text-base text-[#151A2A] placeholder-[#6B7280] focus:outline-none focus:border-[#3DB4CC] focus:ring-1 focus:ring-[#3DB4CC] bg-white"
+                    className="h-12 px-4 border border-[#E5E7EB] rounded-sm text-base text-[#151A2A] placeholder-[#6B7280] focus:outline-none focus:border-custom focus:ring-1 focus:ring-custom bg-white"
                   />
                 </div>
 
@@ -56,7 +56,7 @@ const Checkout = () => {
                     Country / Region
                   </label>
                   <div className="relative">
-                    <select className="h-14 w-full px-4 pr-10 border border-[#E5E7EB] rounded-sm text-base text-[#151A2A] focus:outline-none focus:border-[#3DB4CC] focus:ring-1 focus:ring-[#3DB4CC] bg-white appearance-none cursor-pointer">
+                    <select className="h-14 w-full px-4 pr-10 border border-[#E5E7EB] rounded-sm text-base text-[#151A2A] focus:outline-none focus:border-custom focus:ring-1 focus:ring-custom bg-white appearance-none cursor-pointer">
                       <option value="UK">UK</option>
                       <option value="US">US</option>
                       <option value="CA">Canada</option>
@@ -76,7 +76,7 @@ const Checkout = () => {
                   <input
                     type="text"
                     placeholder="123 tech lane"
-                    className="h-12 px-4 border border-[#E5E7EB] rounded-sm text-base text-[#151A2A] placeholder-[#6B7280] focus:outline-none focus:border-[#3DB4CC] focus:ring-1 focus:ring-[#3DB4CC] bg-white"
+                    className="h-12 px-4 border border-[#E5E7EB] rounded-sm text-base text-[#151A2A] placeholder-[#6B7280] focus:outline-none focus:border-custom focus:ring-1 focus:ring-custom bg-white"
                   />
                 </div>
 
@@ -86,7 +86,7 @@ const Checkout = () => {
                   <input
                     type="text"
                     placeholder="San Francisco"
-                    className="h-12 px-4 border border-[#E5E7EB] rounded-sm text-base text-[#151A2A] placeholder-[#6B7280] focus:outline-none focus:border-[#3DB4CC] focus:ring-1 focus:ring-[#3DB4CC] bg-white"
+                    className="h-12 px-4 border border-[#E5E7EB] rounded-sm text-base text-[#151A2A] placeholder-[#6B7280] focus:outline-none focus:border-custom focus:ring-1 focus:ring-custom bg-white"
                   />
                 </div>
 
@@ -97,7 +97,7 @@ const Checkout = () => {
                     <input
                       type="text"
                       placeholder="CA"
-                      className="h-12 px-4 border border-[#E5E7EB] rounded-sm text-base text-[#151A2A] placeholder-[#6B7280] focus:outline-none focus:border-[#3DB4CC] focus:ring-1 focus:ring-[#3DB4CC] bg-white"
+                      className="h-12 px-4 border border-[#E5E7EB] rounded-sm text-base text-[#151A2A] placeholder-[#6B7280] focus:outline-none focus:border-custom focus:ring-1 focus:ring-custom bg-white"
                     />
                   </div>
                   <div className="flex flex-col gap-2">
@@ -105,7 +105,7 @@ const Checkout = () => {
                     <input
                       type="text"
                       placeholder="94103"
-                      className="h-12 px-4 border border-[#E5E7EB] rounded-sm text-base text-[#151A2A] placeholder-[#6B7280] focus:outline-none focus:border-[#3DB4CC] focus:ring-1 focus:ring-[#3DB4CC] bg-white"
+                      className="h-12 px-4 border border-[#E5E7EB] rounded-sm text-base text-[#151A2A] placeholder-[#6B7280] focus:outline-none focus:border-custom focus:ring-1 focus:ring-custom bg-white"
                     />
                   </div>
                 </div>
@@ -118,7 +118,7 @@ const Checkout = () => {
                   <input
                     type="tel"
                     placeholder="+1 (555) 000-0000"
-                    className="h-12 px-4 border border-[#E5E7EB] rounded-sm text-base text-[#151A2A] placeholder-[#6B7280] focus:outline-none focus:border-[#3DB4CC] focus:ring-1 focus:ring-[#3DB4CC] bg-white"
+                    className="h-12 px-4 border border-[#E5E7EB] rounded-sm text-base text-[#151A2A] placeholder-[#6B7280] focus:outline-none focus:border-custom focus:ring-1 focus:ring-custom bg-white"
                   />
                 </div>
               </div>
@@ -135,7 +135,7 @@ const Checkout = () => {
                   onClick={() => setShippingMethod("standard")}
                   className={`flex justify-between items-center p-4 border-2 transition-colors text-left ${
                     shippingMethod === "standard"
-                      ? "border-[#3DB4CC]"
+                      ? "border-custom"
                       : "border-[#E5E7EB]"
                   }`}
                 >
@@ -143,7 +143,7 @@ const Checkout = () => {
                     <div
                       className={`w-5 h-5 rounded-full flex items-center justify-center border-4 transition-colors ${
                         shippingMethod === "standard"
-                          ? "border-[#3DB4CC]"
+                          ? "border-custom"
                           : "border-[#D1D5DB]"
                       }`}
                     />
@@ -167,7 +167,7 @@ const Checkout = () => {
                   onClick={() => setShippingMethod("express")}
                   className={`flex justify-between items-center p-4 border-2 transition-colors text-left ${
                     shippingMethod === "express"
-                      ? "border-[#3DB4CC]"
+                      ? "border-custom"
                       : "border-[#E5E7EB]"
                   }`}
                 >
@@ -175,7 +175,7 @@ const Checkout = () => {
                     <div
                       className={`w-5 h-5 rounded-full flex items-center justify-center border-4 transition-colors ${
                         shippingMethod === "express"
-                          ? "border-[#3DB4CC]"
+                          ? "border-custom"
                           : "border-[#D1D5DB]"
                       }`}
                     />
@@ -197,7 +197,7 @@ const Checkout = () => {
           </div>
 
           {/* RIGHT COLUMN — Order Summary */}
-          <aside className="w-full lg:w-[572px] lg:shrink-0">
+          <aside className="w-full lg:w-143 lg:shrink-0">
             <div className="bg-[#F0F4F6] rounded-xl shadow-sm p-8 flex flex-col gap-6">
               <h2 className="text-3xl font-bold text-[#171C1E]">Order Summary</h2>
 
@@ -224,7 +224,7 @@ const Checkout = () => {
                 <input
                   type="text"
                   placeholder="Promo code"
-                  className="flex-1 h-12 px-4 border border-[#BDC9CC] rounded-lg text-sm text-[#151A2A] placeholder-[#6B7280] focus:outline-none focus:border-[#3DB4CC] focus:ring-1 focus:ring-[#3DB4CC] bg-white"
+                  className="flex-1 h-12 px-4 border border-[#BDC9CC] rounded-lg text-sm text-[#151A2A] placeholder-[#6B7280] focus:outline-none focus:border-custom focus:ring-1 focus:ring-custom bg-white"
                 />
                 <button className="px-4 py-2 bg-[#171C1E] text-white text-sm rounded-lg hover:bg-[#2a3035] transition-colors whitespace-nowrap">
                   Apply
@@ -240,7 +240,7 @@ const Checkout = () => {
               </div>
 
               {/* Place Order */}
-              <button className="w-full h-12 bg-[#3DB4CC] hover:bg-[#2fa3bb] text-white text-sm font-bold uppercase tracking-wide rounded-lg transition-colors">
+              <button className="w-full h-12 bg-custom hover:bg-[#2fa3bb] text-white text-sm font-bold uppercase tracking-wide rounded-lg transition-colors">
                 Place Order
               </button>
             </div>

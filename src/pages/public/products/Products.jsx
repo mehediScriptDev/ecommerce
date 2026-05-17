@@ -13,9 +13,16 @@ export default function Products() {
   const [storage, setStorage] = useState(null);
   const [activeColor, setActiveColor] = useState(null);
   const [priceRange, setPriceRange] = useState(2000);
-  const [sortBy, setSortBy] = useState("Featured");
+  const [sortBy, setSortBy] = useState("All");
   const [page, setPage] = useState(1);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const sortOptions = [
+    "All",
+    "Featured",
+    "Price: Low to High",
+    "Price: High to Low",
+    "Newest",
+  ];
 
   const closeFilterPanel = () => setIsFilterOpen(false);
 
@@ -69,12 +76,7 @@ export default function Products() {
                     onChange={(e) => setSortBy(e.target.value)}
                     className="w-full text-sm border border-gray-200 rounded-lg px-3 py-2 text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-cyan-300"
                   >
-                    {[
-                      "Featured",
-                      "Price: Low to High",
-                      "Price: High to Low",
-                      "Newest",
-                    ].map((o) => (
+                    {sortOptions.map((o) => (
                       <option key={o}>{o}</option>
                     ))}
                   </select>
@@ -97,12 +99,7 @@ export default function Products() {
                   onChange={(e) => setSortBy(e.target.value)}
                   className="text-sm border border-gray-200 rounded-lg px-3 py-1.5 text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-cyan-300"
                 >
-                  {[
-                    "Featured",
-                    "Price: Low to High",
-                    "Price: High to Low",
-                    "Newest",
-                  ].map((o) => (
+                  {sortOptions.map((o) => (
                     <option key={o}>{o}</option>
                   ))}
                 </select>
