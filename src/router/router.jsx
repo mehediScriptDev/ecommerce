@@ -17,6 +17,7 @@ import UserOrders from "../pages/user/orders/UserOrders";
 import Account from "../pages/user/account/Account";
 import Listings from "../pages/admin/listings/Listings";
 import Addlisting from "../pages/admin/addlisting/Addlisting";
+import Editlisting from "../pages/admin/editListing/Editlisting";
 import Order from "../pages/admin/order/Order";
 import CellPhoneMange from "../pages/admin/cellphoneMange/CellPhoneMange";
 import PromoCode from "../pages/admin/promoCode/PromoCode";
@@ -32,6 +33,7 @@ import SellWorth from "../pages/public/sellWorth/SellWorth";
 import AboutDevice from "../pages/public/aboutdevice/AboutDevice";
 import FinalizeSale from "../pages/public/finalizeSale/FinalizeSale";
 import Checkout from "../pages/public/checkout/Checkout";
+import BusinessQuery from "../pages/admin/businessQuery/BusinessQuery";
 
 
 const router = createBrowserRouter([
@@ -98,11 +100,13 @@ const router = createBrowserRouter([
         path: "add-listing",
         element: <Addlisting />,
       },
+      { path: "edit-listing/:id", element: <Editlisting /> },
       { path: "order", element: <Order /> },
       { path: "cell-phone", element: <CellPhoneMange /> },
       { path: "promo-code", element: <PromoCode /> },
       { path: "create-promo", element: <CreatePromo /> },
       { path: "user-management", element: <UserManagement /> },
+      {path: "business-queries", element: <BusinessQuery /> },
       { path: "settings", element: <Settings /> },
       { path: "profile", element: <AdminProfile /> },
     ],

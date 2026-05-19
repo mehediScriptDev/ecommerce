@@ -3,7 +3,7 @@ import AdminDashboardTitle from '../../../components/dashboards/AdminDashboardTi
 import Tabs from './components/Tabs';
 import Card from './components/Card';
 import Pagination from './components/Pagination';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
 const allListings = [
     { id: 1,  image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-max-naturaltitanium-select?wid=470&hei=556&fmt=png&qlt=95&.v=1692923777972', title: 'iPhone 15 Pro Max', storage: '256GB', ram: '8GB RAM', originalPrice: 155000, discountedPrice: 155000, stock: 'Stock', units: '10 Units', badge: 'New' },
@@ -56,6 +56,8 @@ const Listings = () => {
         setFavorites(prev => ({ ...prev, [id]: !prev[id] }));
     };
 
+    const navigate = useNavigate();
+
     return (
         <div className="">
             {/* Header Row */}
@@ -86,7 +88,7 @@ const Listings = () => {
                         stock={listing.stock}
                         units={listing.units}
                         badge={listing.badge}
-                        onEdit={() => console.log('Edit', listing.id)}
+                        onEdit={() => navigate(`/dashboard/admin/edit-listing/${listing.id}`, { state: { listing } })}
                         onDelete={() => console.log('Delete', listing.id)}
                         onFavorite={() => handleFavorite(listing.id)}
                         isFavorite={!!favorites[listing.id]}

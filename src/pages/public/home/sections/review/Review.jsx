@@ -31,12 +31,13 @@ const reviews = [
         text: "Absolutely love the shopping experience here. Wide range of products, competitive prices, and super fast delivery. Will definitely recommend to friends and family.",
         author: "Rahima",
     },
-    {
+     {
         id: 5,
         stars: 5,
-        text: "The website is very easy to navigate and the checkout process was seamless. Got my order in two days. Amazing experience overall!",
-        author: "Karim",
+        text: "Great service and smooth ordering process. I loved how easy it was to compare different phones before buying. The customer support team was also very helpful!",
+        author: "Sam",
     },
+    
 ];
 
 const StarRating = ({ count }) => (

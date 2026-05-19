@@ -1,4 +1,4 @@
-import { NavLink, Link, useLocation } from 'react-router';
+import { NavLink, Link, useLocation, useNavigate } from 'react-router';
 import {
     LayoutDashboard,
     List,
@@ -9,6 +9,7 @@ import {
     Settings,
     User,
     Star,
+    LogOut,
 } from 'lucide-react';
 import logo from '../assets/logo.webp';
 
@@ -29,6 +30,7 @@ const ADMIN_NAV_ITEMS = [
         activePatterns: ['/dashboard/admin/promo-code', '/dashboard/admin/create-promo'],
     },
     { label: 'User Management', icon: Users, path: '/dashboard/admin/user-management' },
+    { label: 'Business Queries', icon: Star, path: '/dashboard/admin/business-queries' },
     { label: 'Settings', icon: Settings, path: '/dashboard/admin/settings' },
     { label: 'Profile', icon: User, path: '/dashboard/admin/profile' },
 ];
@@ -65,6 +67,12 @@ const SidebarLink = ({ item, pathname, onClose }) => {
 const DashboardSidebar = ({ role, isOpen, onClose }) => {
     const navItems = role === 'admin' ? ADMIN_NAV_ITEMS : USER_NAV_ITEMS;
     const { pathname } = useLocation();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        onClose?.();
+        navigate('/login');
+    };
 
     return (
         <>
@@ -86,16 +94,29 @@ const DashboardSidebar = ({ role, isOpen, onClose }) => {
                     </Link>
                 </div>
 
-                <nav className="flex flex-1 flex-col gap-0.5 overflow-y-auto px-3 py-6">
-                    {navItems.map((item) => (
-                        <SidebarLink
-                            key={item.path}
-                            item={item}
-                            pathname={pathname}
-                            onClose={onClose}
-                        />
-                    ))}
-                </nav>
+                <div className="flex flex-1 flex-col overflow-hidden">
+                    <nav className="flex-1 flex flex-col gap-0.5 overflow-y-auto px-3 py-6">
+                        {navItems.map((item) => (
+                            <SidebarLink
+                                key={item.path}
+                                item={item}
+                                pathname={pathname}
+                                onClose={onClose}
+                            />
+                        ))}
+                    </nav>
+
+                    <div className="border-t border-gray-200 p-3">
+                        <button
+                            type="button"
+                            onClick={handleLogout}
+                            className="flex w-full cursor-pointer items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-500 transition-colors hover:bg-red-50 hover:text-red-600"
+                        >
+                            <LogOut size={17} />
+                            Logout
+                        </button>
+                    </div>
+                </div>
             </aside>
         </>
     );

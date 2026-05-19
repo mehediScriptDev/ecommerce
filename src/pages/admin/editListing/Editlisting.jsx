@@ -1,13 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation, Link, useNavigate, useParams } from 'react-router';
 import AdminDashboardTitle from '../../../components/dashboards/AdminDashboardTitle';
-import FormField from './components/FormField';
-import TextInput from './components/TextInput';
-import NumberInput from './components/NumberInput';
-import SelectInput from './components/SelectInput';
-import Textarea from './components/Textarea';
-import FaqItem from './components/FaqItem';
-import TechnicalSpecItem from './components/TechnicalSpecItem';
-import ImageUpload from './components/ImageUpload';
+import FormField from '../addlisting/components/FormField';
+import TextInput from '../addlisting/components/TextInput';
+import NumberInput from '../addlisting/components/NumberInput';
+import SelectInput from '../addlisting/components/SelectInput';
+import Textarea from '../addlisting/components/Textarea';
+import FaqItem from '../addlisting/components/FaqItem';
+import TechnicalSpecItem from '../addlisting/components/TechnicalSpecItem';
+import ImageUpload from '../addlisting/components/ImageUpload';
 import {
     CATEGORY_OPTIONS,
     SERIES_OPTIONS,
@@ -18,14 +19,32 @@ import {
     RAM_OPTIONS,
     INITIAL_FORM,
     INITIAL_FAQS,
-} from './constants';
-import { Link } from 'react-router';
+} from '../addlisting/constants';
 
-const Addlisting = () => {
+const Editlisting = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
+    const { id } = useParams();
+
+    const passed = location.state?.listing ?? null;
+
     const [formData, setFormData] = useState(INITIAL_FORM);
     const [faqs, setFaqs] = useState(INITIAL_FAQS);
     const [technicalSpecs, setTechnicalSpecs] = useState([{ specification: '', value: '' }]);
     const [specImages, setSpecImages] = useState([]);
+
+    useEffect(() => {
+        if (passed) {
+           
+            setFormData((prev) => ({
+                ...prev,
+                productTitle: passed.title || prev.productTitle,
+                price: passed.discountedPrice || prev.price,
+                storageOptions: passed.storage || prev.storageOptions,
+                ramOption: passed.ram || prev.ramOption,
+            }));
+        }
+    }, [passed]);
 
     const updateField = (name, value) => {
         setFormData((prev) => ({ ...prev, [name]: value }));
@@ -78,24 +97,22 @@ const Addlisting = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Form Data:', { ...formData, faqs, technicalSpecs, specImages });
+        // here you'd call update API; for now we'll log and navigate back
+        console.log('Updated Listing:', id, { ...formData, faqs, technicalSpecs, specImages });
+        navigate('/dashboard/admin/listing');
     };
-
 
     return (
         <div className="bg-gray-50 min-h-screen">
             <div className="pb-3">
-                <p className="text-xs text-gray-400 mb-2">Listing &gt; Create Listing</p>
-                <Link                    to="/dashboard/admin/listing"
-                    
-                    className="text-sm text-teal-600 hover:text-teal-700 font-medium"
-                >
+                <p className="text-xs text-gray-400 mb-2">Listing &gt; Edit Listing</p>
+                <Link to="/dashboard/admin/listing" className="text-sm text-teal-600 hover:text-teal-700 font-medium">
                     ← Back
                 </Link>
             </div>
 
             <form onSubmit={handleSubmit} className="pb-10">
-                <AdminDashboardTitle title="Add New Listing" />
+                <AdminDashboardTitle title="Edit Listing" />
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                     <FormField label="Product Title">
@@ -253,11 +270,11 @@ const Addlisting = () => {
                     type="submit"
                     className="btn-custom text-white text-sm font-medium py-2 px-6 rounded-md transition"
                 >
-                    Save
+                    Save Changes
                 </button>
             </form>
         </div>
     );
 };
 
-export default Addlisting;
+export default Editlisting;

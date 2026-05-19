@@ -21,6 +21,7 @@ const ContactFormSection = () => {
                         </label>
                         <input
                             type='text'
+                            placeholder='Enter company name'
                             className='h-12.5 w-full rounded-[14px] border border-gray-200 bg-white px-4 text-sm text-[#0A0A0A] outline-none focus:border-[#00B8DB]'
                         />
                     </div>
@@ -31,6 +32,7 @@ const ContactFormSection = () => {
                         </label>
                         <input
                             type='text'
+                            placeholder='Enter your name'
                             className='h-12.5 w-full rounded-[14px] border border-gray-200 bg-white px-4 text-sm text-[#0A0A0A] outline-none focus:border-[#00B8DB]'
                         />
                     </div>
@@ -41,6 +43,7 @@ const ContactFormSection = () => {
                         </label>
                         <input
                             type='email'
+                            placeholder='Enter your email'
                             className='h-12.5 w-full rounded-[14px] border border-gray-200 bg-white px-4 text-sm text-[#0A0A0A] outline-none focus:border-[#00B8DB]'
                         />
                     </div>
@@ -51,6 +54,7 @@ const ContactFormSection = () => {
                         </label>
                         <input
                             type='text'
+                            placeholder='Enter your phone number'
                             className='h-12.5 w-full rounded-[14px] border border-gray-200 bg-white px-4 text-sm text-[#0A0A0A] outline-none focus:border-[#00B8DB]'
                         />
                     </div>
@@ -61,6 +65,7 @@ const ContactFormSection = () => {
                         </label>
                         <textarea
                             rows={5}
+                            placeholder='Enter your requirements'
                             className='w-full rounded-[14px] border border-gray-200 bg-white px-4 py-3 text-sm text-[#0A0A0A] outline-none focus:border-[#00B8DB] resize-none'
                         />
                     </div>

@@ -35,7 +35,7 @@ const BuyingPillarsSection = () => {
                         {buyingPillars.map(({ title, icon: Icon }) => (
                             <div
                                 key={title}
-                                className='flex items-center gap-2 rounded-md bg-[#F6FAFC] px-3 py-3'
+                                className='flex items-center gap-2 rounded-md bg-[#F6FAFC] px-3 py-3 hover:scale-105 transition-all duration-300'
                             >
                                 <Icon className='text-sm lg:text-base text-custom' />
                                 <span className='text-sm lg:text-base text-[#334155]'>{title}</span>

@@ -36,7 +36,7 @@ const SellStepsSection = () => {
                     {sellSteps.map(({ title, description }, index) => (
                         <div
                             key={title}
-                            className='flex items-center gap-3 rounded-lg border border-[#E5E7EB] bg-white px-4 py-3'
+                            className='flex items-center gap-3 rounded-lg border border-[#E5E7EB] bg-white px-4 py-3 hover:scale-105 transition-all duration-300'
                         >
                             <span className='inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-linear-to-b from-[#00B8DB] to-custom text-base font-bold text-white'>
                                 {index + 1}
