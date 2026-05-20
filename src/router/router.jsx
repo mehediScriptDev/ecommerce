@@ -34,7 +34,7 @@ import AboutDevice from "../pages/public/aboutdevice/AboutDevice";
 import FinalizeSale from "../pages/public/finalizeSale/FinalizeSale";
 import Checkout from "../pages/public/checkout/Checkout";
 import BusinessQuery from "../pages/admin/businessQuery/BusinessQuery";
-
+import ForgetCode from "../pages/auth/ForgetCode";
 
 const router = createBrowserRouter([
   {
@@ -62,7 +62,7 @@ const router = createBrowserRouter([
         element: <Cart />,
       },
       {
-        path:"checkout",
+        path: "checkout",
         element: <Checkout />,
       },
       {
@@ -85,7 +85,7 @@ const router = createBrowserRouter([
         path: "confirm-sale",
         element: <AboutDevice />,
       },
-      {path:"finalize-sale", element: <FinalizeSale />},
+      { path: "finalize-sale", element: <FinalizeSale /> },
     ],
   },
 
@@ -106,7 +106,7 @@ const router = createBrowserRouter([
       { path: "promo-code", element: <PromoCode /> },
       { path: "create-promo", element: <CreatePromo /> },
       { path: "user-management", element: <UserManagement /> },
-      {path: "business-queries", element: <BusinessQuery /> },
+      { path: "business-queries", element: <BusinessQuery /> },
       { path: "settings", element: <Settings /> },
       { path: "profile", element: <AdminProfile /> },
     ],
@@ -128,6 +128,7 @@ const router = createBrowserRouter([
   { path: "/forget-password", element: <ForgetPass /> },
   { path: "/reset-password", element: <ResetPass /> },
   { path: "/otp-verification", element: <Otp /> },
+  { path: "/verify-code", element: <ForgetCode /> },
 
   // not found route
   {

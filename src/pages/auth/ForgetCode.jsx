@@ -6,13 +6,13 @@ import { useAuth } from '../../context/AuthContext';
 
 const OTP_LENGTH = 6;
 
-const Otp = () => {
+const ForgetCode = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const { verifyEmail, resendOtp } = useAuth();
+    const { verifyResetOtp, resendOtp } = useAuth();
 
     const [email] = useState(
-        location.state?.email || sessionStorage.getItem('pendingVerificationEmail') || ''
+        location.state?.email || sessionStorage.getItem('pendingResetPasswordEmail') || ''
     );
     const [otpDigits, setOtpDigits] = useState(Array(OTP_LENGTH).fill(''));
     const [error, setError] = useState('');
@@ -21,7 +21,7 @@ const Otp = () => {
 
     useEffect(() => {
         if (!email) {
-            navigate('/register', { replace: true });
+            navigate('/forget-password', { replace: true });
         }
     }, [email, navigate]);
 
@@ -75,7 +75,7 @@ const Otp = () => {
         setError('');
 
         if (!email) {
-            setError('Email is missing. Please register again.');
+            setError('Email is missing. Please request a new reset code.');
             return;
         }
 
@@ -88,11 +88,12 @@ const Otp = () => {
         setIsSubmitting(true);
 
         try {
-            await verifyEmail({ email, otp });
-            sessionStorage.removeItem('pendingVerificationEmail');
-            navigate('/login', { replace: true });
+            await verifyResetOtp({ email, otp });
+            sessionStorage.removeItem('pendingResetPasswordEmail');
+            sessionStorage.setItem('verifiedResetPasswordEmail', email);
+            navigate('/reset-password', { replace: true, state: { email } });
         } catch (err) {
-            setError(err.message || 'Failed to verify OTP. Please try again.');
+            setError(err.message || 'Failed to verify reset code. Please try again.');
         } finally {
             setIsSubmitting(false);
         }
@@ -100,19 +101,19 @@ const Otp = () => {
 
     const handleResend = async () => {
         if (!email) {
-            setError('Email is missing. Please register again.');
+            setError('Email is missing. Please request a new reset code.');
             return;
         }
 
         setIsSubmitting(true);
 
         try {
-            await resendOtp({ email, type: 'email-verification' });
+            await resendOtp({ email, type: 'password-reset' });
             setOtpDigits(Array(OTP_LENGTH).fill(''));
             setError('');
             inputRefs.current[0]?.focus();
         } catch (err) {
-            setError(err.message || 'Unable to resend the verification code.');
+            setError(err.message || 'Unable to resend the reset code.');
         } finally {
             setIsSubmitting(false);
         }
@@ -146,7 +147,7 @@ const Otp = () => {
                             OTP Verification
                         </h1>
                         <p className="text-sm text-gray-500 mb-6">
-                            Enter the verification code we just sent to your email address
+                            Enter the verification code for reset password.
                         </p>
 
                         <form onSubmit={handleSubmit} noValidate>
@@ -198,4 +199,4 @@ const Otp = () => {
     );
 };
 
-export default Otp;
+export default ForgetCode;

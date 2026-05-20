@@ -1,10 +1,13 @@
-import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router";
 import { FaEye, FaEyeSlash, FaArrowLeft } from "react-icons/fa";
 import leftsideImage from "../../assets/auth/resetPass.jpg";
 import { GoArrowLeft } from "react-icons/go";
+import Swal from "sweetalert2";
+import { useAuth } from "../../context/AuthContext";
 
 const ResetPass = () => {
+  const location = useLocation();
   const [formData, setFormData] = useState({
     password: "",
     confirmPassword: "",
@@ -12,7 +15,18 @@ const ResetPass = () => {
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [email] = useState(
+    location.state?.email || sessionStorage.getItem("verifiedResetPasswordEmail") || ""
+  );
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
+  const { resetPassword } = useAuth();
+
+  useEffect(() => {
+    if (!email) {
+      navigate("/forget-password", { replace: true });
+    }
+  }, [email, navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,15 +46,41 @@ const ResetPass = () => {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = validate();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
-    console.log("Reset password:", formData.password);
-    navigate("/login");
+
+    if (!email) {
+      setErrors({ submit: "Email is missing. Please request a new reset code." });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      await resetPassword({ email, newPassword: formData.password });
+      sessionStorage.removeItem("verifiedResetPasswordEmail");
+
+      await Swal.fire({
+        icon: "success",
+        title: "Password updated",
+        text: "You can now sign in with your new password.",
+        confirmButtonColor: "#0891b2",
+      });
+
+      navigate("/login", { replace: true });
+    } catch (err) {
+      setErrors((prev) => ({
+        ...prev,
+        submit: err.message || "Unable to reset your password right now.",
+      }));
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -143,10 +183,14 @@ const ResetPass = () => {
 
             <button
               type="submit"
-              className="btn-custom w-full text-base font-semibold"
+              disabled={isSubmitting}
+              className="btn-custom w-full text-base font-semibold disabled:cursor-not-allowed disabled:opacity-70"
             >
-              Reset Password →
+              {isSubmitting ? "Updating..." : "Reset Password →"}
             </button>
+            {errors.submit ? (
+              <p className="text-red-500 text-xs mt-3">{errors.submit}</p>
+            ) : null}
           </form>
         </div>
       </div>

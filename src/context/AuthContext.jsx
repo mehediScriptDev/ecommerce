@@ -132,6 +132,98 @@ export const AuthProvider = ({ children }) => {
     return payload;
   };
 
+  const forgotPassword = async ({ email }) => {
+    const response = await fetch(`${API_BASE_URL}/api/auth/forgot-password`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email }),
+    });
+
+    let payload = {};
+    try {
+      payload = await response.json();
+    } catch {
+      payload = {};
+    }
+
+    if (!response.ok) {
+      throw new Error(getMessageFromPayload(payload));
+    }
+
+    return payload;
+  };
+
+  const resendOtp = async ({ email, type }) => {
+    const response = await fetch(`${API_BASE_URL}/api/auth/resend-otp`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, type }),
+    });
+
+    let payload = {};
+    try {
+      payload = await response.json();
+    } catch {
+      payload = {};
+    }
+
+    if (!response.ok) {
+      throw new Error(getMessageFromPayload(payload));
+    }
+
+    return payload;
+  };
+
+  const verifyResetOtp = async ({ email, otp }) => {
+    const response = await fetch(`${API_BASE_URL}/api/auth/verify-reset-otp`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, otp }),
+    });
+
+    let payload = {};
+    try {
+      payload = await response.json();
+    } catch {
+      payload = {};
+    }
+
+    if (!response.ok) {
+      throw new Error(getMessageFromPayload(payload));
+    }
+
+    return payload;
+  };
+
+  const resetPassword = async ({ email, newPassword }) => {
+    const response = await fetch(`${API_BASE_URL}/api/auth/reset-password`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, newPassword }),
+    });
+
+    let payload = {};
+    try {
+      payload = await response.json();
+    } catch {
+      payload = {};
+    }
+
+    if (!response.ok) {
+      throw new Error(getMessageFromPayload(payload));
+    }
+
+    return payload;
+  };
+
   const logout = () => {
     setAuth({ user: null, token: null, role: null });
     localStorage.removeItem('auth');
@@ -166,6 +258,10 @@ export const AuthProvider = ({ children }) => {
       login,
       register,
       verifyEmail,
+      forgotPassword,
+      resendOtp,
+      verifyResetOtp,
+      resetPassword,
       updateUser,
       logout,
     }),

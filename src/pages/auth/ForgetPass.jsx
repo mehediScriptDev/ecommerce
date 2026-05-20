@@ -1,15 +1,18 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
-import { FaArrowLeft } from "react-icons/fa";
 import leftsideImage from "../../assets/auth/forgetpass.jpg";
 import { GoArrowLeft } from "react-icons/go";
+import Swal from "sweetalert2";
+import { useAuth } from "../../context/AuthContext";
 
 const ForgetPass = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
+  const { forgotPassword } = useAuth();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email.trim()) {
       setError("Email address is required");
@@ -19,9 +22,27 @@ const ForgetPass = () => {
       setError("Please enter a valid email address");
       return;
     }
+
     setError("");
-    console.log("Send code to:", email);
-    navigate("/otp-verification");
+    setIsSubmitting(true);
+
+    try {
+      await forgotPassword({ email });
+      sessionStorage.setItem("pendingResetPasswordEmail", email);
+
+      await Swal.fire({
+        icon: "success",
+        title: "Check your email",
+        text: "If the email exists, we sent a reset code.",
+        confirmButtonColor: "#0891b2",
+      });
+
+      navigate("/verify-code", { replace: true, state: { email } });
+    } catch (err) {
+      setError(err.message || "Unable to send reset email right now.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -77,9 +98,10 @@ const ForgetPass = () => {
 
             <button
               type="submit"
-              className="btn-custom w-full text-base font-semibold"
+              disabled={isSubmitting}
+              className="btn-custom w-full text-base font-semibold disabled:cursor-not-allowed disabled:opacity-70"
             >
-              Send Code →
+              {isSubmitting ? "Sending..." : "Send Reset Link →"}
             </button>
           </form>
 
