@@ -2,12 +2,55 @@ import { useState } from "react";
 import Container from "../../../layout/Container";
 
 const Contact = () => {
-  const [submitted, setSubmitted] = useState(false);
+  const [form, setForm] = useState({
+    firstName: "",
+    email: "",
+    subject: "",
+    phone: "",
+    message: "",
+  });
+  const API_BASE_URL = import.meta.env.VITE_BASE_URL || "https://api-zephyr-techno.maktechgroup.tech";
+  const [submitting, setSubmitting] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((s) => ({ ...s, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setError("");
+    setSubmitting(true);
+    try {
+      const payload = {
+        firstName: form.firstName,
+        email: form.email,
+        subject: form.subject,
+        phone: form.phone,
+        message: form.message,
+      };
+
+      const res = await fetch(`${API_BASE_URL}/api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const text = await res.text();
+        throw new Error(text || "Failed to send message");
+      }
+
+      setSuccess(true);
+      setForm({ firstName: "", email: "", subject: "", phone: "", message: "" });
+      setTimeout(() => setSuccess(false), 3000);
+    } catch (err) {
+      setError(err.message || "An error occurred");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -41,6 +84,9 @@ const Contact = () => {
                         Full Name
                       </label>
                       <input
+                        name="firstName"
+                        value={form.firstName}
+                        onChange={handleChange}
                         type="text"
                         placeholder="John Doe"
                         className="w-full border border-[#BDC9CC] rounded px-4 py-2.5 text-sm text-[#151A2A] bg-white focus:outline-none focus:ring-2 focus:ring-cyan-300 transition-shadow"
@@ -52,6 +98,9 @@ const Contact = () => {
                         Email Address
                       </label>
                       <input
+                        name="email"
+                        value={form.email}
+                        onChange={handleChange}
                         type="email"
                         placeholder="john@example.com"
                         className="w-full border border-[#BDC9CC] rounded px-4 py-2.5 text-sm text-[#151A2A] bg-white focus:outline-none focus:ring-2 focus:ring-cyan-300 transition-shadow"
@@ -66,6 +115,9 @@ const Contact = () => {
                         Phone (Optional)
                       </label>
                       <input
+                        name="phone"
+                        value={form.phone}
+                        onChange={handleChange}
                         type="tel"
                         placeholder="+1 (555) 000-0000"
                         className="w-full border border-[#BDC9CC] rounded px-4 py-2.5 text-sm text-[#151A2A] bg-white focus:outline-none focus:ring-2 focus:ring-cyan-300 transition-shadow"
@@ -76,15 +128,18 @@ const Contact = () => {
                         Subject
                       </label>
                       <select
+                        name="subject"
+                        value={form.subject}
+                        onChange={handleChange}
                         className="w-full border border-[#BDC9CC] rounded px-4 py-2.5 text-sm text-[#151A2A] bg-white focus:outline-none focus:ring-2 focus:ring-cyan-300 transition-shadow cursor-pointer"
                         required
                       >
                         <option value="">Select a topic</option>
-                        <option>Technical Support</option>
-                        <option>Order Inquiry</option>
-                        <option>Returns & Refunds</option>
-                        <option>Partnership</option>
-                        <option>General Question</option>
+                        <option value="Technical Support">Technical Support</option>
+                        <option value="Order Inquiry">Order Inquiry</option>
+                        <option value="Returns & Refunds">Returns & Refunds</option>
+                        <option value="Partnership">Partnership</option>
+                        <option value="General Question">General Question</option>
                       </select>
                     </div>
                   </div>
@@ -94,6 +149,9 @@ const Contact = () => {
                       Message
                     </label>
                     <textarea
+                      name="message"
+                      value={form.message}
+                      onChange={handleChange}
                       rows={5}
                       placeholder="Tell us how we can help you..."
                       className="w-full border border-[#BDC9CC] rounded px-4 py-2.5 text-sm text-[#151A2A] bg-white focus:outline-none focus:ring-2 focus:ring-cyan-300 transition-shadow resize-y"
@@ -102,18 +160,22 @@ const Contact = () => {
                   </div>
 
                   <div className="pt-2">
-                    <button
-                      type="submit"
-                      className={`w-full sm:w-auto px-8 py-3 rounded-lg text-sm font-medium transition-colors ${
-                        submitted
-                          ? "bg-green-600 hover:bg-green-700 text-white"
-                          : "btn-custom"
-                      }`}
-                    >
-                      {submitted
-                        ? "Message Sent Successfully"
-                        : "Submit Message"}
-                    </button>
+                      <div>
+                        {error && (
+                          <p className="text-sm text-red-600 mb-2">{error}</p>
+                        )}
+                        <button
+                          type="submit"
+                          disabled={submitting}
+                          className={`w-full sm:w-auto px-8 py-3 rounded-lg text-sm font-medium transition-colors ${
+                            success
+                              ? "bg-green-600 hover:bg-green-700 text-white"
+                              : "btn-custom"
+                          }`}
+                        >
+                          {success ? "Message Sent Successfully" : submitting ? "Sending..." : "Submit Message"}
+                        </button>
+                      </div>
                   </div>
                 </form>
               </div>

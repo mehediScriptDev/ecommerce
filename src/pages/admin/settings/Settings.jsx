@@ -1,12 +1,170 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SettingsCard from './components/SettingsCard';
 import Tag from './components/Tag';
 import AddModal from './components/AddModal';
+import ConditionPriceTable from './components/ConditionPriceTable';
 import { INITIAL_SETTINGS, SECTIONS } from './constants';
 import AdminDashboardTitle from '../../../components/dashboards/AdminDashboardTitle';
 
 const Settings = () => {
-    const [settings, setSettings] = useState(INITIAL_SETTINGS);
+    // Start with no fallback categories/series/models/conditions — they'll be loaded from the API
+    const [settings, setSettings] = useState({
+        ...INITIAL_SETTINGS,
+        categories: [],
+        series: [],
+        models: [],
+        conditions: [],
+        conditionPrices: {},
+        conditionModelPrices: [],
+        conditionModelPricesMap: {},
+    });
+    const API_BASE_URL = import.meta.env.VITE_BASE_URL || 'https://api-zephyr-techno.maktechgroup.tech';
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+
+        const loadCategories = async () => {
+            try {
+                const res = await fetch(`${API_BASE_URL}/api/admin/attributes/categories`, {
+                    headers: token ? { Authorization: `Bearer ${token}` } : {},
+                });
+                if (!res.ok) return;
+                const payload = await res.json();
+                const data = Array.isArray(payload) ? payload : payload?.data || payload?.categories || [];
+                if (!Array.isArray(data)) return;
+
+                // normalize to { id, name }
+                const normalized = data.map((c) => ({
+                    id: c.id || c._id || c.uuid || c?.value || null,
+                    name: c.name || c.title || c.value || String(c),
+                }));
+
+                setSettings((prev) => ({ ...prev, categories: normalized }));
+            } catch (err) {
+                // ignore load errors for now
+            }
+        };
+
+        const loadSeries = async () => {
+            try {
+                const res = await fetch(`${API_BASE_URL}/api/admin/attributes/series`, {
+                    headers: token ? { Authorization: `Bearer ${token}` } : {},
+                });
+                if (!res.ok) return;
+                const payload = await res.json();
+                const data = Array.isArray(payload) ? payload : payload?.data || payload?.series || payload?.data || [];
+                if (!Array.isArray(data)) return;
+
+                const normalized = data.map((s) => ({
+                    value: s.id || s._id || s.uuid || s?.value || String(s),
+                    label: s.name || s.title || s.value || String(s),
+                }));
+
+                setSettings((prev) => ({ ...prev, series: normalized }));
+            } catch (err) {
+                // ignore load errors
+            }
+        };
+
+        const loadModels = async () => {
+            try {
+                const res = await fetch(`${API_BASE_URL}/api/admin/attributes/models`, {
+                    headers: token ? { Authorization: `Bearer ${token}` } : {},
+                });
+                if (!res.ok) return;
+                const payload = await res.json();
+                const data = Array.isArray(payload) ? payload : payload?.data || payload?.models || [];
+                if (!Array.isArray(data)) return;
+
+                const normalized = data.map((model) => ({
+                    id: model.id || model._id || model.uuid || null,
+                    name: model.name || model.title || String(model),
+                    seriesId: model.seriesId || model.series?.id || null,
+                    seriesName: model.series?.name || null,
+                }));
+
+                setSettings((prev) => ({ ...prev, models: normalized }));
+            } catch (err) {
+                // ignore load errors
+            }
+        };
+
+        const loadConditions = async () => {
+            try {
+                const res = await fetch(`${API_BASE_URL}/api/admin/attributes/conditions`, {
+                    headers: token ? { Authorization: `Bearer ${token}` } : {},
+                });
+                if (!res.ok) return;
+                const payload = await res.json();
+                const data = Array.isArray(payload) ? payload : payload?.data || payload?.conditions || [];
+                if (!Array.isArray(data)) return;
+
+                const normalized = data.map((condition) => ({
+                    id: condition.id || condition._id || condition.uuid || null,
+                    name: condition.name || condition.title || String(condition),
+                }));
+
+                setSettings((prev) => ({
+                    ...prev,
+                    conditions: normalized,
+                    conditionPrices: normalized.reduce((acc, condition) => {
+                        acc[condition.name] = prev.conditionPrices[condition.name] || '';
+                        return acc;
+                    }, {}),
+                }));
+            } catch (err) {
+                // ignore load errors
+            }
+        };
+
+        const loadConditionPrices = async () => {
+            try {
+                const res = await fetch(`${API_BASE_URL}/api/admin/attributes/condition-model-prices`, {
+                    headers: token ? { Authorization: `Bearer ${token}` } : {},
+                });
+                if (!res.ok) return;
+                const payload = await res.json();
+                const data = Array.isArray(payload) ? payload : payload?.data || payload?.prices || [];
+
+                const entries = Array.isArray(data)
+                    ? data.map((p) => ({
+                          id: p.id || p._id || null,
+                          conditionId: p.conditionId || p.condition?.id || null,
+                          conditionName: p.condition?.name || p.conditionName || null,
+                          deviceModelId: p.deviceModelId || p.deviceModel?.id || null,
+                          deviceModelName: p.deviceModel?.name || p.deviceModelName || null,
+                          price: p.price || p.amount || p.value || null,
+                      }))
+                    : [];
+
+                const byModel = {};
+                entries.forEach((e) => {
+                    const mid = e.deviceModelId || 'global';
+                    if (!byModel[mid]) byModel[mid] = {};
+                    const cname = e.conditionName || e.conditionId || 'unknown';
+                    if (e.price != null) byModel[mid][cname] = e.price;
+                });
+
+                const firstModelId = Object.keys(byModel).find((k) => k && k !== 'global');
+                const defaultPrices = firstModelId ? byModel[firstModelId] : byModel['global'] || {};
+
+                setSettings((prev) => ({
+                    ...prev,
+                    conditionModelPrices: entries,
+                    conditionModelPricesMap: byModel,
+                    conditionPrices: { ...prev.conditionPrices, ...defaultPrices },
+                }));
+            } catch (err) {
+                // ignore
+            }
+        };
+
+        loadCategories();
+        loadSeries();
+        loadModels();
+        loadConditions();
+        loadConditionPrices();
+    }, []);
     const [activeSection, setActiveSection] = useState(null);
     const [modalValues, setModalValues] = useState({});
 
@@ -32,10 +190,164 @@ const Settings = () => {
 
         const valueKey = activeSection.valueKey || 'value';
         const newValue = modalValues[valueKey];
-        if (!newValue) return;
+        if (activeSection.key !== 'condition-model-prices' && !newValue) return;
 
+        // If adding a category, series, model, or condition, POST to backend and use returned item
+        if (
+            activeSection.key === 'categories' ||
+            activeSection.key === 'series' ||
+            activeSection.key === 'models' ||
+            activeSection.key === 'conditions'
+        ) {
+            (async () => {
+                try {
+                    const token = localStorage.getItem('token');
+                    const endpoint = `${API_BASE_URL}/api/admin/attributes/${activeSection.key}`;
+                    const body =
+                        activeSection.key === 'models'
+                            ? {
+                                  name: modalValues.modelName,
+                                  seriesId: modalValues.seriesId,
+                              }
+                            : { name: newValue };
+                    const res = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+                        },
+                        body: JSON.stringify(body),
+                    });
+
+                    if (!res.ok) {
+                        const text = await res.text();
+                        throw new Error(text || 'Failed to create category');
+                    }
+
+                    const payload = await res.json();
+                    const created = payload?.data || payload || {};
+                    const id = created.id || created._id || created.uuid || created?.value || null;
+                    const name = created.name || created.title || created.value || newValue;
+
+                    if (activeSection.key === 'categories') {
+                        const item = { id, name };
+                        setSettings((prev) => ({ ...prev, categories: [...prev.categories, item] }));
+                    } else if (activeSection.key === 'series') {
+                        // series: normalize to { value, label } for SelectInput
+                        const item = { value: id || name, label: name };
+                        setSettings((prev) => ({ ...prev, series: [...prev.series, item] }));
+                    } else if (activeSection.key === 'conditions') {
+                        const item = { id, name };
+                        setSettings((prev) => {
+                            const nextState = {
+                                ...prev,
+                                conditions: [...prev.conditions, item],
+                            };
+
+                            if (modalValues.price) {
+                                nextState.conditionPrices = {
+                                    ...prev.conditionPrices,
+                                    [name]: modalValues.price,
+                                };
+                            }
+
+                            return nextState;
+                        });
+                    } else {
+                        const item = {
+                            id,
+                            name,
+                            seriesId: created.seriesId || modalValues.seriesId || null,
+                        };
+                        setSettings((prev) => ({ ...prev, models: [...prev.models, item] }));
+                    }
+                } catch (err) {
+                    // optionally show error
+                    // console.error(err);
+                } finally {
+                    handleCloseModal();
+                }
+            })();
+            return;
+        }
+
+        // Create or update condition-model-price
+        if (activeSection.key === 'condition-model-prices') {
+            (async () => {
+                try {
+                    const token = localStorage.getItem('token');
+                    const conditionId = modalValues.conditionId;
+                    const deviceModelId = modalValues.deviceModelId;
+                    const price = modalValues.price;
+                    if (!conditionId || !deviceModelId || price == null) return;
+
+                    const isEdit = !!modalValues.id;
+                    const endpoint = isEdit
+                        ? `${API_BASE_URL}/api/admin/attributes/condition-model-prices/${modalValues.id}`
+                        : `${API_BASE_URL}/api/admin/attributes/condition-model-prices`;
+                    const method = isEdit ? 'PATCH' : 'POST';
+                    const body = isEdit ? { price: Number(price) } : { conditionId, deviceModelId, price: Number(price) };
+
+                    const res = await fetch(endpoint, {
+                        method,
+                        headers: {
+                            'Content-Type': 'application/json',
+                            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+                        },
+                        body: JSON.stringify(body),
+                    });
+
+                    if (!res.ok) {
+                        const text = await res.text();
+                        throw new Error(text || `Failed to ${isEdit ? 'update' : 'create'} condition-model price`);
+                    }
+
+                    const payload = await res.json();
+                    const created = payload?.data || payload || {};
+                    const entry = {
+                        id: created.id || created._id || modalValues.id || null,
+                        conditionId: created.conditionId || created.condition?.id || conditionId,
+                        conditionName: created.conditionName || created.condition?.name || (settings.conditions.find(c => c.id === conditionId)?.name) || null,
+                        deviceModelId: created.deviceModelId || created.deviceModel?.id || deviceModelId,
+                        deviceModelName: created.deviceModelName || created.deviceModel?.name || (settings.models.find(m => m.id === deviceModelId)?.name) || null,
+                        price: created.price || created.amount || body.price,
+                    };
+
+                    setSettings((prev) => {
+                        const entries = isEdit
+                            ? prev.conditionModelPrices.map((e) => (e.id === entry.id ? entry : e))
+                            : [...prev.conditionModelPrices, entry];
+
+                        const byModel = {};
+                        entries.forEach((e) => {
+                            const mid = e.deviceModelId || 'global';
+                            if (!byModel[mid]) byModel[mid] = {};
+                            const cname = e.conditionName || e.conditionId || 'unknown';
+                            if (e.price != null) byModel[mid][cname] = e.price;
+                        });
+
+                        const firstModelId = Object.keys(byModel).find((k) => k && k !== 'global');
+                        const defaultPrices = firstModelId ? byModel[firstModelId] : byModel['global'] || {};
+
+                        return {
+                            ...prev,
+                            conditionModelPrices: entries,
+                            conditionModelPricesMap: byModel,
+                            conditionPrices: { ...prev.conditionPrices, ...defaultPrices },
+                        };
+                    });
+                } catch (err) {
+                    // optionally show error
+                } finally {
+                    handleCloseModal();
+                }
+            })();
+            return;
+        }
+
+        // default: local update for other sections
         setSettings((prev) => {
-            const updated = { ...prev, [activeSection.key]: [...prev[activeSection.key], newValue] };
+                    const updated = { ...prev, [activeSection.key]: [...prev[activeSection.key], newValue] };
 
             if (activeSection.key === 'conditions' && modalValues.price) {
                 updated.conditionPrices = {
@@ -50,7 +362,35 @@ const Settings = () => {
         handleCloseModal();
     };
 
-    const handleDeleteItem = (sectionKey, index) => {
+    const handleDeleteItem = async (sectionKey, id, index) => {
+        // If deleting a category, series, model, or condition that has an id, call backend
+        if ((sectionKey === 'categories' || sectionKey === 'series' || sectionKey === 'models' || sectionKey === 'conditions') && id) {
+            try {
+                const token = localStorage.getItem('token');
+                const res = await fetch(`${API_BASE_URL}/api/admin/attributes/${sectionKey}/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+                    },
+                });
+                if (!res.ok) {
+                    const text = await res.text();
+                    throw new Error(text || `Failed to delete ${sectionKey}`);
+                }
+
+                setSettings((prev) => ({
+                    ...prev,
+                    [sectionKey]: prev[sectionKey].filter((_, i) => i !== index),
+                }));
+            } catch (err) {
+                // optionally show error
+                // console.error(err);
+            }
+            return;
+        }
+
+        // default: remove by index
         setSettings((prev) => ({
             ...prev,
             [sectionKey]: prev[sectionKey].filter((_, i) => i !== index),
@@ -72,16 +412,46 @@ const Settings = () => {
             addLabel={section.addLabel}
         >
             <div className="flex flex-wrap gap-2">
-                {settings[section.key].map((item, index) => (
-                    <Tag
-                        key={`${item}-${index}`}
-                        label={item}
-                        onDelete={() => handleDeleteItem(section.key, index)}
-                    />
-                ))}
+                {settings[section.key].map((item, index) => {
+                    const isString = typeof item === 'string';
+                    const label = isString ? item : item?.name || item?.label || String(item);
+                    const id = isString
+                        ? null
+                        : item?.id || item?.value || item?._id || null;
+                    return (
+                        <Tag
+                            key={`${label}-${index}`}
+                            label={label}
+                            onDelete={() => handleDeleteItem(section.key, id, index)}
+                        />
+                    );
+                })}
             </div>
         </SettingsCard>
     );
+
+    const openAddPriceModal = () => {
+        const fields = [
+            {
+                name: 'conditionId',
+                label: 'Condition',
+                type: 'select',
+                options: settings.conditions.map((c) => ({ value: c.id, label: c.name })),
+                placeholder: 'Select condition',
+            },
+            {
+                name: 'deviceModelId',
+                label: 'Device Model',
+                type: 'select',
+                options: settings.models.map((m) => ({ value: m.id, label: m.name })),
+                placeholder: 'Select device model',
+            },
+            { name: 'price', label: 'Price', type: 'number', placeholder: '0.00' },
+        ];
+
+        setActiveSection({ key: 'condition-model-prices', modalTitle: 'Add Condition Price', fields });
+        setModalValues({});
+    };
 
     const conditionsSection = sections.find((s) => s.key === 'conditions');
     const otherSections = sections.filter((s) => s.key !== 'conditions');
@@ -99,26 +469,69 @@ const Settings = () => {
 
                 {renderSection(conditionsSection)}
 
-                <div className="rounded-lg border border-gray-200 bg-white p-5">
-                    <h3 className="mb-4 text-base font-semibold text-gray-900">Set Condition Price</h3>
-                    <div className="flex flex-wrap items-center gap-3">
-                        {settings.conditions.map((condition, index) => (
-                            <div key={condition} className="flex items-center gap-2">
-                                <span className="min-w-fit text-sm font-medium text-gray-700">{condition}</span>
-                                <div className="flex items-center gap-2 bg-gray-100 rounded-md px-3 py-2">
-                                    <span className="text-gray-600">$</span>
-                                    <input
-                                        type="number"
-                                        value={settings.conditionPrices[condition] || ''}
-                                        onChange={(e) => handlePriceChange(condition, e.target.value)}
-                                        className="w-24 bg-transparent text-sm text-gray-900 outline-none"
-                                    />
-                                </div>
-                                {index < settings.conditions.length - 1 && <span className="text-gray-300">|</span>}
-                            </div>
-                        ))}
-                    </div>
-                </div>
+                <ConditionPriceTable
+                    models={settings.models}
+                    conditions={settings.conditions}
+                    conditionModelPrices={settings.conditionModelPrices}
+                    onAddPrice={openAddPriceModal}
+                    onEditPrice={(entry) => {
+                        // For editing an existing entry, only allow editing the price (backend expects only price in PATCH)
+                        setActiveSection({ key: 'condition-model-prices', modalTitle: 'Edit Condition Price', fields: [
+                                { name: 'price', label: 'Price', type: 'number' },
+                            ]});
+
+                        setModalValues({
+                            id: entry.id || entry._id || '',
+                            conditionId: entry.conditionId || entry.condition?.id || '',
+                            deviceModelId: entry.deviceModelId || entry.deviceModel?.id || '',
+                            price: entry.price != null ? entry.price : '',
+                        });
+                    }}
+                    onDeletePrice={async (entry) => {
+                        if (!entry || !entry.id) return;
+                        const ok = window.confirm('Delete this condition price? This action cannot be undone.');
+                        if (!ok) return;
+                        try {
+                            const token = localStorage.getItem('token');
+                            const res = await fetch(`${API_BASE_URL}/api/admin/attributes/condition-model-prices/${entry.id}`, {
+                                method: 'DELETE',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+                                },
+                            });
+                            if (!res.ok) {
+                                const text = await res.text();
+                                throw new Error(text || 'Failed to delete condition-model price');
+                            }
+
+                            setSettings((prev) => {
+                                const entries = prev.conditionModelPrices.filter((e) => e.id !== entry.id);
+                                const byModel = {};
+                                entries.forEach((e) => {
+                                    const mid = e.deviceModelId || 'global';
+                                    if (!byModel[mid]) byModel[mid] = {};
+                                    const cname = e.conditionName || e.condition?.name || e.conditionId || 'unknown';
+                                    if (e.price != null) byModel[mid][cname] = e.price;
+                                });
+
+                                const firstModelId = Object.keys(byModel).find((k) => k && k !== 'global');
+                                const defaultPrices = firstModelId ? byModel[firstModelId] : byModel['global'] || {};
+
+                                return {
+                                    ...prev,
+                                    conditionModelPrices: entries,
+                                    conditionModelPricesMap: byModel,
+                                    conditionPrices: { ...prev.conditionPrices, ...defaultPrices },
+                                };
+                            });
+                        } catch (err) {
+                            // eslint-disable-next-line no-console
+                            console.error(err);
+                            alert('Failed to delete condition price');
+                        }
+                    }}
+                />
 
                 {afterPrice.map(renderSection)}
             </div>

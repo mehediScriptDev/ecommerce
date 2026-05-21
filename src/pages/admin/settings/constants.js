@@ -36,7 +36,7 @@ export const INITIAL_SETTINGS = {
 const buildModelFields = (seriesOptions) => [
     { name: 'modelName', label: 'Model name', placeholder: 'Model name' },
     {
-        name: 'series',
+        name: 'seriesId',
         label: 'Select Series',
         type: 'select',
         placeholder: 'Select Series',
@@ -74,7 +74,6 @@ export const SECTIONS = (settings) => [
         modalTitle: 'Condition name',
         fields: [
             { name: 'value', label: 'Condition name', placeholder: 'Condition name' },
-            { name: 'price', label: 'Condition Price', placeholder: '$300.00' },
         ],
     },
     {

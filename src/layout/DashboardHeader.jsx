@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { FiMenu, FiX, FiLogOut, FiUser, FiHome } from 'react-icons/fi';
 import logo from '../assets/logo.webp';
@@ -6,6 +6,7 @@ import { useAuth } from '../context/AuthContext';
 
 const DashboardHeader = ({ userName = 'Atik Adnan', role = 'Admin', onMenuToggle, isSidebarOpen }) => {
     const [userMenuOpen, setUserMenuOpen] = useState(false);
+    const userMenuRef = useRef(null);
     const navigate = useNavigate();
     const { user, role: authRole, isAuthenticated, logout } = useAuth();
 
@@ -16,6 +17,16 @@ const DashboardHeader = ({ userName = 'Atik Adnan', role = 'Admin', onMenuToggle
         setUserMenuOpen(false);
         navigate('/login');
     };
+
+    useEffect(() => {
+        const handleDocClick = (e) => {
+            if (userMenuRef.current && !userMenuRef.current.contains(e.target)) {
+                setUserMenuOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleDocClick);
+        return () => document.removeEventListener('mousedown', handleDocClick);
+    }, []);
 
     return (
         <header className="flex h-14 shrink-0 items-center justify-between border-b border-gray-200 bg-white px-6">
@@ -34,12 +45,11 @@ const DashboardHeader = ({ userName = 'Atik Adnan', role = 'Admin', onMenuToggle
             {isAuthenticated ? (
                 <div
                     className="relative"
-                    onMouseEnter={() => setUserMenuOpen(true)}
-                    onMouseLeave={() => setUserMenuOpen(false)}
+                    ref={userMenuRef}
                 >
                     <button
                         type="button"
-                        className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2E395B] text-white shadow-sm"
+                        className="flex h-8 cursor-pointer w-8 items-center justify-center rounded-full bg-[#2E395B] text-white shadow-sm"
                         onClick={() => setUserMenuOpen((prev) => !prev)}
                         aria-label="Open dashboard user menu"
                     >
