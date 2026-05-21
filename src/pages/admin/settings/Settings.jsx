@@ -117,6 +117,69 @@ const Settings = () => {
             }
         };
 
+        const loadStorageOptions = async () => {
+            try {
+                const res = await fetch(`${API_BASE_URL}/api/admin/attributes/storage-options`, {
+                    headers: token ? { Authorization: `Bearer ${token}` } : {},
+                });
+                if (!res.ok) return;
+                const payload = await res.json();
+                const data = Array.isArray(payload) ? payload : payload?.data || payload?.storageOptions || [];
+                if (!Array.isArray(data)) return;
+
+                const normalized = data.map((storage) => ({
+                    id: storage.id || storage._id || storage.uuid || null,
+                    name: storage.name || storage.title || String(storage),
+                }));
+
+                setSettings((prev) => ({ ...prev, storage: normalized }));
+            } catch (err) {
+                // ignore load errors
+            }
+        };
+
+        const loadRamOptions = async () => {
+            try {
+                const res = await fetch(`${API_BASE_URL}/api/admin/attributes/ram-options`, {
+                    headers: token ? { Authorization: `Bearer ${token}` } : {},
+                });
+                if (!res.ok) return;
+                const payload = await res.json();
+                const data = Array.isArray(payload) ? payload : payload?.data || payload?.ramOptions || [];
+                if (!Array.isArray(data)) return;
+
+                const normalized = data.map((ram) => ({
+                    id: ram.id || ram._id || ram.uuid || null,
+                    name: ram.name || ram.title || String(ram),
+                }));
+
+                setSettings((prev) => ({ ...prev, ram: normalized }));
+            } catch (err) {
+                // ignore load errors
+            }
+        };
+
+        const loadColors = async () => {
+            try {
+                const res = await fetch(`${API_BASE_URL}/api/admin/attributes/colors`, {
+                    headers: token ? { Authorization: `Bearer ${token}` } : {},
+                });
+                if (!res.ok) return;
+                const payload = await res.json();
+                const data = Array.isArray(payload) ? payload : payload?.data || payload?.colors || [];
+                if (!Array.isArray(data)) return;
+
+                const normalized = data.map((color) => ({
+                    id: color.id || color._id || color.uuid || null,
+                    name: color.name || color.title || String(color),
+                }));
+
+                setSettings((prev) => ({ ...prev, colors: normalized }));
+            } catch (err) {
+                // ignore load errors
+            }
+        };
+
         const loadConditionPrices = async () => {
             try {
                 const res = await fetch(`${API_BASE_URL}/api/admin/attributes/condition-model-prices`, {
@@ -163,6 +226,9 @@ const Settings = () => {
         loadSeries();
         loadModels();
         loadConditions();
+        loadStorageOptions();
+        loadRamOptions();
+        loadColors();
         loadConditionPrices();
     }, []);
     const [activeSection, setActiveSection] = useState(null);
@@ -271,6 +337,123 @@ const Settings = () => {
             return;
         }
 
+        if (activeSection.key === 'storage') {
+            (async () => {
+                try {
+                    const token = localStorage.getItem('token');
+                    const res = await fetch(`${API_BASE_URL}/api/admin/attributes/storage-options`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+                        },
+                        body: JSON.stringify({ name: newValue }),
+                    });
+
+                    if (!res.ok) {
+                        const text = await res.text();
+                        throw new Error(text || 'Failed to create storage option');
+                    }
+
+                    const payload = await res.json();
+                    const created = payload?.data || payload || {};
+                    const item = {
+                        id: created.id || created._id || created.uuid || null,
+                        name: created.name || created.title || newValue,
+                    };
+
+                    setSettings((prev) => ({
+                        ...prev,
+                        storage: [...prev.storage, item],
+                    }));
+                } catch (err) {
+                    // optionally show error
+                    // console.error(err);
+                } finally {
+                    handleCloseModal();
+                }
+            })();
+            return;
+        }
+
+        if (activeSection.key === 'ram') {
+            (async () => {
+                try {
+                    const token = localStorage.getItem('token');
+                    const res = await fetch(`${API_BASE_URL}/api/admin/attributes/ram-options`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+                        },
+                        body: JSON.stringify({ name: newValue }),
+                    });
+
+                    if (!res.ok) {
+                        const text = await res.text();
+                        throw new Error(text || 'Failed to create ram option');
+                    }
+
+                    const payload = await res.json();
+                    const created = payload?.data || payload || {};
+                    const item = {
+                        id: created.id || created._id || created.uuid || null,
+                        name: created.name || created.title || newValue,
+                    };
+
+                    setSettings((prev) => ({
+                        ...prev,
+                        ram: [...prev.ram, item],
+                    }));
+                } catch (err) {
+                    // optionally show error
+                    // console.error(err);
+                } finally {
+                    handleCloseModal();
+                }
+            })();
+            return;
+        }
+
+        if (activeSection.key === 'colors') {
+            (async () => {
+                try {
+                    const token = localStorage.getItem('token');
+                    const res = await fetch(`${API_BASE_URL}/api/admin/attributes/colors`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+                        },
+                        body: JSON.stringify({ name: newValue }),
+                    });
+
+                    if (!res.ok) {
+                        const text = await res.text();
+                        throw new Error(text || 'Failed to create color');
+                    }
+
+                    const payload = await res.json();
+                    const created = payload?.data || payload || {};
+                    const item = {
+                        id: created.id || created._id || created.uuid || null,
+                        name: created.name || created.title || newValue,
+                    };
+
+                    setSettings((prev) => ({
+                        ...prev,
+                        colors: [...prev.colors, item],
+                    }));
+                } catch (err) {
+                    // optionally show error
+                    // console.error(err);
+                } finally {
+                    handleCloseModal();
+                }
+            })();
+            return;
+        }
+
         // Create or update condition-model-price
         if (activeSection.key === 'condition-model-prices') {
             (async () => {
@@ -363,11 +546,22 @@ const Settings = () => {
     };
 
     const handleDeleteItem = async (sectionKey, id, index) => {
-        // If deleting a category, series, model, or condition that has an id, call backend
-        if ((sectionKey === 'categories' || sectionKey === 'series' || sectionKey === 'models' || sectionKey === 'conditions') && id) {
+        // If deleting a category, series, model, condition, storage, ram, or color option that has an id, call backend
+        if ((sectionKey === 'categories' || sectionKey === 'series' || sectionKey === 'models' || sectionKey === 'conditions' || sectionKey === 'storage' || sectionKey === 'ram' || sectionKey === 'colors') && id) {
             try {
                 const token = localStorage.getItem('token');
-                const res = await fetch(`${API_BASE_URL}/api/admin/attributes/${sectionKey}/${id}`, {
+                const deleteEndpointBySection = {
+                    categories: 'categories',
+                    series: 'series',
+                    models: 'models',
+                    conditions: 'conditions',
+                    storage: 'storage-options',
+                    ram: 'ram-options',
+                    colors: 'colors',
+                };
+
+                const endpointKey = deleteEndpointBySection[sectionKey] || sectionKey;
+                const res = await fetch(`${API_BASE_URL}/api/admin/attributes/${endpointKey}/${id}`, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',
