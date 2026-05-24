@@ -32,7 +32,7 @@ const AddModal = ({ title, isOpen, fields, values, onChange, onSubmit, onClose }
             ))}
             <button
                 type="submit"
-                className="w-full rounded-lg bg-teal-500 px-4 py-2 text-sm font-medium text-white hover:bg-teal-600 transition"
+                className="w-full rounded-lg bg-custom cursor-pointer px-4 py-2 text-sm font-medium text-white hover:bg-teal-600 transition"
             >
                 Save
             </button>

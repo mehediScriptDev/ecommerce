@@ -10,7 +10,7 @@ const reviews = [
     {
         id: 1,
         stars: 5,
-        text: "I recently bought a smartphone from this website, and the experience was excellent. The delivery was fast, the product was genuine, and the price was better than local stores. Highly recommended!",
+        text: "I recently bought a smartphone from this website, and the experience was excellent. The delivery was fast, the product was genuine, and the price was better than local stores.",
         author: "Sabo Masties",
     },
     {
@@ -31,12 +31,13 @@ const reviews = [
         text: "Absolutely love the shopping experience here. Wide range of products, competitive prices, and super fast delivery. Will definitely recommend to friends and family.",
         author: "Rahima",
     },
-    {
+     {
         id: 5,
         stars: 5,
-        text: "The website is very easy to navigate and the checkout process was seamless. Got my order in two days. Amazing experience overall!",
-        author: "Karim",
+        text: "Great service and smooth ordering process. I loved how easy it was to compare different phones before buying. The customer support team was also very helpful!",
+        author: "Sam",
     },
+    
 ];
 
 const StarRating = ({ count }) => (
@@ -90,7 +91,7 @@ const Review = () => {
                                             p-6 rounded-xl border transition-all duration-500
                                             ${isActive
                                                 ? 'bg-white shadow-lg border-gray-200 scale-110 z-10'
-                                                : 'bg-white border-gray-100 shadow-sm scale-95 opacity-80 h-[220px]'
+                                                : 'bg-white border-gray-100 shadow-sm scale-95 opacity-80 h-55'
                                             }
                                         `}
                                     >

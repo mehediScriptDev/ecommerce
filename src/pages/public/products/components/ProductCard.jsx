@@ -1,24 +1,20 @@
 import { useState } from "react";
+import { Link } from "react-router";
 import Stars from "./Stars";
-import { usePageTransition } from "../../../../components/transitions";
 
 export default function ProductCard({ product }) {
   const [added, setAdded] = useState(false);
-  const { transitionTo } = usePageTransition();
 
   const handleAdd = (e) => {
+    e.preventDefault();
     e.stopPropagation();
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
   };
 
-  const handleCardClick = () => {
-    transitionTo("/product-details");
-  };
-
   return (
-    <div
-      onClick={handleCardClick}
+    <Link
+      to="/product-details"
       className="bg-white border border-gray-100 rounded-2xl overflow-hidden
       transition-all duration-300 group cursor-pointer"
     >
@@ -83,6 +79,6 @@ export default function ProductCard({ product }) {
           {added ? "✓ Added!" : "Add to Cart"}
         </button>
       </div>
-    </div>
+    </Link>
   );
 }

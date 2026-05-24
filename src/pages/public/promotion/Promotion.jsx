@@ -1,11 +1,21 @@
 import promotion from '../../../assets/banner/promotions.webp';
+import mobileBanner from '../../../assets/banner/newone.webp';
+import { Link } from 'react-router';
 import Container from '../../../layout/Container';
 
 const Promotion = () => {
     return (
         <div className='py-10 md:pb-16'>
           <Container>
-            <div className='relative h-75 sm:h-95 lg:h-95 overflow-hidden rounded-xl'>
+            {/* Mobile -> up to lg (0 - 1024px): show only the image (no text/buttons) */}
+            <div className="lg:hidden">
+              <div className="overflow-hidden rounded-xl">
+                <img src={mobileBanner} alt="Promotion" className="w-full h-auto object-cover rounded-xl" />
+              </div>
+            </div>
+
+            {/* Desktop (1024px+) layout */}
+            <div className='hidden lg:block relative h-75 lg:h-95 overflow-hidden rounded-xl'>
               <img
                 src={promotion}
                 alt="Promotion"
@@ -21,12 +31,12 @@ const Promotion = () => {
                   Tired of your old device? Trading it in has never been easier.
                   We offer the best market rates and a seamless process.
                 </p>
-                <button
-                  type="button"
+                <Link
+                  to="/sell"
                   className="mt-6 hover:scale-105 inline-flex items-center rounded-lg bg-[#4bb9cf] px-5 py-2.5 text-sm lg:text-base font-semibold text-white hover:brightness-110 cursor-pointer transition-all"
                 >
                   Sell Your Phone
-                </button>
+                </Link>
               </div>
             </div>
           </Container>

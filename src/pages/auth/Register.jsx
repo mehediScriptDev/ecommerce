@@ -2,13 +2,52 @@
 import { useState } from 'react';
 import leftsideImage from '../../assets/auth/register.webp';
 import { VscEye, VscEyeClosed } from 'react-icons/vsc';
-import KamuiImage from '../../components/shared/KamuiImage';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import { GoArrowLeft } from 'react-icons/go';
+import { useAuth } from '../../context/AuthContext';
 
 const Register = () => {
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const [error, setError] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const navigate = useNavigate();
+    const { register } = useAuth();
+
+    const handleRegister = async (e) => {
+        e.preventDefault();
+        setError('');
+
+        if (!firstName || !lastName || !email || !phone || !password) {
+            setError('All fields are required.');
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            setError('Password and confirm password do not match.');
+            return;
+        }
+
+        setIsSubmitting(true);
+
+        try {
+            await register({ firstName, lastName, email, phone, password });
+            sessionStorage.setItem('pendingVerificationEmail', email);
+            navigate('/otp-verification', { replace: true, state: { email } });
+        } catch (err) {
+            setError(err.message || 'Unable to register right now. Please try again.');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
-        <div className="flex h-screen w-full overflow-hidden">
+        <div className="relative flex h-screen w-full overflow-hidden">
             {/* Left - Image */}
             <div className="hidden md:block w-1/2 h-full overflow-hidden">
                 <img
@@ -17,6 +56,19 @@ const Register = () => {
                     alt="Register"
                 />
                 {/* <KamuiImage src={leftsideImage} alt="Register"/> */}
+            </div>
+
+            {/* Top-right Back Button */}
+            <div className="absolute top-4 right-4 z-50">
+                <button
+                                    onClick={() => navigate('/')}
+                                    aria-label="Back to Home"
+                                    className="flex items-center gap-0.5 duration-300 px-3 py-2 transition cursor-pointer hover:scale-105"
+                                >
+                                    
+                                    <GoArrowLeft className="w-4 h-4 text-gray-500"/>
+                                    <span className="text-xs text-gray-500">Home</span>
+                                </button>
             </div>
 
             {/* Right - Form */}
@@ -29,6 +81,8 @@ const Register = () => {
                         Provide your basic personal details to create your user profile.
                     </p>
 
+                    <form onSubmit={handleRegister}>
+
                     {/* First Name & Last Name */}
                     <div className="flex gap-3 mb-4">
                         <div className="flex-1">
@@ -37,6 +91,8 @@ const Register = () => {
                             </label>
                             <input
                                 type="text"
+                                value={firstName}
+                                onChange={(e) => setFirstName(e.target.value)}
                                 placeholder="Enter your first name"
                                 className="input w-full bg-[#ebecf0] border-none focus:outline-none"
                             />
@@ -47,6 +103,8 @@ const Register = () => {
                             </label>
                             <input
                                 type="text"
+                                value={lastName}
+                                onChange={(e) => setLastName(e.target.value)}
                                 placeholder="Enter your last name"
                                 className="input w-full bg-[#ebecf0] border-none focus:outline-none"
                             />
@@ -60,6 +118,8 @@ const Register = () => {
                         </label>
                         <input
                             type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                             placeholder="Enter your business email.."
                             className="input w-full bg-[#ebecf0] border-none focus:outline-none"
                         />
@@ -72,6 +132,8 @@ const Register = () => {
                         </label>
                         <input
                             type="tel"
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
                             placeholder="Enter your Phone number.."
                             className="input w-full bg-[#ebecf0] border-none focus:outline-none"
                         />
@@ -85,6 +147,8 @@ const Register = () => {
                         <div className="relative">
                             <input
                                 type={showPassword ? 'text' : 'password'}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                                 placeholder="write password"
                                 className="input w-full bg-[#ebecf0] border-none focus:outline-none"
                             />
@@ -106,6 +170,8 @@ const Register = () => {
                         <div className="relative">
                             <input
                                 type={showPassword ? 'text' : 'password'}
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
                                 placeholder="confirm password"
                                 className="input w-full bg-[#ebecf0] border-none focus:outline-none"
                             />
@@ -119,10 +185,20 @@ const Register = () => {
                         </div>
                     </div>
 
+                    {error ? (
+                        <p className="mb-4 text-sm font-medium text-red-500">{error}</p>
+                    ) : null}
+
                     {/* Sign Up Button */}
-                    <button className="btn-custom w-full text-base font-semibold">
-                        Sign UP
+                    <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="btn-custom w-full text-base font-semibold disabled:cursor-not-allowed disabled:opacity-70"
+                    >
+                        {isSubmitting ? 'Creating Account...' : 'Sign UP'}
                     </button>
+
+                    </form>
 
                     {/* Log In */}
                     <p className="text-center text-sm text-gray-600 mt-4">

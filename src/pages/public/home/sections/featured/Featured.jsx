@@ -1,14 +1,20 @@
-import React, { use } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../../../../../layout/Container";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import Card from "./components/Card";
-import { usePageTransition } from "../../../../../components/transitions";
 
-const allfeatured = fetch("/data/featured.json").then((res) => res.json());
 const Featured = () => {
-  const data = use(allfeatured);
-  const { transitionTo } = usePageTransition();
-  console.log(data);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    let mounted = true;
+    fetch('/data/featured.json')
+      .then((res) => res.json())
+      .then((json) => {
+        if (mounted) setData(json);
+      })
+      .catch((err) => console.error('Failed to load featured.json', err));
+    return () => { mounted = false };
+  }, []);
 
   return (
     <Container>
@@ -21,19 +27,18 @@ const Featured = () => {
             </p>
           </div>
           <div>
-            
-            <button
-              onClick={() => transitionTo("/products")}
+            <Link
+              to="/products"
               className="text-sm hover:scale-95 cursor-pointer text-custom flex items-center justify-center"
             >
               View All Products →
-            </button>
+            </Link>
           </div>
         </div>
 
         {/* cards */}
-        <div className="mt-10 w-full grid grid-cols-1 min-[400px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-          {data.map((item) => (
+        <div className="mt-10 w-full grid grid-cols-1 min-[350px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3 md:gap-4">
+          {data?.map((item) => (
             <Card key={item.id} {...item} />
           ))}
         </div>

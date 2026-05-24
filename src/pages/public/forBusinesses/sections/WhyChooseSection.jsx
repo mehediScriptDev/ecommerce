@@ -31,7 +31,7 @@ const WhyChooseSection = () => {
                 <div className='mt-12 grid grid-cols-2 gap-8 text-center sm:grid-cols-3 lg:grid-cols-5'>
                     {reasons.map(({ title, icon: Icon }) => (
                         <div key={title} className='mx-auto max-w-45'>
-                            <span className='mx-auto inline-flex rounded-full bg-linear-to-b from-[#CEFAFE] to-[#DBEAFE] p-4 text-[#1293c4]'>
+                            <span className='mx-auto inline-flex rounded-full bg-linear-to-b from-[#CEFAFE] to-[#DBEAFE] p-4 text-[#1293c4] hover:scale-105 duration-300 transition hover:rotate-360'>
                                 <Icon size={24} />
                             </span>
                             <p className='mt-4 text-sm lg:text-base text-[#0A0A0A]'>{title}</p>

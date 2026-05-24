@@ -6,6 +6,7 @@ import NumberInput from './components/NumberInput';
 import SelectInput from './components/SelectInput';
 import Textarea from './components/Textarea';
 import FaqItem from './components/FaqItem';
+import TechnicalSpecItem from './components/TechnicalSpecItem';
 import ImageUpload from './components/ImageUpload';
 import {
     CATEGORY_OPTIONS,
@@ -18,10 +19,12 @@ import {
     INITIAL_FORM,
     INITIAL_FAQS,
 } from './constants';
+import { Link } from 'react-router';
 
 const Addlisting = () => {
     const [formData, setFormData] = useState(INITIAL_FORM);
     const [faqs, setFaqs] = useState(INITIAL_FAQS);
+    const [technicalSpecs, setTechnicalSpecs] = useState([{ specification: '', value: '' }]);
     const [specImages, setSpecImages] = useState([]);
 
     const updateField = (name, value) => {
@@ -51,13 +54,31 @@ const Addlisting = () => {
 
     const addFaq = () => setFaqs([...faqs, { question: '', answer: '' }]);
 
+    const handleTechnicalSpecSpecificationChange = (index, value) => {
+        const updated = [...technicalSpecs];
+        updated[index].specification = value;
+        setTechnicalSpecs(updated);
+    };
+
+    const handleTechnicalSpecValueChange = (index, value) => {
+        const updated = [...technicalSpecs];
+        updated[index].value = value;
+        setTechnicalSpecs(updated);
+    };
+
+    const handleRemoveTechnicalSpec = (index) => {
+        setTechnicalSpecs((prev) => prev.filter((_, i) => i !== index));
+    };
+
+    const addTechnicalSpec = () => setTechnicalSpecs([...technicalSpecs, { specification: '', value: '' }]);
+
     const handleImageAdd = (files) => {
         setSpecImages((prev) => [...prev, ...files]);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Form Data:', { ...formData, faqs, specImages });
+        console.log('Form Data:', { ...formData, faqs, technicalSpecs, specImages });
     };
 
 
@@ -65,12 +86,12 @@ const Addlisting = () => {
         <div className="bg-gray-50 min-h-screen">
             <div className="pb-3">
                 <p className="text-xs text-gray-400 mb-2">Listing &gt; Create Listing</p>
-                <button
-                    type="button"
+                <Link                    to="/dashboard/admin/listing"
+                    
                     className="text-sm text-teal-600 hover:text-teal-700 font-medium"
                 >
                     ← Back
-                </button>
+                </Link>
             </div>
 
             <form onSubmit={handleSubmit} className="pb-10">
@@ -201,8 +222,29 @@ const Addlisting = () => {
                     </button>
                 </div>
 
+                <div className="mb-6">
+                    <h2 className="text-base font-semibold text-gray-900 mb-3">Technical Specifications</h2>
+                    {technicalSpecs.map((spec, index) => (
+                        <TechnicalSpecItem
+                            key={index}
+                            index={index}
+                            spec={spec}
+                            onSpecificationChange={handleTechnicalSpecSpecificationChange}
+                            onValueChange={handleTechnicalSpecValueChange}
+                            onRemove={handleRemoveTechnicalSpec}
+                        />
+                    ))}
+                    <button
+                        type="button"
+                        onClick={addTechnicalSpec}
+                        className="text-sm text-teal-600 hover:text-teal-700 font-medium mt-1"
+                    >
+                        Add Another Specification
+                    </button>
+                </div>
+
                 <div className="mb-8">
-                    <FormField label="Technical Specification">
+                    <FormField label="Specification Images">
                         <ImageUpload images={specImages} onFilesAdded={handleImageAdd} />
                     </FormField>
                 </div>

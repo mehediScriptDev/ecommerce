@@ -1,11 +1,10 @@
 import { motion, useReducedMotion } from 'framer-motion';
+import { Link } from 'react-router';
 
 import Container from '../../../../layout/Container';
-import { usePageTransition } from '../../../../components/transitions';
 import printer from '../../../../assets/printer.png';
 
 const HeroSection = () => {
-    const { transitionTo } = usePageTransition();
     const shouldReduceMotion = useReducedMotion();
 
     return (
@@ -30,13 +29,12 @@ const HeroSection = () => {
                             deliver technology solutions that power your business
                             forward.
                         </p>
-                        <button
-                            type='button'
-                            onClick={() => transitionTo('/contact')}
+                        <Link
+                            to='/contact'
                             className='mt-6 inline-flex items-center rounded-lg bg-linear-to-b from-[#00B8DB] to-custom hover:scale-105 px-7 py-3.5 text-base font-semibold text-white transition-all duration-300 hover:brightness-110 cursor-pointer'
                         >
                             Get Started Today
-                        </button>
+                        </Link>
                     </div>
 
                     <motion.div

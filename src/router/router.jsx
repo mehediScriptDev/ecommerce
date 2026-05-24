@@ -13,9 +13,11 @@ import Products from "../pages/public/products/Products";
 import Contact from "../pages/public/contact/Contact";
 import ProductDetails from "../pages/public/productDetails/ProductDetails";
 import AdminOverview from "../pages/admin/overview/AdminOverview";
-import UserOrders from "../pages/user/UserOrders";
+import UserOrders from "../pages/user/orders/UserOrders";
+import Account from "../pages/user/account/Account";
 import Listings from "../pages/admin/listings/Listings";
 import Addlisting from "../pages/admin/addlisting/Addlisting";
+import Editlisting from "../pages/admin/editListing/Editlisting";
 import Order from "../pages/admin/order/Order";
 import CellPhoneMange from "../pages/admin/cellphoneMange/CellPhoneMange";
 import PromoCode from "../pages/admin/promoCode/PromoCode";
@@ -26,6 +28,14 @@ import Settings from "../pages/admin/settings/Settings";
 import Cart from "../pages/public/cart/Cart";
 import AboutUs from "../pages/public/aboutUs/AboutUs";
 import ForBusinesses from "../pages/public/forBusinesses/ForBusinesses";
+import Sell from "../pages/public/sellYourPhone/Sell";
+import SellWorth from "../pages/public/sellWorth/SellWorth";
+import AboutDevice from "../pages/public/aboutdevice/AboutDevice";
+import FinalizeSale from "../pages/public/finalizeSale/FinalizeSale";
+import Checkout from "../pages/public/checkout/Checkout";
+import BusinessQuery from "../pages/admin/businessQuery/BusinessQuery";
+import ForgetCode from "../pages/auth/ForgetCode";
+import Privacy from "../pages/public/privacy-policy/Privacy";
 
 const router = createBrowserRouter([
   {
@@ -45,21 +55,42 @@ const router = createBrowserRouter([
         element: <ProductDetails />,
       },
       {
-        path:"about-us",
-        element:<AboutUs/>
+        path: "about-us",
+        element: <AboutUs />,
       },
       {
         path: "cart",
         element: <Cart />,
       },
       {
+        path: "checkout",
+        element: <Checkout />,
+      },
+      {
         path: "contact",
         element: <Contact />,
+      },
+      {
+        path: "privacy-policy",
+        element: <Privacy />,
       },
       {
         path: "for-businesses",
         element: <ForBusinesses />,
       },
+      {
+        path: "sell",
+        element: <Sell />,
+      },
+      {
+        path: "sell-your-phone",
+        element: <SellWorth />,
+      },
+      {
+        path: "confirm-sale",
+        element: <AboutDevice />,
+      },
+      { path: "finalize-sale", element: <FinalizeSale /> },
     ],
   },
 
@@ -71,13 +102,16 @@ const router = createBrowserRouter([
       { index: true, element: <AdminOverview /> },
       { path: "listing", element: <Listings /> },
       {
-        path:"add-listing", element:<Addlisting/>
+        path: "add-listing",
+        element: <Addlisting />,
       },
+      { path: "edit-listing/:id", element: <Editlisting /> },
       { path: "order", element: <Order /> },
       { path: "cell-phone", element: <CellPhoneMange /> },
       { path: "promo-code", element: <PromoCode /> },
       { path: "create-promo", element: <CreatePromo /> },
       { path: "user-management", element: <UserManagement /> },
+      { path: "business-queries", element: <BusinessQuery /> },
       { path: "settings", element: <Settings /> },
       { path: "profile", element: <AdminProfile /> },
     ],
@@ -89,6 +123,7 @@ const router = createBrowserRouter([
     element: <UserDashboardLayout />,
     children: [
       { index: true, element: <UserOrders /> },
+      { path: "account", element: <Account /> },
     ],
   },
 
@@ -98,12 +133,15 @@ const router = createBrowserRouter([
   { path: "/forget-password", element: <ForgetPass /> },
   { path: "/reset-password", element: <ResetPass /> },
   { path: "/otp-verification", element: <Otp /> },
+  { path: "/verify-code", element: <ForgetCode /> },
 
   // not found route
   {
     path: "*",
     element: <NotFound />,
   },
+
+  
 ]);
 
 export default router;

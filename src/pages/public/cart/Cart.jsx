@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { IoChevronBack } from 'react-icons/io5';
 import { FiMinus, FiPlus, FiTrash2, FiLock, FiTruck, FiShield, FiCornerUpLeft, FiAward } from 'react-icons/fi';
+import { Link } from 'react-router';
 
 
 const Cart = () => {
@@ -161,10 +162,10 @@ const Cart = () => {
                                 </div>
                             </div>
                             
-                            <button className="w-full bg-[#47B5C9] hover:bg-[#349eab] text-white py-3.5 rounded-md text-[15px] font-medium flex justify-center items-center gap-2 transition-colors">
+                            <Link to={"/checkout"} className="w-full bg-[#47B5C9] hover:bg-[#349eab] text-white py-3.5 rounded-md text-[15px] font-medium flex justify-center items-center gap-2 transition-colors">
                                 <FiLock className="w-4.5 h-4.5"/>
                                 Checkout Securely
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </div>

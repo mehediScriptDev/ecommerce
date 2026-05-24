@@ -5,7 +5,7 @@ const SettingsCard = ({ title, onAdd, addLabel, children }) => (
             {onAdd && (
                 <button
                     onClick={onAdd}
-                    className="rounded-md bg-custom px-3 py-1.5 text-sm font-medium text-white hover:bg-teal-600 transition"
+                    className="rounded-md bg-custom cursor-pointer px-3 py-1.5 text-sm font-medium text-white hover:bg-teal-600 transition"
                 >
                     {addLabel}
                 </button>

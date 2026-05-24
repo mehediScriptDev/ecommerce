@@ -17,7 +17,7 @@ const Tabs = ({ activeTab, setActiveTab }) => {
                             text-base md:text-sm 
                             rounded-lg transition-all duration-200 ease-in-out font-medium whitespace-nowrap
                             ${activeTab === tab 
-                                ? 'bg-white text-gray-900 shadow-sm' 
+                                ? 'bg-custom text-white shadow-sm' 
                                 : 'text-gray-500 hover:text-gray-700'
                             }
                         `}

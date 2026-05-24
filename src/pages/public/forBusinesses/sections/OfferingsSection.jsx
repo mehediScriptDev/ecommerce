@@ -46,7 +46,7 @@ const OfferingsSection = () => {
                     {offerings.map(({ title, description, icon: Icon }) => (
                         <div
                             key={title}
-                            className='rounded-2xl border border-gray-100 bg-white p-7 shadow-[0_1px_2px_rgba(0,0,0,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg'
+                            className='rounded-2xl border border-gray-100 bg-white p-7 shadow-[0_1px_2px_rgba(0,0,0,0.1)] transition-all hover:scale-105 hover:border-custom duration-300'
                         >
                             <span className='inline-flex rounded-[14px] bg-linear-to-b from-[#CEFAFE] to-[#DBEAFE] p-4 text-[#1293c4]'>
                                 <Icon size={26} />

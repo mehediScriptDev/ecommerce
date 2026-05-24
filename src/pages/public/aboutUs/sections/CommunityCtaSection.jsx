@@ -1,10 +1,8 @@
+import { Link } from 'react-router';
 import Container from '../../../../layout/Container';
 import bgImage from "../../../../assets/ctabg.png";
-import { usePageTransition } from '../../../../components/transitions';
 
 const CommunityCtaSection = () => {
-    const { transitionTo } = usePageTransition();
-
     return (
         <section
             className='relative overflow-hidden py-16 lg:py-20'
@@ -25,20 +23,18 @@ const CommunityCtaSection = () => {
                         Follow Zephyr Technology for the latest devices, updates, and offers.
                     </p>
                     <div className='mt-7 flex flex-wrap items-center justify-center gap-3'>
-                        <button
-                            type='button'
-                            onClick={() => transitionTo('/products')}
+                        <Link
+                            to='/products'
                             className='rounded-sm bg-custom px-6 py-2 text-sm lg:text-base font-medium text-white transition-all duration-300 hover:brightness-110 hover:scale-105 cursor-pointer'
                         >
                             Shop Now
-                        </button>
-                        <button
-                            type='button'
-                            onClick={() => transitionTo('/sell')}
+                        </Link>
+                        <Link
+                            to='/sell'
                             className='rounded-sm  px-6 py-2 text-sm lg:text-base font-medium text-white border border-white hover:border-[#243462] transition-all hover:scale-105 duration-300 hover:bg-[#243462] cursor-pointer'
                         >
                             Sell Your Phone
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </Container>
